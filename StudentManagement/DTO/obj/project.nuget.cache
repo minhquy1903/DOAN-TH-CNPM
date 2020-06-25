@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qCXYut/SX1UhLhW4N6H+zM23hjkESCkiC2CoLvdCfdl/sJhxIFmmPcJdafR7iR3BEizWA3yHqVu97v7cgXwsMA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\MINH QUY\\Documents\\GitHub\\DOAN-TH-CNPM\\StudentManagement\\DTO\\DTO.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\MINH QUY\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\MINH QUY\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
