@@ -25,3 +25,12 @@ C:\Users\MINH QUY\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\StudentManagem
 C:\Users\MINH QUY\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.csproj.CoreCompileInputs.cache
 C:\Users\MINH QUY\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.dll
 C:\Users\MINH QUY\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.pdb
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\bin\Debug\netstandard2.0\DTO.deps.json
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\bin\Debug\netstandard2.0\DTO.dll
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\bin\Debug\netstandard2.0\DTO.pdb
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.csprojAssemblyReference.cache
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.AssemblyInfo.cs
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.dll
+C:\Users\PC\Documents\GitHub\DOAN-TH-CNPM\StudentManagement\DTO\obj\Debug\netstandard2.0\DTO.pdb
