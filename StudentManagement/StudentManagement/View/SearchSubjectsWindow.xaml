@@ -1,0 +1,97 @@
+﻿<Window x:Class="StudentManagement.SearchSubjectsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentManagement"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="Search Subjects" Height="600" Width="500" WindowStyle="ThreeDBorderWindow"
+        ResizeMode="NoResize" ShowInTaskbar="False" >
+    <Grid>
+        <materialDesign:Card>
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Height="100"
+                               Text="Xem Môn học "
+                               FontSize="55"
+                               FontFamily="Segoe UI"
+                               FontWeight="DemiBold"
+                               Margin="50 50 40 50">
+                    </TextBlock>
+                    <materialDesign:PopupBox Grid.Column="1" 
+                                             PlacementMode="BottomAndAlignRightEdges" 
+                                             StaysOpen="False">
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="20">
+                            <materialDesign:PackIcon Kind="WeatherSunny" 
+                                                 Margin="0 0 10 0"/>
+                            <TextBlock Text="Day"
+                                   Margin="0 0 10 0"/>
+                            <ToggleButton x:Name="DarkModeToggleButton" 
+                                      Click="MenuDarkModeButton_Click"/>
+                            <TextBlock Text="Night"
+                                   Margin="10 0 0 0"/>
+                            <materialDesign:PackIcon Kind="MoonWaxingCrescent" 
+                                                 Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+
+                </Grid>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Column="0" Grid.Row="0"
+                             Margin="30"
+                             materialDesign:HintAssist.Hint="Tên Môn học"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="0"
+                             Margin="30"
+                             materialDesign:HintAssist.Hint="Số tiết"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             VerticalAlignment="Center" />
+                </Grid>
+                <Button Content="Search"
+                        FontSize="20"
+                        FontFamily="MV Boli"
+                        Margin="200 25 50 50"
+                        Width="100"
+                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        ToolTip="Search Marks">
+                </Button>
+                <materialDesign:Card VerticalAlignment="Stretch">
+                    <ListView ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Subjects's name" DisplayMemberBinding="{Binding TenMh}"/>
+                                <GridViewColumn Header="Count" DisplayMemberBinding="{Binding SoTiet}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </materialDesign:Card>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</Window>
