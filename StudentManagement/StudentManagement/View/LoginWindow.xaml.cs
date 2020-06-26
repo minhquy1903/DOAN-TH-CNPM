@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DTO;
+using StudentManagement.API;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,13 +26,19 @@ namespace StudentManagement.View
         {
             InitializeComponent();
         }
-
         private void MoveLoginWindow(object sender, MouseButtonEventArgs e)
         {
             if(e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
+        }
+        private async void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            Account user = new Account(Username.Text,Password.Password.ToString());
+
+            Task<Login> accountResponse = Controller.Controller.Instance.Login(user);
+            await accountResponse;
         }
     }
 }
