@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StudentManegementServer.APIResponse;
 using StudentManegementServer.Models;
+using StudentManegementServer.BUS;
 
 namespace StudentManegementServer.Controllers
 {
@@ -17,10 +18,16 @@ namespace StudentManegementServer.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] Account account)
         {
-            if(account.Username == "minhquy" && account.Password == "123456")
-                return new JsonResult(new APIResponse<Account>(account));
+            BusControls busControls = new BusControls();
+
+            UserProfile userProfile = busControls.Instance.Login(account);
+
+            if(userProfile != null)
+            {
+                return new JsonResult(new APIResponse<UserProfile>(userProfile));
+            }
             else
-                return new JsonResult(new APIResponse<Account>(404));
+                return new JsonResult(new APIResponse<Account>(200));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace StudentManagement
     public partial class LoginWindow : Window
     {
         //T luu cai nay lai ne, dung dc thi dung kh thi xoa dum`
-        string userId, userPw;
 
         public LoginWindow()
         {
@@ -40,16 +40,23 @@ namespace StudentManagement
             Application.Current.Shutdown();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Luu id va password
-            userId = txbUserId.Text;
-            txbUserId.Text = "";
-            userPw = pwbPassword.Password;
-            pwbPassword.Password = "";
-            MenuWindow mwd = new MenuWindow();
-            mwd.Show();
-            this.Close();
+            string username = txbUser.Text;
+            string password = pwbPassword.Password.ToString();
+            LoginResult user = await Controller.Controller.Instance.Login(username, password);
+
+            if(user.Result)
+            {
+                MenuWindow mwd = new MenuWindow();
+                mwd.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+            
         }
     }
 }

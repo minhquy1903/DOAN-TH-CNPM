@@ -46,7 +46,7 @@ namespace StudentManagement.API
         {
             Init();
 
-            using (HttpResponseMessage response = await apiClient.PostAsJsonAsync(route, body)) // đường dẫn và body info
+            using (HttpResponseMessage response = await apiClient.PostAsJsonAsync(route, body)) // đường dẫn và body info, chờ đợi server response
             {
                 if (response.IsSuccessStatusCode)
                 {
