@@ -185,7 +185,7 @@
                                 CornerRadius="35 10 10 35" 
                                 Background="White" 
                                 Opacity="0.8">
-                            <TextBox x:Name="txbUserId"
+                            <TextBox x:Name="txbUser"
                                      materialDesign:HintAssist.Hint="User"
                                      Width="250" 
                                      Height="60" 
@@ -205,17 +205,17 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Width"
                                                     Duration="0:0:1" 
                                                     From="250" To="275" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Height"
                                                     Duration="0:0:1" 
                                                     From="60" To="70" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="FontSize"
                                                     Duration="0:0:1" 
                                                     From="36" To="46" />
@@ -226,17 +226,17 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Width"
                                                     Duration="0:0:1" 
                                                     From="275" To="250" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Height"
                                                     Duration="0:0:1" 
                                                     From="70" To="60" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="FontSize"
                                                     Duration="0:0:1" 
                                                     From="46" To="36" />
@@ -410,7 +410,7 @@
                                     ToolTip="Go ON" 
                                     Panel.ZIndex="1"  
                                     ClickMode="Press" 
-                                    Click="Button_Click">
+                                    Click="LoginBtn_Click">
                                 <Button.Effect>
                                     <DropShadowEffect Color="Cyan" 
                                                       RenderingBias="Quality"/>

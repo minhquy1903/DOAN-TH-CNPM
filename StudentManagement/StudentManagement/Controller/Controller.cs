@@ -23,9 +23,10 @@ namespace StudentManagement.Controller
             }
         }
 
-        public async Task<Login> Login(Account user)
+        public async Task<LoginResult> Login(string _username, string _password )
         {
-            return await API<Login>.Instance.Post("api/account/login", user);
+            Account user = new Account(_username, _password);
+            return await API<LoginResult>.Instance.Post("api/account/login", user);
         }
     }
 }
