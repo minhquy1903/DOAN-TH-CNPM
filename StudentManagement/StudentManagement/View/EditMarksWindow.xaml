@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
+        xmlns:uc="clr-namespace:StudentManagement.mUC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -24,36 +25,9 @@
                         <ColumnDefinition Width="450"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Height="100"
-                               Text="Sửa Điểm "
-                               FontSize="68"
-                               FontFamily="Segoe UI"
-                               FontWeight="DemiBold"
-                               Margin="50 50 40 50">
-                    </TextBlock>
-                    <materialDesign:PopupBox Grid.Column="1" 
-                                             PlacementMode="BottomAndAlignRightEdges" 
-                                             StaysOpen="False">
-                        <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="20">
-                            <materialDesign:PackIcon Kind="WeatherSunny" 
-                                                 Margin="0 0 10 0"/>
-                            <TextBlock Text="Day"
-                                   Margin="0 0 10 0"/>
-                            <ToggleButton x:Name="DarkModeToggleButton" 
-                                      Click="MenuDarkModeButton_Click"/>
-                            <TextBlock Text="Night"
-                                   Margin="10 0 0 0"/>
-                            <materialDesign:PackIcon Kind="MoonWaxingCrescent" 
-                                                 Margin="10 0 0 0"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-
+                    <uc:TitleTextBlock Grid.Column="0" Text="Sửa Điểm" edittedFontSize="68"/>
+                    <uc:ThemeToggle Grid.Column="1"/>
                 </Grid>
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -64,36 +38,24 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Tên Học sinh"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="0" Grid.Row="1"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Lớp"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="0" Grid.Row="2"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Loại Điểm"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Môn học"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="1"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Học kỳ"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="2"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Điểm"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
+                                      x:Name="tb1"
+                                      materialDesign:HintAssist.Hint="Tên Học sinh"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
+                                      x:Name="tb2"
+                                      materialDesign:HintAssist.Hint="Môn học"/>
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
+                                      x:Name="tb3"
+                                      materialDesign:HintAssist.Hint="Lớp"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
+                                      x:Name="tb4"
+                                      materialDesign:HintAssist.Hint="Học kỳ"/>
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
+                                      x:Name="tb5"
+                                      materialDesign:HintAssist.Hint="Loại điểm"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
+                                      x:Name="tb6"
+                                      materialDesign:HintAssist.Hint="Điểm"/>
                 </Grid>
                 <Button Content="Edit"
                         FontSize="20"
@@ -101,8 +63,8 @@
                         Margin="200 25 50 50"
                         Width="100"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Edit Marks">
-                </Button>
+                        ToolTip="Edit Marks"
+                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

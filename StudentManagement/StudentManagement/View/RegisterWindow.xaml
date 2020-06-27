@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
+        xmlns:uc="clr-namespace:StudentManagement.mUC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -19,15 +20,14 @@
     <Grid>
         <materialDesign:Card>
             <StackPanel>
-                <TextBlock Grid.Column="0"
-                               Height="100"
-                               Text="Sign Up"
-                               FontSize="72"
-                               FontFamily="Segoe UI"
-                               FontWeight="DemiBold"
-                               Margin="50 50 40 50">
-                </TextBlock>
-
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <uc:TitleTextBlock Grid.Column="0" Text="Sign Up"/>
+                    <uc:ThemeToggle Grid.Column="1"/>
+                </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -38,21 +38,15 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Your Name"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="0" Grid.Row="1"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="User Name"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Email"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
+                                      x:Name="tb1"
+                                      materialDesign:HintAssist.Hint="Your Name"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
+                                      x:Name="tb2"
+                                      materialDesign:HintAssist.Hint="Email"/>
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
+                                      x:Name="tb3"
+                                      materialDesign:HintAssist.Hint="User Name"/>
                     <PasswordBox Grid.Column="1" Grid.Row="1"
                              Margin="30"
                              materialDesign:HintAssist.Hint="Password"
@@ -65,8 +59,8 @@
                         Margin="200 25 50 50"
                         Width="120"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Register">
-                </Button>
+                        ToolTip="Register"
+                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>
