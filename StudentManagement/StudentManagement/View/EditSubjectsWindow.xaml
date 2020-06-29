@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
-        xmlns:uc="clr-namespace:StudentManagement.mUC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -25,9 +24,36 @@
                         <ColumnDefinition Width="450"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <uc:TitleTextBlock Grid.Column="0" Text="Sửa Môn học" edittedFontSize="52"/>
-                    <uc:ThemeToggle Grid.Column="1"/>
+                    <TextBlock Grid.Column="0"
+                               Height="100"
+                               Text="Sửa Môn học "
+                               FontSize="52"
+                               FontFamily="Segoe UI"
+                               FontWeight="DemiBold"
+                               Margin="50 50 40 50">
+                    </TextBlock>
+                    <materialDesign:PopupBox Grid.Column="1" 
+                                             PlacementMode="BottomAndAlignRightEdges" 
+                                             StaysOpen="False">
+                        <StackPanel
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                Margin="20">
+                            <materialDesign:PackIcon Kind="WeatherSunny" 
+                                                 Margin="0 0 10 0"/>
+                            <TextBlock Text="Day"
+                                   Margin="0 0 10 0"/>
+                            <ToggleButton x:Name="DarkModeToggleButton" 
+                                      Click="MenuDarkModeButton_Click"/>
+                            <TextBlock Text="Night"
+                                   Margin="10 0 0 0"/>
+                            <materialDesign:PackIcon Kind="MoonWaxingCrescent" 
+                                                 Margin="10 0 0 0"/>
+                        </StackPanel>
+                    </materialDesign:PopupBox>
+
                 </Grid>
+
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -36,12 +62,16 @@
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
-                                      materialDesign:HintAssist.Hint="Tên Môn học"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
-                                      materialDesign:HintAssist.Hint="Số tiết"/>
+                    <TextBox Grid.Column="0" Grid.Row="0"
+                             Margin="30"
+                             materialDesign:HintAssist.Hint="Tên Môn học"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             VerticalAlignment="Center" />
+                    <TextBox Grid.Column="1" Grid.Row="0"
+                             Margin="30"
+                             materialDesign:HintAssist.Hint="Số tiết"
+                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                             VerticalAlignment="Center" />
                 </Grid>
                 <Button Content="Edit"
                         FontSize="20"
@@ -49,8 +79,8 @@
                         Margin="200 25 50 50"
                         Width="100"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Edit Subjects"
-                        Click="Button_Click"/>
+                        ToolTip="Edit Subjects">
+                </Button>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

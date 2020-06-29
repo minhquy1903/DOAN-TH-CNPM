@@ -231,11 +231,5 @@ namespace StudentManagement
                 "Logout",
                 typeof(CustomCommands)
             );
-        public static readonly RoutedUICommand CloseWindow = new RoutedUICommand
-            (
-                "CloseWindow",
-                "CloseWindow",
-                typeof(CustomCommands)
-            );
     }
 }

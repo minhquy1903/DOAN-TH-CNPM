@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
-        xmlns:uc="clr-namespace:StudentManagement.mUC"
+        xmlns:self="clr-namespace:StudentManagement"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -16,16 +16,13 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MenuWindow" Height="780" Width="1040" WindowStyle="None"
-        ResizeMode="NoResize">
+        ResizeMode="NoResize" ShowInTaskbar="False" >
     <Window.CommandBindings>
-        <CommandBinding Command="local:CustomCommands.Exit"
+        <CommandBinding Command="self:CustomCommands.Exit"
                         Executed="ExitCmd_Executed"/>
-        <CommandBinding Command="local:CustomCommands.LogOut"
+        <CommandBinding Command="self:CustomCommands.LogOut"
                         Executed="LogOutCmd_Executed"/>
     </Window.CommandBindings>
-    <Window.InputBindings>
-        <KeyBinding Key="Esc" Command="local:CustomCommands.Exit"/>
-    </Window.InputBindings>
     <Grid>
         <materialDesign:DialogHost Identifier="RootDialog" 
                                    SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
@@ -429,11 +426,11 @@
                                     <Button Content="Log out"
                                             HorizontalAlignment="Center"
                                             FontSize="20"
-                                            Command="local:CustomCommands.LogOut"/>
+                                            Command="self:CustomCommands.LogOut"/>
                                     <Button Content="Goodbye"
                                             HorizontalAlignment="Center"
                                             FontSize="20"
-                                            Command="local:CustomCommands.Exit"/>
+                                            Command="self:CustomCommands.Exit"/>
                                 </StackPanel>
                             </materialDesign:PopupBox>
 
@@ -480,7 +477,6 @@
                                                FontSize="24"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
-                                    <!--UserControl ? Event Click-->
                                     <Button Content="Marks"
                                             Tag="Search Marks"
                                             FontSize="24"

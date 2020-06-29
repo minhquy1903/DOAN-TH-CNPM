@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MaterialDesignThemes.Wpf;
 
 namespace StudentManagement
 {
@@ -24,9 +25,19 @@ namespace StudentManagement
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
         {
+            ModifyTheme(theme => theme.SetBaseTheme(DarkModeToggleButton.IsChecked == true ? Theme.Dark : Theme.Light));
+        }
 
+        private static void ModifyTheme(Action<ITheme> modificationAction)
+        {
+            PaletteHelper paletteHelper = new PaletteHelper();
+            ITheme theme = paletteHelper.GetTheme();
+
+            modificationAction?.Invoke(theme);
+
+            paletteHelper.SetTheme(theme);
         }
     }
 }
