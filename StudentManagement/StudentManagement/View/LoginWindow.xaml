@@ -61,6 +61,8 @@
                    Height="35" 
                    Margin="0,575,0,0"
                    ToolTip="Register"
+                   Panel.ZIndex="3" 
+                   TabIndex="4"
                    Style="{StaticResource aButton}"
                    Click="btnRegister_Click">
         </Button>
@@ -149,8 +151,7 @@
                                FontSize="48" 
                                FontWeight="Bold" 
                                TextAlignment="Center" 
-                               Foreground="#FF8080FF"
-                               Panel.ZIndex="1" />
+                               Foreground="#FF8080FF"/>
                     <Canvas x:Name="useridCanvas" 
                           Width="335" 
                           Height="75" 
@@ -194,12 +195,12 @@
                                      FontSize="36" 
                                      Opacity="0.7" 
                                      BorderThickness="0" 
-                                     IsUndoEnabled="False" 
-                                     AcceptsTab="True" 
                                      Margin="75,0,0,0" 
                                      ToolTip="Enter your Id" 
-                                     Panel.ZIndex="1" 
-                                     MaxLength="16">
+                                     Panel.ZIndex="0" 
+                                     MaxLength="16" 
+                                     TabIndex="1" 
+                                     MaxLines="30">
                                 <TextBox.Triggers>
                                     <EventTrigger RoutedEvent="TextBox.GotFocus">
                                         <BeginStoryboard>
@@ -251,7 +252,6 @@
                            Height="35" 
                            Canvas.Left="20" 
                            Canvas.Top="20"
-                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
                     
@@ -301,6 +301,7 @@
                                          Margin="75,0,0,0" 
                                          Panel.ZIndex="1" 
                                          MaxLength="16"
+                                         TabIndex="2"
                                          ToolTip="Enter your Password" >
                                 <PasswordBox.Triggers>
                                     <EventTrigger RoutedEvent="PasswordBox.GotFocus">
@@ -353,7 +354,6 @@
                            Height="35" 
                            Canvas.Left="20"
                            Canvas.Top="20"
-                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
                     
@@ -408,8 +408,9 @@
                                     IsDefault="True" 
                                     Cursor="Hand" 
                                     ToolTip="Go ON" 
-                                    Panel.ZIndex="1"  
+                                    Panel.ZIndex="2"  
                                     ClickMode="Press" 
+                                    TabIndex="3"
                                     Click="Button_Click">
                                 <Button.Effect>
                                     <DropShadowEffect Color="Cyan" 
