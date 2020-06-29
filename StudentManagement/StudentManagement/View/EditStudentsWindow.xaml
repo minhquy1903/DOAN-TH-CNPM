@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
+        xmlns:uc="clr-namespace:StudentManagement.mUC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -24,36 +25,9 @@
                         <ColumnDefinition Width="450"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Column="0"
-                               Height="100"
-                               Text="Sửa Học sinh"
-                               FontSize="53"
-                               FontFamily="Segoe UI"
-                               FontWeight="DemiBold"
-                               Margin="50 50 40 50">
-                    </TextBlock>
-                    <materialDesign:PopupBox Grid.Column="1" 
-                                             PlacementMode="BottomAndAlignRightEdges" 
-                                             StaysOpen="False">
-                        <StackPanel
-                                Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="20">
-                            <materialDesign:PackIcon Kind="WeatherSunny" 
-                                                 Margin="0 0 10 0"/>
-                            <TextBlock Text="Day"
-                                   Margin="0 0 10 0"/>
-                            <ToggleButton x:Name="DarkModeToggleButton" 
-                                      Click="MenuDarkModeButton_Click"/>
-                            <TextBlock Text="Night"
-                                   Margin="10 0 0 0"/>
-                            <materialDesign:PackIcon Kind="MoonWaxingCrescent" 
-                                                 Margin="10 0 0 0"/>
-                        </StackPanel>
-                    </materialDesign:PopupBox>
-
+                    <uc:TitleTextBlock Grid.Column="0" Text="Sửa Học sinh" edittedFontSize="53"/>
+                    <uc:ThemeToggle Grid.Column="1"/>
                 </Grid>
-
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -65,41 +39,29 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Tên Học sinh"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
+                                      x:Name="tb1"
+                                      materialDesign:HintAssist.Hint="Tên Học sinh"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
+                                      x:Name="tb2"
+                                      materialDesign:HintAssist.Hint="Giới tính"/>
                     <DatePicker Grid.Column="0" Grid.Row="1"
                                 Margin="30"
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                 materialDesign:HintAssist.Hint="Ngày sinh" />
-                    <TextBox Grid.Column="0" Grid.Row="2"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Tên Người giám hộ"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="0" Grid.Row="3"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Lớp đang học"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="0"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Giới tính"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="1"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Nơi sinh"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="2"
-                             Margin="30"
-                             materialDesign:HintAssist.Hint="Số điện thoại"
-                             Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                             VerticalAlignment="Center" />
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
+                                      x:Name="tb4"
+                                      materialDesign:HintAssist.Hint="Nơi sinh"/>
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
+                                      x:Name="tb5"
+                                      materialDesign:HintAssist.Hint="Tên Người giám hộ"/>
+                    <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
+                                      x:Name="tb6"
+                                      materialDesign:HintAssist.Hint="Số điện thoại"/>
+                    <uc:InsertTextBox Grid.Column="0" Grid.Row="3"
+                                      x:Name="tb7"
+                                      materialDesign:HintAssist.Hint="Lớp đang học"/>
                 </Grid>
                 <Button Content="Edit"
                         FontSize="20"
@@ -107,8 +69,8 @@
                         Margin="200 25 50 50"
                         Width="100"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Edit Students">
-                </Button>
+                        ToolTip="Edit Students"
+                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

@@ -10,23 +10,31 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudentManagement
+namespace StudentManagement.mUC
 {
     /// <summary>
-    /// Interaction logic for AddClassesWindow.xaml
+    /// Interaction logic for TitleTextBlock.xaml
     /// </summary>
-    public partial class AddClassesWindow : Window
+    public partial class TitleTextBlock : UserControl
     {
-        public AddClassesWindow()
+        public TitleTextBlock()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public string Text
         {
-            MessageBox.Show(tb1.Text.ToString());
+            get { return ucTitleTbl.Text; }
+            set { ucTitleTbl.Text = value; }
+        }
+
+        public double edittedFontSize
+        {
+            get { return ucTitleTbl.FontSize; }
+            set { ucTitleTbl.FontSize = value; }
         }
     }
 }

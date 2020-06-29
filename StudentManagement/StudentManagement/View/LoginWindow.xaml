@@ -254,7 +254,7 @@
                            Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="passwordCanvas" 
                           Width="335" 
                           Height="75" 
@@ -356,7 +356,7 @@
                            Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="loginCanvas"
                           Width="335" 
                           Height="75" 
