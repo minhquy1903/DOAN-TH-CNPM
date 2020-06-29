@@ -8,7 +8,6 @@
              mc:Ignorable="d">
     <Button x:Name="dcBtn"
             FontSize="24"
-            Background="Red"
             Height="auto"
             Margin="4 4 4 0"
             Click="DrawerContentButton_Click"

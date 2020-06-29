@@ -28,5 +28,10 @@ namespace StudentManagement
         {
             MessageBox.Show(tb1.Text.ToString());
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

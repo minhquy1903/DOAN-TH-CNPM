@@ -25,8 +25,17 @@ namespace StudentManagement.mUC
             InitializeComponent();
         }
 
-        public object edittedContent { get; set; }
-        public string edittedTag { get; set; }
+        //Phải truyền qua trung gian do 2 properties này không nhận đc từ view
+        public object edittedContent
+        {
+            get { return dcBtn.Content; }
+            set { dcBtn.Content = value; }
+        }
+        public object edittedTag
+        {
+            get { return dcBtn.Tag; }
+            set { dcBtn.Tag = value; }
+        }
 
         private void DrawerContentButton_Click(object sender, RoutedEventArgs e)
         {

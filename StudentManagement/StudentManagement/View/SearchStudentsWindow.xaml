@@ -15,18 +15,21 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Search Students" Height="900" Width="600" WindowStyle="ThreeDBorderWindow"
+        Title="Search Students" Height="900" Width="600" WindowStyle="None"
         ResizeMode="NoResize" ShowInTaskbar="False" >
     <Grid>
         <materialDesign:Card>
             <StackPanel>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="450"/>
+                        <ColumnDefinition Width="auto"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <uc:TitleTextBlock Grid.Column="0" Text="Xem Học sinh" edittedFontSize="58"/>
+                    <uc:TitleTextBlock Grid.Column="0" Text="Xem Học sinh" edittedFontSize="72"/>
                     <uc:ThemeToggle Grid.Column="1"/>
+                    <uc:CloseButton Grid.Column="1"
+                                    Margin="0 0 0 150"
+                                    Click="CloseButton_Click"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>

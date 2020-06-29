@@ -15,7 +15,7 @@
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="Add Classes" Height="650" Width="500" WindowStyle="ThreeDBorderWindow"
+        Title="Add Classes" Height="650" Width="500" WindowStyle="None"
         ResizeMode="NoResize" ShowInTaskbar="False" >
     <Grid>
         <materialDesign:Card>
@@ -27,6 +27,9 @@
                     </Grid.ColumnDefinitions>
                     <uc:TitleTextBlock Grid.Column="0" Text="Thêm Lớp"/>
                     <uc:ThemeToggle Grid.Column="1"/>
+                    <uc:CloseButton Grid.Column="1"
+                                    Margin="0 0 0 150"
+                                    Click="CloseButton_Click"/>
                 </Grid>
                 <Grid>
                     <Grid.ColumnDefinitions>

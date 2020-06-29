@@ -23,9 +23,6 @@
         <CommandBinding Command="local:CustomCommands.LogOut"
                         Executed="LogOutCmd_Executed"/>
     </Window.CommandBindings>
-    <Window.InputBindings>
-        <KeyBinding Key="Esc" Command="local:CustomCommands.Exit"/>
-    </Window.InputBindings>
     <Grid>
         <materialDesign:DialogHost Identifier="RootDialog" 
                                    SnackbarMessageQueue="{Binding ElementName=MainSnackbar, Path=MessageQueue}">
@@ -480,39 +477,10 @@
                                                FontSize="24"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
-                                    <!--UserControl ? Event Click-->
-                                    <Button Content="Marks"
-                                            Tag="Search Marks"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Students"
-                                            Tag="Search Students"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Subjects"
-                                            Tag="Search Subjects"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Classes"
-                                            Tag="Search Classes"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
+                                    <uc:DrawerContentButton edittedContent="Marks" edittedTag="Search Marks"/>
+                                    <uc:DrawerContentButton edittedContent="Students" edittedTag="Search Students"/>
+                                    <uc:DrawerContentButton edittedContent="Subjects" edittedTag="Search Subjects"/>
+                                    <uc:DrawerContentButton edittedContent="Classes" edittedTag="Search Classes"/>
                                     <Button
                                         Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                         CommandParameter="{x:Static Dock.Left}"
@@ -549,48 +517,16 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Row="0" Grid.Column="0"
-                                                Content="Marks"
-                                                Tag="Add Marks"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
-                                        <Button Grid.Row="0" Grid.Column="1"
-                                                Content="Students"
-                                                Tag="Add Students"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
+                                        <uc:DrawerContentButton edittedContent="Marks" edittedTag="Add Marks"/>
+                                        <uc:DrawerContentButton Grid.Column="1" edittedContent="Students" edittedTag="Add Students"/>
+                                        <uc:DrawerContentButton Grid.Row="1" edittedContent="Subjects" edittedTag="Add Subjects"/>
+                                        <uc:DrawerContentButton Grid.Row="1" Grid.Column="1" edittedContent="Classes" edittedTag="Add Classes"/>
                                         <Button Grid.Row="0" Grid.Column="2"
                                                 Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                                 Style="{DynamicResource MaterialDesignFlatButton}"
                                                 Margin="4"
                                                 VerticalAlignment="Center">
                                             CLOSE ALL
-                                        </Button>
-                                        <Button Grid.Row="1" Grid.Column="0"
-                                                Content="Subjects"
-                                                Tag="Add Subjects"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
-                                        <Button Grid.Row="1" Grid.Column="1"
-                                                Content="Classes"
-                                                Tag="Add Classes"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
                                         </Button>
                                         <Button Grid.Row="1" Grid.Column="2"
                                                 Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
@@ -611,38 +547,10 @@
                                                FontSize="24"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
-                                    <Button Content="Marks"
-                                            Tag="Edit Marks"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Students"
-                                            Tag="Edit Students"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Subjects"
-                                            Tag="Edit Subjects"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
-                                    <Button Content="Classes"
-                                            Tag="Edit Classes"
-                                            FontSize="24"
-                                            Height="auto"
-                                            Margin="4 4 4 0"
-                                            Click="DrawerContentButton_Click"
-                                            Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                    </Button>
+                                    <uc:DrawerContentButton edittedContent="Marks" edittedTag="Edit Marks"/>
+                                    <uc:DrawerContentButton edittedContent="Students" edittedTag="Edit Students"/>
+                                    <uc:DrawerContentButton edittedContent="Subjects" edittedTag="Edit Subjects"/>
+                                    <uc:DrawerContentButton edittedContent="Classes" edittedTag="Edit Classes"/>
                                     <Button
                                         Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                         CommandParameter="{x:Static Dock.Right}"
@@ -679,48 +587,16 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition />
                                         </Grid.ColumnDefinitions>
-                                        <Button Grid.Row="0" Grid.Column="0"
-                                                Content="Marks"
-                                                Tag="Delete Marks"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
-                                        <Button Grid.Row="0" Grid.Column="1"
-                                                Content="Students"
-                                                Tag="Delete Students"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
+                                        <uc:DrawerContentButton edittedContent="Marks" edittedTag="Delete Marks"/>
+                                        <uc:DrawerContentButton Grid.Column="1" edittedContent="Students" edittedTag="Delete Students"/>
+                                        <uc:DrawerContentButton Grid.Row="1" edittedContent="Subjects" edittedTag="Delete Subjects"/>
+                                        <uc:DrawerContentButton Grid.Row="1" Grid.Column="1" edittedContent="Classes" edittedTag="Delete Classes"/>
                                         <Button Grid.Row="0" Grid.Column="2"
                                                 Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"
                                                 Style="{DynamicResource MaterialDesignFlatButton}"
                                                 Margin="4"
                                                 VerticalAlignment="Center">
                                             CLOSE ALL
-                                        </Button>
-                                        <Button Grid.Row="1" Grid.Column="0"
-                                                Content="Subjects"
-                                                Tag="Delete Subjects"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
-                                        </Button>
-                                        <Button Grid.Row="1" Grid.Column="1"
-                                                Content="Classes"
-                                                Tag="Delete Classes"
-                                                FontSize="24"
-                                                Height="auto"
-                                                Margin="4 4 0 4"
-                                                Click="DrawerContentButton_Click"
-                                                Style="{DynamicResource MaterialDesignFlatLightBgButton}">
                                         </Button>
                                         <Button Grid.Row="1" Grid.Column="2"
                                                 Command="{x:Static materialDesign:DrawerHost.CloseDrawerCommand}"

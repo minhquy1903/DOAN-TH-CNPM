@@ -74,6 +74,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="mUC\CloseButton.xaml.cs">
+      <DependentUpon>CloseButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="mUC\DrawerContentButton.xaml.cs">
       <DependentUpon>DrawerContentButton.xaml</DependentUpon>
     </Compile>
@@ -153,6 +156,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controller\Controller.cs" />
+    <Page Include="mUC\CloseButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="mUC\DrawerContentButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StudentManagement"
+        xmlns:uc="clr-namespace:StudentManagement.mUC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
@@ -65,15 +66,8 @@
                    Style="{StaticResource aButton}"
                    Click="btnRegister_Click">
         </Button>
-        <Button x:Name="btnShutdown" 
-                   Width="35" 
-                   Height="35" 
-                   Margin="565,0,0,645"
-                   ToolTip="Shutdown"
-                   Style="{StaticResource aButton}"
-                   Click="btnShutdown_Click">
-            <materialDesign:PackIcon Kind="Power" Width="35" Height="35" Foreground="Red" VerticalAlignment="Center"/>
-        </Button>
+        <uc:CloseButton Margin="565,0,0,645"
+                        Click="btnShutdown_Click"/>
         <Canvas Width="375" 
               Height="425" 
               Margin="0,65,0,0">
