@@ -61,8 +61,6 @@
                    Height="35" 
                    Margin="0,575,0,0"
                    ToolTip="Register"
-                   Panel.ZIndex="3" 
-                   TabIndex="4"
                    Style="{StaticResource aButton}"
                    Click="btnRegister_Click">
         </Button>
@@ -151,7 +149,8 @@
                                FontSize="48" 
                                FontWeight="Bold" 
                                TextAlignment="Center" 
-                               Foreground="#FF8080FF"/>
+                               Foreground="#FF8080FF"
+                               Panel.ZIndex="1" />
                     <Canvas x:Name="useridCanvas" 
                           Width="335" 
                           Height="75" 
@@ -186,7 +185,7 @@
                                 CornerRadius="35 10 10 35" 
                                 Background="White" 
                                 Opacity="0.8">
-                            <TextBox x:Name="txbUserId"
+                            <TextBox x:Name="txbUser"
                                      materialDesign:HintAssist.Hint="User"
                                      Width="250" 
                                      Height="60" 
@@ -195,28 +194,28 @@
                                      FontSize="36" 
                                      Opacity="0.7" 
                                      BorderThickness="0" 
+                                     IsUndoEnabled="False" 
+                                     AcceptsTab="True" 
                                      Margin="75,0,0,0" 
                                      ToolTip="Enter your Id" 
-                                     Panel.ZIndex="0" 
-                                     MaxLength="16" 
-                                     TabIndex="1" 
-                                     MaxLines="30">
+                                     Panel.ZIndex="1" 
+                                     MaxLength="16">
                                 <TextBox.Triggers>
                                     <EventTrigger RoutedEvent="TextBox.GotFocus">
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Width"
                                                     Duration="0:0:1" 
                                                     From="250" To="275" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Height"
                                                     Duration="0:0:1" 
                                                     From="60" To="70" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="FontSize"
                                                     Duration="0:0:1" 
                                                     From="36" To="46" />
@@ -227,17 +226,17 @@
                                         <BeginStoryboard>
                                             <Storyboard>
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Width"
                                                     Duration="0:0:1" 
                                                     From="275" To="250" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="Height"
                                                     Duration="0:0:1" 
                                                     From="70" To="60" />
                                                 <DoubleAnimation
-                                                    Storyboard.TargetName="txbUserId" 
+                                                    Storyboard.TargetName="txbUser" 
                                                     Storyboard.TargetProperty="FontSize"
                                                     Duration="0:0:1" 
                                                     From="46" To="36" />
@@ -252,9 +251,10 @@
                            Height="35" 
                            Canvas.Left="20" 
                            Canvas.Top="20"
+                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="passwordCanvas" 
                           Width="335" 
                           Height="75" 
@@ -301,7 +301,6 @@
                                          Margin="75,0,0,0" 
                                          Panel.ZIndex="1" 
                                          MaxLength="16"
-                                         TabIndex="2"
                                          ToolTip="Enter your Password" >
                                 <PasswordBox.Triggers>
                                     <EventTrigger RoutedEvent="PasswordBox.GotFocus">
@@ -354,9 +353,10 @@
                            Height="35" 
                            Canvas.Left="20"
                            Canvas.Top="20"
+                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="loginCanvas"
                           Width="335" 
                           Height="75" 
@@ -408,10 +408,9 @@
                                     IsDefault="True" 
                                     Cursor="Hand" 
                                     ToolTip="Go ON" 
-                                    Panel.ZIndex="2"  
+                                    Panel.ZIndex="1"  
                                     ClickMode="Press" 
-                                    TabIndex="3"
-                                    Click="Button_Click">
+                                    Click="LoginBtn_Click">
                                 <Button.Effect>
                                     <DropShadowEffect Color="Cyan" 
                                                       RenderingBias="Quality"/>
