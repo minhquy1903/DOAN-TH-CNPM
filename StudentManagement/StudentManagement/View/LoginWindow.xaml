@@ -60,6 +60,7 @@
                    Width="250" 
                    Height="35" 
                    Margin="0,575,0,0"
+                   TabIndex="4"
                    ToolTip="Register"
                    Style="{StaticResource aButton}"
                    Click="btnRegister_Click">
@@ -149,8 +150,7 @@
                                FontSize="48" 
                                FontWeight="Bold" 
                                TextAlignment="Center" 
-                               Foreground="#FF8080FF"
-                               Panel.ZIndex="1" />
+                               Foreground="#FF8080FF"/>
                     <Canvas x:Name="useridCanvas" 
                           Width="335" 
                           Height="75" 
@@ -194,11 +194,10 @@
                                      FontSize="36" 
                                      Opacity="0.7" 
                                      BorderThickness="0" 
-                                     IsUndoEnabled="False" 
-                                     AcceptsTab="True" 
                                      Margin="75,0,0,0" 
                                      ToolTip="Enter your Id" 
                                      Panel.ZIndex="1" 
+                                     TabIndex="1" 
                                      MaxLength="16">
                                 <TextBox.Triggers>
                                     <EventTrigger RoutedEvent="TextBox.GotFocus">
@@ -251,10 +250,9 @@
                            Height="35" 
                            Canvas.Left="20" 
                            Canvas.Top="20"
-                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="passwordCanvas" 
                           Width="335" 
                           Height="75" 
@@ -301,6 +299,7 @@
                                          Margin="75,0,0,0" 
                                          Panel.ZIndex="1" 
                                          MaxLength="16"
+                                         TabIndex="2"
                                          ToolTip="Enter your Password" >
                                 <PasswordBox.Triggers>
                                     <EventTrigger RoutedEvent="PasswordBox.GotFocus">
@@ -353,10 +352,9 @@
                            Height="35" 
                            Canvas.Left="20"
                            Canvas.Top="20"
-                           Panel.ZIndex="1" 
                            Opacity="0.8"/>
                     </Canvas>
-                    
+
                     <Canvas x:Name="loginCanvas"
                           Width="335" 
                           Height="75" 
@@ -409,6 +407,7 @@
                                     Cursor="Hand" 
                                     ToolTip="Go ON" 
                                     Panel.ZIndex="1"  
+                                    TabIndex="3"
                                     ClickMode="Press" 
                                     Click="LoginBtn_Click">
                                 <Button.Effect>

@@ -10,23 +10,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace StudentManagement
+namespace StudentManagement.mUC
 {
     /// <summary>
-    /// Interaction logic for AddClassesWindow.xaml
+    /// Interaction logic for InsertTextBox.xaml
     /// </summary>
-    public partial class AddClassesWindow : Window
+    public partial class InsertTextBox : UserControl
     {
-        public AddClassesWindow()
+        public InsertTextBox()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public string Text
         {
-            MessageBox.Show(tb1.Text.ToString());
+            get { return ucInsertTb.Text; }
+            set { ucInsertTb.Text = value; }
         }
     }
 }
