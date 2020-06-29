@@ -19,12 +19,12 @@ namespace StudentManagement
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class SignInWindow : Window
+    public partial class LoginWindow : Window
     {
         //T luu cai nay lai ne, dung dc thi dung kh thi xoa dum`
         string userId, userPw;
 
-        public SignInWindow()
+        public LoginWindow()
         {
             InitializeComponent();
         }

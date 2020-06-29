@@ -211,7 +211,7 @@ namespace StudentManagement
 
         private void LogOutCmd_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            SignInWindow lwd = new SignInWindow();
+            LoginWindow lwd = new LoginWindow();
             lwd.Show();
             this.Close();
         }
