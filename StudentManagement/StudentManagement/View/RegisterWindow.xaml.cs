@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using StudentManagement.Controllers;
 namespace StudentManagement
 {
     /// <summary>
@@ -22,6 +23,14 @@ namespace StudentManagement
         public RegisterWindow()
         {
             InitializeComponent();
+        }
+
+        private async void SignUpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Account account = new Account(Username.Text,Password.Password.ToString());
+            account.Name = Name.Text;
+            account.Email = Email.Text;
+            SignUpResult signUpResult = await Controller.Instance.SignUp(account);
         }
     }
 }

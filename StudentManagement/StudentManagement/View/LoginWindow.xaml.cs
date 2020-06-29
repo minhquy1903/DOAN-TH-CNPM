@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StudentManagement.Controllers;
 
 namespace StudentManagement
 {
@@ -44,7 +45,7 @@ namespace StudentManagement
         {
             string username = txbUser.Text;
             string password = pwbPassword.Password.ToString();
-            LoginResult user = await Controller.Controller.Instance.Login(username, password);
+            LoginResult user = await Controller.Instance.Login(username, password);
 
             if(user.Result)
             {

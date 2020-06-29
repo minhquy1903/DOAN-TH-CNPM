@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Collections.Specialized;
 using DTO;
+using Newtonsoft.Json;
 
 namespace StudentManagement.API
 {
@@ -33,15 +34,13 @@ namespace StudentManagement.API
 
         private void Init()
         {
-            string api = "https://localhost:44350";
-                //ConfigurationManager.AppSettings["api"]; stirng localhost set trong appsettings
+            string api = ConfigurationManager.AppSettings["api"];
 
             apiClient = new HttpClient();
             apiClient.BaseAddress = new Uri(api);
             apiClient.DefaultRequestHeaders.Accept.Clear();
             apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
-
         public async Task<T> Post(string route, object body)
         {
             Init();
@@ -50,7 +49,8 @@ namespace StudentManagement.API
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var data = await response.Content.ReadAsAsync<T>();
+                    var jsonstring = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<T>(jsonstring);
                     if (data != null)
                         return data;
                 }

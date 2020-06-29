@@ -38,22 +38,26 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Column="0" Grid.Row="0"
+                    <TextBox x:Name="Name"
+                        Grid.Column="0" Grid.Row="0"
                              Margin="30"
                              materialDesign:HintAssist.Hint="Your Name"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              VerticalAlignment="Center" />
-                    <TextBox Grid.Column="0" Grid.Row="1"
+                    <TextBox x:Name="Username"
+                        Grid.Column="0" Grid.Row="1"
                              Margin="30"
                              materialDesign:HintAssist.Hint="User Name"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              VerticalAlignment="Center" />
-                    <TextBox Grid.Column="1" Grid.Row="0"
+                    <TextBox x:Name="Email"
+                        Grid.Column="1" Grid.Row="0"
                              Margin="30"
                              materialDesign:HintAssist.Hint="Email"
                              Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                              VerticalAlignment="Center" />
-                    <PasswordBox Grid.Column="1" Grid.Row="1"
+                    <PasswordBox x:Name="Password"
+                        Grid.Column="1" Grid.Row="1"
                              Margin="30"
                              materialDesign:HintAssist.Hint="Password"
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
@@ -65,7 +69,8 @@
                         Margin="200 25 50 50"
                         Width="120"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Register">
+                        ToolTip="Register"
+                        Click="SignUpBtn_Click">
                 </Button>
             </StackPanel>
         </materialDesign:Card>

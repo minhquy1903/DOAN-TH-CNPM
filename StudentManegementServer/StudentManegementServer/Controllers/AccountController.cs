@@ -27,7 +27,20 @@ namespace StudentManegementServer.Controllers
                 return new JsonResult(new APIResponse<UserProfile>(userProfile));
             }
             else
-                return new JsonResult(new APIResponse<Account>(200));
+                return new JsonResult(new APIResponse<UserProfile>(200));
+        }
+
+        [HttpPost("signup")]
+
+        public ActionResult SignUp([FromBody] Account account)
+        {
+            BusControls busControls = new BusControls();
+
+            if(busControls.Instance.SignUp(account))
+            {
+                return new JsonResult(new APIResponse<object>("Sign Up Success"));
+            }
+            return new JsonResult(new APIResponse<UserProfile>(200));
         }
     }
 }
