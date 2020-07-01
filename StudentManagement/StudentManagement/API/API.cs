@@ -33,8 +33,8 @@ namespace StudentManagement.API
 
         private void Init()
         {
-            string api = "https://localhost:44350";
-                //ConfigurationManager.AppSettings["api"]; stirng localhost set trong appsettings
+            //string api = "https://localhost:5001";
+            string api = ConfigurationManager.AppSettings["api"]; //stirng localhost set trong appsettings
 
             apiClient = new HttpClient();
             apiClient.BaseAddress = new Uri(api);
