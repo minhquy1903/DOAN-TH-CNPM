@@ -118,8 +118,7 @@
                                     Style="{StaticResource MaterialDesignOutlinedButton}"/>
                             </StackPanel>
                             <!--<materialDesign:RatingBar Value="3"
-                                                      x:Name="BasicRatingBar"
-                                                      ValueChanged="BasicRatingBar_ValueChanged" />-->
+                                                      x:Name="BasicRatingBar"/>-->
                         </ListBox>
                     </DockPanel>
                 </materialDesign:DrawerHost.LeftDrawerContent>
@@ -474,7 +473,7 @@
                                     Orientation="Vertical"
                                     Margin="16">
                                     <TextBlock Text="Search"
-                                               FontSize="24"
+                                               FontSize="36"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
                                     <uc:DrawerContentButton edittedContent="Marks" edittedTag="Search Marks"/>
@@ -504,7 +503,7 @@
                                     HorizontalAlignment="Center"
                                     Orientation="Vertical">
                                     <TextBlock Text="Add"
-                                               FontSize="24"
+                                               FontSize="36"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
                                     <Grid>
@@ -544,7 +543,7 @@
                                     Orientation="Vertical"
                                     Margin="16">
                                     <TextBlock Text="Edit"
-                                               FontSize="24"
+                                               FontSize="36"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
                                     <uc:DrawerContentButton edittedContent="Marks" edittedTag="Edit Marks"/>
@@ -574,7 +573,7 @@
                                     HorizontalAlignment="Center"
                                     Orientation="Vertical">
                                     <TextBlock Text="Delete"
-                                               FontSize="24"
+                                               FontSize="36"
                                                Style="{StaticResource txblHeadStackPanel}">
                                     </TextBlock>
                                     <Grid>

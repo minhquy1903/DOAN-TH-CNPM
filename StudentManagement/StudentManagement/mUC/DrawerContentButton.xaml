@@ -7,9 +7,27 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Button x:Name="dcBtn"
-            FontSize="24"
+            FontSize="36"
+            Background="Gainsboro"
             Height="auto"
-            Margin="4 4 4 0"
+            Margin="8 8 8 0"
             Click="DrawerContentButton_Click"
-            Style="{DynamicResource MaterialDesignFlatLightBgButton}"/>
+            BorderThickness="0">
+        <Button.Resources>
+            <Style TargetType="Button">
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Button.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                Duration="0:0:1" 
+                                From="0.25" To="1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Button.Resources>
+    </Button>
 </UserControl>
