@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.Controllers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,7 +45,7 @@ namespace StudentManagement
         {
             string username = txbUser.Text;
             string password = pwbPassword.Password.ToString();
-            LoginResult user = await Controller.Controller.Instance.Login(username, password);
+            LoginResult user = await Controller.Instance.Login(username, password);
 
             if(user.Result)
             {
