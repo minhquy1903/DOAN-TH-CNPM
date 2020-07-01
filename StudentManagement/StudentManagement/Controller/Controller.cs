@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DTO;
 using StudentManagement.API;
 
-namespace StudentManagement.Controller
+namespace StudentManagement.Controllers
 {
     public class Controller
     {
@@ -22,11 +22,18 @@ namespace StudentManagement.Controller
                 return _instance;
             }
         }
-
-        public async Task<LoginResult> Login(string _username, string _password )
+        public async Task<LoginResult> Login(string _username, string _password)
         {
             Account user = new Account(_username, _password);
-            return await API<LoginResult>.Instance.Post("api/account/login", user);
+            return await API<LoginResult>.Instance.Post(APIRoute.Account.Login, user);
+        }
+
+        public async Task<ResultYN> SignUp(string _username, string _password, string _email, string _name)
+        {
+            Account account = new Account(_username, _password);
+            account.Email = _email;
+            account.Name = _name;
+            return await API<ResultYN>.Instance.Post(APIRoute.Account.SignUp, account);
         }
     }
 }

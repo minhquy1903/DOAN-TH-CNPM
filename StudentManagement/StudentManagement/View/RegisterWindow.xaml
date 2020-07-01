@@ -50,7 +50,8 @@
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
                                       x:Name="tb3"
                                       materialDesign:HintAssist.Hint="User Name"/>
-                    <PasswordBox Grid.Column="1" Grid.Row="1"
+                    <PasswordBox x:Name="passwordBox"
+                             Grid.Column="1" Grid.Row="1"
                              Margin="30"
                              materialDesign:HintAssist.Hint="Password"
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"

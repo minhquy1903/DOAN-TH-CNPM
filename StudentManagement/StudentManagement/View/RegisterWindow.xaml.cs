@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DTO;
+using StudentManagement.Controllers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,9 +26,22 @@ namespace StudentManagement
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            string username = tb3.Text;
+            string password = passwordBox.Password.ToString();
+            string email = tb2.Text;
+            string name = tb1.Text;
 
+            ResultYN result = await Controller.Instance.SignUp(username, password, email, name);
+
+            
+            if (result.Result)
+            {
+                this.Close();
+            }
+            else
+                MessageBox.Show("Đăng kí không thành công!", "Thông báo");
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

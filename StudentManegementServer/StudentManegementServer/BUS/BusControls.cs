@@ -31,11 +31,16 @@ namespace StudentManegementServer.BUS
                 return null;
             UserProfile userProfile = new UserProfile()
             {
-                IDUser = dataAccount["ID"].ToString(),
-                FullName = dataAccount["Name"].ToString()
+                Email = dataAccount["Email"].ToString(),
+                FullName = dataAccount["FullName"].ToString()
             };
 
             return userProfile;
+        }
+
+        public bool SignUp(Account account)
+        {
+            return DALControl.Instance.SignUp(account);
         }
     }
 }
