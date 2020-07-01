@@ -18,9 +18,9 @@ namespace StudentManegementServer.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] Account account)
         {
-            //BusControls busControls = new BusControls();
+            BusControls busControls = new BusControls();
 
-            UserProfile userProfile = BusControls.Instance.Login(account);
+            UserProfile userProfile = busControls.Instance.Login(account);
 
             if(userProfile != null)
             {

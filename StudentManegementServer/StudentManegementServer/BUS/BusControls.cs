@@ -11,9 +11,9 @@ namespace StudentManegementServer.BUS
 {
     public class BusControls
     {
-        private static BusControls instance;
+        private BusControls instance;
 
-        public static BusControls Instance
+        public BusControls Instance
         {
             get
             {
