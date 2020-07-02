@@ -67,6 +67,7 @@
                                       materialDesign:HintAssist.Hint="Lớp đang học"/>
                 </Grid>
                 <Button Content="Edit"
+                        Height="auto"
                         FontSize="20"
                         FontFamily="MV Boli"
                         Margin="200 25 50 50"

@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
+using System.ComponentModel;
 
 namespace StudentManagement
 {
@@ -21,16 +22,108 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
+        public bool isStudentsListViewSorted;
+        public CollectionView collectionView;
         public MenuWindow()
         {
             InitializeComponent();
+
+            //demo binding for Listview of Student (understand ? -> delete)
+            isStudentsListViewSorted = false;
+            List<DemoStudentInfo> items = new List<DemoStudentInfo>();
+            items.Add(new DemoStudentInfo() { 
+                demoStudentName = "Nguyen Minh Thang", 
+                demoSex = Sex.Male, 
+                demoDoB = 11223344, 
+                demoCountry = "Los Angles", 
+                demoParentName = "God", 
+                demoPhoneNb = 0123456789 });
+            items.Add(new DemoStudentInfo()
+            {
+                demoStudentName = "Vo Minh Quy",
+                demoSex = Sex.Male,
+                demoDoB = 44332211,
+                demoCountry = "California",
+                demoParentName = "Lucifer",
+                demoPhoneNb = 0951623847
+            });
+            items.Add(new DemoStudentInfo()
+            {
+                demoStudentName = "Nguyen Pham Minh Nhat",
+                demoSex = Sex.Male,
+                demoDoB = 11223344,
+                demoCountry = "China",
+                demoParentName = "Zeus",
+                demoPhoneNb = 0321654987
+            });
+            items.Add(new DemoStudentInfo()
+            {
+                demoStudentName = "Ngoc Trinh",
+                demoSex = Sex.Female,
+                demoDoB = 16161616,
+                demoCountry = "Thang's House",
+                demoParentName = "Thang's Neighborhood",
+                demoPhoneNb = 0999999999
+            });
+            studentsLv.ItemsSource = items;
+            studentsLv.SelectedValuePath = "demoStudentName";
+
+            collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
+            collectionView.Filter = StudentListviewFilter;
         }
 
+        private bool StudentListviewFilter(object item)
+        {
+            if (String.IsNullOrEmpty(studentsLvSearchNameTb.Text))
+                return true;
+            else
+                return ((item as DemoStudentInfo).demoStudentName.IndexOf(studentsLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+
+        #region demo binding 
+        private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
+        {
+            //Giu cai nay lai vi van dung
+            GridViewColumnHeader header = sender as GridViewColumnHeader;
+            if(isStudentsListViewSorted)
+            {
+                collectionView.SortDescriptions.Clear();
+                collectionView.SortDescriptions.Add(new SortDescription(header.Content.ToString(), ListSortDirection.Ascending));
+            }
+            else
+            {
+                collectionView.SortDescriptions.Clear();
+                collectionView.SortDescriptions.Add(new SortDescription(header.Content.ToString(), ListSortDirection.Descending));
+            }
+            isStudentsListViewSorted = !isStudentsListViewSorted;
+        }
+
+        private void studentsLvSearchNameTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+        }
+
+        //Cai nay se la DTO c lay tu dtb
+        public enum Sex { Male, Female };
+
+        public class DemoStudentInfo
+        {
+            public string demoStudentName { get; set; }
+            public Sex demoSex { get; set; }
+            public int demoDoB { get; set; }
+            public string demoCountry { get; set; }
+            public string demoParentName { get; set; }
+            public int demoPhoneNb { get; set; }
+        }
+        #endregion
+
+        //Mo Left Drawer Content se focus vao thanh Search
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
         {
             SearchBox.Focus();
         }
 
+        #region ThemeButton
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
         {
             ModifyTheme(theme => theme.SetBaseTheme(DarkModeToggleButton.IsChecked == true ? Theme.Dark : Theme.Light));
@@ -45,7 +138,9 @@ namespace StudentManagement
 
             paletteHelper.SetTheme(theme);
         }
+        #endregion
 
+        //TreeView 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             if (((TreeViewItem)e.NewValue).Tag != null)
@@ -120,18 +215,27 @@ namespace StudentManagement
             }
         }
 
-        private void InfoToggleButton_MouseEnter(object sender, MouseEventArgs e)
+        #region Open Panels 
+        private void ChangeCheckedToggleButton_MouseEnter(object sender, MouseEventArgs e)
         {
             var tbtn = sender as ToggleButton;
             tbtn.IsChecked = !tbtn.IsChecked;
         }
 
-        private void InfoPanel_MouseLeave(object sender, MouseEventArgs e)
+        private void ChangeCheckedPanel_MouseLeave(object sender, MouseEventArgs e)
         {
-            var tbtn = InfoToggleButton;
-            tbtn.IsChecked = !tbtn.IsChecked;
+            InfoToggleButton.IsChecked = false;
         }
 
+        private void ClassesViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            ClassesViewToggleButton.IsChecked = false;
+            HidenClassListViewToggleButton.IsChecked = true;
+            studentsLvSearchNameTb.Focus();
+        }
+        #endregion
+
+        #region Commands Execute
         private void ExitCmd_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
@@ -143,8 +247,33 @@ namespace StudentManagement
             lwd.Show();
             this.Close();
         }
+        #endregion
+
+        private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddStudentsWindow asw = new AddStudentsWindow();
+            asw.ShowDialog();
+        }
+
+        private void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Do you want to delete " + studentsLv.SelectedValue.ToString() +" ?", "Delete", MessageBoxButton.OKCancel);
+            //Viet cau query delete o day neu select Ok
+            if(result == MessageBoxResult.OK)
+            {
+                MessageBox.Show("Viet cau query xoa trong nay");
+            }
+        }
+
+        private void StudentsListviewEditStudentButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditStudentsWindow esw = new EditStudentsWindow();
+            esw.SetStudentName(studentsLv.SelectedValue.ToString());
+            esw.ShowDialog();
+        }
     }
 
+    //Custom Commands for the whole app (in this namespace)
     public static class CustomCommands
     {
         public static readonly RoutedUICommand Exit = new RoutedUICommand

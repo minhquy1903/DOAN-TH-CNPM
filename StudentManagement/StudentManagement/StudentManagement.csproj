@@ -74,6 +74,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="API\APIRoute.cs" />
+    <Compile Include="mUC\ClassesViewButton.xaml.cs">
+      <DependentUpon>ClassesViewButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="mUC\CloseButton.xaml.cs">
       <DependentUpon>CloseButton.xaml</DependentUpon>
     </Compile>
@@ -156,6 +159,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controller\Controller.cs" />
+    <Page Include="mUC\ClassesViewButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="mUC\CloseButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

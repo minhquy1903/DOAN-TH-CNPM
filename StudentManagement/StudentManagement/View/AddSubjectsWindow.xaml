@@ -47,6 +47,7 @@
                                       materialDesign:HintAssist.Hint="Số tiết"/>
                 </Grid>
                 <Button Content="Add"
+                        Height="auto"
                         FontSize="20"
                         FontFamily="MV Boli"
                         Margin="200 25 50 50"

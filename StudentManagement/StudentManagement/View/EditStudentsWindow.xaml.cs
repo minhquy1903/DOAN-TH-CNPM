@@ -33,5 +33,10 @@ namespace StudentManagement
         {
             this.Close();
         }
+
+        public void SetStudentName(string s)
+        {
+            tb1.Text = s;
+        }
     }
 }

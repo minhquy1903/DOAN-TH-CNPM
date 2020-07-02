@@ -8,13 +8,12 @@
              mc:Ignorable="d">
     <Button Width="35"
             Height="35" 
-            ToolTip="Shutdown"
+            ToolTip="Close"
+            Background="Transparent"
+            BorderThickness="0"
             Click="Button_Click">
-        <Button.Resources>
+        <Button.Style>
             <Style TargetType="Button">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="BorderThickness" Value="0"/>
                 <Style.Triggers>
                     <EventTrigger RoutedEvent="Button.MouseEnter">
                         <BeginStoryboard>
@@ -28,7 +27,7 @@
                     </EventTrigger>
                 </Style.Triggers>
             </Style>
-        </Button.Resources>
+        </Button.Style>
         <materialDesign:PackIcon Kind="Power" Width="35" Height="35" Foreground="Red" VerticalAlignment="Center"/>
     </Button>
 </UserControl>
