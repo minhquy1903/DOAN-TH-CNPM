@@ -36,5 +36,10 @@ namespace StudentManagement.Controllers
             account.Name = _name;
             return await API<ResultYN>.Instance.Post(APIRoute.Account.SignUp, account);
         }
+
+        public async Task<ResultYN> GetAllClass()
+        {
+            return await API<ResultYN>.Instance.Get(APIRoute.Class.GetAllClass);
+        }
     }
 }

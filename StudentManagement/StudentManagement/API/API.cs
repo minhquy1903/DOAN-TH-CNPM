@@ -62,5 +62,24 @@ namespace StudentManagement.API
                 return default;
             }
         }
+
+        public async Task<T> Get(string route)
+        {
+            using (HttpResponseMessage response = await apiClient.GetAsync(route)) // đường dẫn và body info, chờ đợi server response
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonstring = await response.Content.ReadAsStringAsync();
+                    var data = JsonConvert.DeserializeObject<T>(jsonstring);
+                    if (data != null)
+                        return data;
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+                return default;
+            }
+        }
     }
 }

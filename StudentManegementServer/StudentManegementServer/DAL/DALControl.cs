@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentManegementServer.DAL.DataProvider;
+using StudentManegementServer.Models.Class;
 
 namespace StudentManegementServer.DAL.Controls
 { 
@@ -42,7 +43,12 @@ namespace StudentManegementServer.DAL.Controls
         {
             try
             {
-                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Account.ProcSignUp, new object[] { account.Username, account.Password, account.Email, account.Name }) > 0;
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Account.ProcSignUp, 
+                    new object[] { 
+                        account.Username, 
+                        account.Password, 
+                        account.Email, 
+                        account.Name }) > 0;
                
             }
             catch (Exception e)
@@ -60,6 +66,38 @@ namespace StudentManegementServer.DAL.Controls
             catch (Exception e)
             {
                 return null;
+            }
+        }
+        public bool InsertNewClass(ClassInfo classInfo)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcInsertClass, 
+                    new object[] { 
+                        classInfo.MaLop, 
+                        classInfo.TenLop, 
+                        classInfo.SiSo, 
+                        classInfo.TenGVCN, 
+                        classInfo.Khoi, 
+                        classInfo.NienKhoa }) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool DeleteClass(string Malop)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcDeleteClass,
+                    new object[] { Malop }) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
             }
         }
     }

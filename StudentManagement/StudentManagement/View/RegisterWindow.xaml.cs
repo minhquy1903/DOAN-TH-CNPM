@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -33,9 +34,23 @@ namespace StudentManagement
             string email = tb2.Text;
             string name = tb1.Text;
 
+            if (!IsValidEmail(email))
+            {
+                MessageBox.Show("Email không hợp lệ");
+                return;
+            }    
+             
+            if(!IsValidUsername(username))
+            {
+                MessageBox.Show("Username không hợp lệ");
+                return;
+            }
+            
+
+            /*Regex regex1 = new Regex("^[a-zA-Z]+[a-zA-Z0-9]+[[a-zA-Z0-9-_.!#$%'*+/=?^]{1,20}@[a-zA-Z0-9]{1,20}.[a-zA-Z]{2,3}$")*/;
+
             ResultYN result = await Controller.Instance.SignUp(username, password, email, name);
 
-            
             if (result.Result)
             {
                 this.Close();
@@ -43,6 +58,32 @@ namespace StudentManagement
             else
                 MessageBox.Show("Đăng kí không thành công!", "Thông báo");
         }
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                Regex rx = new Regex(@"^[-!#$%&'*+/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+/0-9=?A-Z^_a-z{|}~])*@[a-zA-Z](-?[a-zA-Z0-9])*(\.[a-zA-Z](-?[a-zA-Z0-9])*)+$");
+                return rx.IsMatch(email);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        bool IsValidUsername(string username)
+        {
+            try
+            {
+                Regex rx = new Regex(@"^(?=[a-zA-Z])[-\w.]{0,23}([a-zA-Z\d]|(?<![-.])_)$");
+                return rx.IsMatch(username);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+        
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
