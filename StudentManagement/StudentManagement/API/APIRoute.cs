@@ -18,5 +18,9 @@ namespace StudentManagement.API
 
             public const string SignUp = Base + "/Account/signup";
         }
+        public static class Class
+        {
+            public const string GetAllClass = Base + "/Class/getall";
+        }
     }
 }

@@ -48,9 +48,10 @@ namespace StudentManegementServer.BUS
             DataTable classinfo = DALControl.Instance.GetAllClass();
 
             List<ClassInfo> classInfos = new List<ClassInfo>();
-            ClassInfo classInfo = new ClassInfo();
+            
             foreach (DataRow row in classinfo.Rows)
             {
+                ClassInfo classInfo = new ClassInfo();
                 classInfo.MaLop = row["MALOP"].ToString();
                 classInfo.TenLop = row["TENLOP"].ToString();
                 classInfo.SiSo = Convert.ToInt32(row["SISO"]);
@@ -60,6 +61,15 @@ namespace StudentManegementServer.BUS
                 classInfos.Add(classInfo);
             }
             return classInfos;
+        }
+        public bool InsertNewClass(ClassInfo classInfo)
+        {
+            return DALControl.Instance.InsertNewClass(classInfo);
+        }
+
+        public bool DeleteClass(string MaLop)
+        {
+            return DALControl.Instance.DeleteClass(MaLop);
         }
     }
 }
