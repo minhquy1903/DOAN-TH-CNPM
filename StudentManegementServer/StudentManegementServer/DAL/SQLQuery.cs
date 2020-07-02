@@ -13,5 +13,9 @@ namespace StudentManegementServer.DAL
 
             public const string ProcSignUp = "EXECUTE SignUpAccount @username , @password , @email , @name ";
         }
+        public static class Class
+        {
+            public const string ProcGetAllClass = "EXECUTE GetAllClass";
+        }
     }
 }

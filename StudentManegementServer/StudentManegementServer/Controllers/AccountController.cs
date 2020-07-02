@@ -18,9 +18,7 @@ namespace StudentManegementServer.Controllers
         [HttpPost("login")]
         public ActionResult Login([FromBody] Account account)
         {
-            BusControls busControls = new BusControls();
-
-            UserProfile userProfile = busControls.Instance.Login(account);
+            UserProfile userProfile = BusControls.Instance.Login(account);
 
             if(userProfile != null)
             {
@@ -33,9 +31,7 @@ namespace StudentManegementServer.Controllers
         [HttpPost("signup")]
         public ActionResult SignUp([FromBody] Account account)
         {
-            BusControls busControls = new BusControls();
-
-            if (busControls.Instance.SignUp(account))
+            if (BusControls.Instance.SignUp(account))
             {
                 return new JsonResult(new APIResponse<object>("Sign Up Success"));
             }

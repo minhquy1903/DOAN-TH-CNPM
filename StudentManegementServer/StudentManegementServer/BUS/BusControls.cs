@@ -1,5 +1,6 @@
 ﻿using StudentManegementServer.DAL.Controls;
 using StudentManegementServer.Models;
+using StudentManegementServer.Models.Class;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,9 +12,9 @@ namespace StudentManegementServer.BUS
 {
     public class BusControls
     {
-        private BusControls instance;
+        private static BusControls instance;
 
-        public BusControls Instance
+        public static BusControls Instance
         {
             get
             {
@@ -41,6 +42,24 @@ namespace StudentManegementServer.BUS
         public bool SignUp(Account account)
         {
             return DALControl.Instance.SignUp(account);
+        }
+        public List<ClassInfo> GetAllClass()
+        {
+            DataTable classinfo = DALControl.Instance.GetAllClass();
+
+            List<ClassInfo> classInfos = new List<ClassInfo>();
+            ClassInfo classInfo = new ClassInfo();
+            foreach (DataRow row in classinfo.Rows)
+            {
+                classInfo.MaLop = row["MALOP"].ToString();
+                classInfo.TenLop = row["TENLOP"].ToString();
+                classInfo.SiSo = Convert.ToInt32(row["SISO"]);
+                classInfo.TenGVCN = row["TENGV"].ToString();
+                classInfo.Khoi = row["KHOI"].ToString();
+                classInfo.NienKhoa = row["TENNAMHOC"].ToString();
+                classInfos.Add(classInfo);
+            }
+            return classInfos;
         }
     }
 }
