@@ -50,5 +50,17 @@ namespace StudentManegementServer.DAL.Controls
                 return false;
             }
         }
+        public DataTable GetAllClass()
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteQuery(SQLQuery.Class.ProcGetAllClass);
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
 }
