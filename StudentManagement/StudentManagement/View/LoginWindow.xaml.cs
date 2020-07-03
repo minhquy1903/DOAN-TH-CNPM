@@ -46,7 +46,7 @@ namespace StudentManagement
             string username = txbUser.Text;
             string password = pwbPassword.Password.ToString();
             LoginResult user = await Controller.Instance.Login(username, password);
-
+ 
             if(user.Result)
             {
                 MenuWindow mwd = new MenuWindow();

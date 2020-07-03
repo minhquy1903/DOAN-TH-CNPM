@@ -14,7 +14,7 @@ namespace StudentManegementServer.Controllers
     [ApiController]
     public class ClassController : ControllerBase
     {
-        [HttpGet("getAll")]
+        [HttpGet("GetAll")]
 
         public ActionResult GetAllClass()
         {
@@ -24,7 +24,7 @@ namespace StudentManegementServer.Controllers
             return new JsonResult(new APIResponse<object>(200));
         }
 
-        [HttpPost("insertNewClass")]
+        [HttpPost("InsertNewClass")]
         public ActionResult InsertNewClass([FromBody] ClassInfo classInfo)
         {
             if (BusControls.Instance.InsertNewClass(classInfo))
@@ -32,11 +32,19 @@ namespace StudentManegementServer.Controllers
             else
                 return new JsonResult(new APIResponse<object>(200));
         }
-        [HttpDelete("DeleteClass")]
+        [HttpPost("DeleteClass")]
         public ActionResult DeleteClass([FromBody] ClassInfo classInfo)
         {
-            if(BusControls.Instance.DeleteClass(classInfo.MaLop))
+            if (BusControls.Instance.DeleteClass(classInfo.MaLop))
                 return new JsonResult(new APIResponse<object>("Deleted"));
+            return new JsonResult(new APIResponse<object>(200));
+        }
+
+        [HttpPost("UpdateClass")]
+        public ActionResult UpdateClass([FromBody] ClassInfo classInfo)
+        {
+            if (BusControls.Instance.UpdateClass(classInfo))
+                return new JsonResult(new APIResponse<object>("Update Success"));
             return new JsonResult(new APIResponse<object>(200));
         }
     }

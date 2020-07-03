@@ -21,6 +21,18 @@ namespace StudentManagement.API
         public static class Class
         {
             public const string GetAllClass = Base + "/Class/getall";
+
+            public const string InsertNewClass = Base + "/Class/InsertNewClass";
+
+            public const string DeleteLop = Base + "/Class/DeleteClass";
+        }
+        public static class Student
+        {
+            public const string GetAllStudent = Base + "/Student/GetAllStudent";
+
+            public const string InsertNewStudent = Base + "/Student/InsertNewStudent";
+
+            public const string DeleteStudent = Base + "/Student/DeleteStudent";
         }
     }
 }

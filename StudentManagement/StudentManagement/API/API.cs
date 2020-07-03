@@ -17,7 +17,7 @@ namespace StudentManagement.API
         private HttpClient apiClient { get; set; }
 
         private static API<T> instance;
-        public static API<T> Instance 
+        public static API<T> Instance
         {
             get
             {
@@ -65,7 +65,7 @@ namespace StudentManagement.API
 
         public async Task<T> Get(string route)
         {
-            using (HttpResponseMessage response = await apiClient.GetAsync(route)) // đường dẫn và body info, chờ đợi server response
+            using (HttpResponseMessage response = await apiClient.GetAsync(route))
             {
                 if (response.IsSuccessStatusCode)
                 {
