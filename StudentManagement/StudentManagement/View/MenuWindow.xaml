@@ -413,41 +413,22 @@
                                             Style="{StaticResource txblInfoPanel}"/>
                             </DockPanel>
                             <!--ClassName toi da 4 ky tu do fontsize co dinh-->
-                            <StackPanel>
-                                <StackPanel Orientation="Horizontal"
-                                    Margin="20 10 20 0">
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal"
-                                    Margin="20 10 20 0">
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal"
-                                    Margin="20 10 20 0">
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal"
-                                    Margin="20 10 20 0">
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                    <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0"/>
-                                </StackPanel>
-                            </StackPanel>
+                            <WrapPanel Orientation="Horizontal" Margin="20 30 20 20" Width="1000">
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                            </WrapPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </materialDesign:DrawerHost.TopDrawerContent>
                 <materialDesign:DrawerHost.BottomDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel Background="Gainsboro">
+                        <StackPanel x:Name="StudentViewPanel" Background="Azure">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -461,7 +442,7 @@
                                             BorderThickness="0"
                                             materialDesign:HintAssist.Hint="Search Student's Name"
                                             materialDesign:HintAssist.IsFloating="True"
-                                            materialDesign:HintAssist.Background="{Binding ElementName=ToolPanel, Path=Background}"
+                                            materialDesign:HintAssist.Background="{Binding ElementName=StudentViewPanel, Path=Background}"
                                             materialDesign:TextFieldAssist.HasClearButton="True"
                                             materialDesign:TextFieldAssist.HasOutlinedTextField="True"
                                             materialDesign:TextFieldAssist.DecorationVisibility="Collapsed"
@@ -470,38 +451,40 @@
                             </DockPanel>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                 <Button x:Name="StudentsListviewAddStudentButton"
-                                    Style="{StaticResource MaterialDesignIconButton}"
-                                    ToolTip="Add Student"
-                                    Margin="0 10 0 0"
-                                    Click="StudentsListviewAddStudentButton_Click">
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Add Student"
+                                        Margin="0 10 0 0"
+                                        Click="StudentsListviewAddStudentButton_Click">
                                     <materialDesign:PackIcon Kind="AccountPlus" />
                                 </Button>
                                 <Button x:Name="StudentsListviewDeleteStudentButton"
-                                    Style="{StaticResource MaterialDesignIconButton}"
-                                    ToolTip="Delete Student"
-                                    Margin="0 10 0 0"
-                                    Click="StudentsListviewDeleteStudentButton_Click">
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Delete Student"
+                                        Margin="0 10 0 0"
+                                        Click="StudentsListviewDeleteStudentButton_Click">
                                     <materialDesign:PackIcon Kind="DeleteCircleOutline" />
                                 </Button>
                                 <Button x:Name="StudentsListviewEditStudentButton"
-                                    Style="{StaticResource MaterialDesignIconButton}"
-                                    ToolTip="Edit Student"
-                                    Margin="0 10 0 0"
-                                    Click="StudentsListviewEditStudentButton_Click">
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Edit Student"
+                                        Margin="0 10 0 0"
+                                        Click="StudentsListviewEditStudentButton_Click">
                                     <materialDesign:PackIcon Kind="SquareEditOutline" />
                                 </Button>
                             </StackPanel>
-                            <Grid Width="500" Height="auto">
-                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="CornflowerBlue">
-                                    <TextBlock Text="{Binding ElementName=studentsLv, Path=SelectedValue}" 
-                                       HorizontalAlignment="Center"
-                                       FontSize="16"
-                                       Margin="10"/>
+                            <Grid Width="500" 
+                                  Height="auto">
+                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="DarkOrchid">
+                                    <TextBlock x:Name="selectedStudentTbName"
+                                               HorizontalAlignment="Center"
+                                               FontSize="16"
+                                               Margin="10"/>
                                 </Border>
                             </Grid>
                             <ListView x:Name="studentsLv"
-                              MinHeight="500"
-                              Margin="10">
+                                      MinHeight="500"
+                                      Margin="10"
+                                      Background="Azure">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoStudentName}">

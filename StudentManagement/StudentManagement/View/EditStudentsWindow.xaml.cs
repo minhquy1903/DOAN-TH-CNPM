@@ -34,9 +34,16 @@ namespace StudentManagement
             this.Close();
         }
 
-        public void SetStudentName(string s)
+        public void FillInfo(string name = null, string sex = null, string dob = null, string country = null, string parentname = null, int phonenumber = 0, string currentclass = null)
         {
-            tb1.Text = s;
+            tb1.Text = name;
+            tb2.Text = sex;
+            tb3.Text = dob;
+            tb4.Text = country;
+            tb5.Text = parentname;
+            tb6.Text = phonenumber.ToString();
+            tb7.Text = currentclass;
         }
+
     }
 }

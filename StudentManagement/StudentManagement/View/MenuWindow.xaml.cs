@@ -22,6 +22,7 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
+        List<DemoStudentInfo> items;
         public bool isStudentsListViewSorted;
         public CollectionView collectionView;
         public MenuWindow()
@@ -30,46 +31,74 @@ namespace StudentManagement
 
             //demo binding for Listview of Student (understand ? -> delete)
             isStudentsListViewSorted = false;
-            List<DemoStudentInfo> items = new List<DemoStudentInfo>();
-            items.Add(new DemoStudentInfo() { 
+            items = new List<DemoStudentInfo>();
+            items.Add(new DemoStudentInfo() 
+            { 
+                idStudent = "0",
                 demoStudentName = "Nguyen Minh Thang", 
                 demoSex = Sex.Male, 
-                demoDoB = 11223344, 
+                demoDoB = "11/22/3344", 
                 demoCountry = "Los Angles", 
                 demoParentName = "God", 
                 demoPhoneNb = 0123456789 });
             items.Add(new DemoStudentInfo()
             {
+                idStudent = "1",
                 demoStudentName = "Vo Minh Quy",
                 demoSex = Sex.Male,
-                demoDoB = 44332211,
+                demoDoB = "44/33/2211",
                 demoCountry = "California",
                 demoParentName = "Lucifer",
                 demoPhoneNb = 0951623847
             });
             items.Add(new DemoStudentInfo()
             {
+                idStudent = "2",
                 demoStudentName = "Nguyen Pham Minh Nhat",
                 demoSex = Sex.Male,
-                demoDoB = 11223344,
+                demoDoB = "11/22/3344",
                 demoCountry = "China",
                 demoParentName = "Zeus",
                 demoPhoneNb = 0321654987
             });
             items.Add(new DemoStudentInfo()
             {
+                idStudent = "3",
                 demoStudentName = "Ngoc Trinh",
                 demoSex = Sex.Female,
-                demoDoB = 16161616,
+                demoDoB = "16/16/1616",
                 demoCountry = "Thang's House",
                 demoParentName = "Thang's Neighborhood",
                 demoPhoneNb = 0999999999
             });
+            items.Add(new DemoStudentInfo()
+            {
+                idStudent = "4",
+                demoStudentName = "Ngoc Trinh",
+                demoSex = Sex.Female,
+                demoDoB = "11/11/1111",
+                demoCountry = "Thang's House",
+                demoParentName = "Thang's Neighborhood",
+                demoPhoneNb = 0111111111
+            });
             studentsLv.ItemsSource = items;
-            studentsLv.SelectedValuePath = "demoStudentName";
+            studentsLv.SelectedValuePath = "idStudent";
+            studentsLv.SelectionChanged += StudentsLv_SelectionChanged;
 
             collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
             collectionView.Filter = StudentListviewFilter;
+        }
+
+        private void StudentsLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (studentsLv.SelectedValue != null)
+            {
+                for (int i = 0; i < items.Count; i++)
+                    if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                        selectedStudentTbName.Text = items.ElementAt(i).demoStudentName;
+            }
+            else
+                selectedStudentTbName.Text = "";
         }
 
         private bool StudentListviewFilter(object item)
@@ -108,9 +137,10 @@ namespace StudentManagement
 
         public class DemoStudentInfo
         {
+            public string idStudent { get; set; }
             public string demoStudentName { get; set; }
             public Sex demoSex { get; set; }
-            public int demoDoB { get; set; }
+            public string demoDoB { get; set; }
             public string demoCountry { get; set; }
             public string demoParentName { get; set; }
             public int demoPhoneNb { get; set; }
@@ -257,7 +287,7 @@ namespace StudentManagement
 
         private void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want to delete " + studentsLv.SelectedValue.ToString() +" ?", "Delete", MessageBoxButton.OKCancel);
+            MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
             //Viet cau query delete o day neu select Ok
             if(result == MessageBoxResult.OK)
             {
@@ -268,7 +298,15 @@ namespace StudentManagement
         private void StudentsListviewEditStudentButton_Click(object sender, RoutedEventArgs e)
         {
             EditStudentsWindow esw = new EditStudentsWindow();
-            esw.SetStudentName(studentsLv.SelectedValue.ToString());
+            if (studentsLv.SelectedValue != null)
+                for (int i = 0; i < items.Count; i++)
+                    if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                        esw.FillInfo(items.ElementAt(i).demoStudentName,
+                            items.ElementAt(i).demoSex.ToString(),
+                            items.ElementAt(i).demoDoB,
+                            items.ElementAt(i).demoCountry,
+                            items.ElementAt(i).demoParentName,
+                            items.ElementAt(i).demoPhoneNb); //currentClass thi phai ket noi dtb class o doan chon lop
             esw.ShowDialog();
         }
     }
