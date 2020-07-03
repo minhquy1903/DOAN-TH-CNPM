@@ -49,6 +49,7 @@
                                       x:Name="tb2"
                                       materialDesign:HintAssist.Hint="Giới tính"/>
                     <DatePicker Grid.Column="0" Grid.Row="1"
+                                x:Name="tb3"
                                 Margin="30"
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
@@ -67,6 +68,7 @@
                                       materialDesign:HintAssist.Hint="Lớp đang học"/>
                 </Grid>
                 <Button Content="Edit"
+                        Height="auto"
                         FontSize="20"
                         FontFamily="MV Boli"
                         Margin="200 25 50 50"

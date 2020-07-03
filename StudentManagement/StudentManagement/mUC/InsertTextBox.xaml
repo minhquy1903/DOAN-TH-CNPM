@@ -9,5 +9,6 @@
     <TextBox x:Name="ucInsertTb"
                  Margin="30"
                  Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 VerticalAlignment="Center" />
+                 VerticalAlignment="Center"
+                 materialDesign:TextFieldAssist.HasClearButton="True"/>
 </UserControl>

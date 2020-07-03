@@ -8,27 +8,22 @@
              mc:Ignorable="d">
     <Button Width="35"
             Height="35" 
-            ToolTip="Shutdown"
+            Style="{StaticResource MaterialDesignIconButton}"
+            ToolTip="Close"
+            BorderThickness="0"
             Click="Button_Click">
-        <Button.Resources>
-            <Style TargetType="Button">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="BorderThickness" Value="0"/>
-                <Style.Triggers>
-                    <EventTrigger RoutedEvent="Button.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation
+        <materialDesign:PackIcon Kind="Power" Width="35" Height="35" Foreground="Red" VerticalAlignment="Center"/>
+        <Button.Triggers>
+            <EventTrigger RoutedEvent="Button.MouseEnter">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
                                 Storyboard.TargetProperty="Opacity"
                                 Duration="0:0:1" 
                                 From="0.25" To="1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Style.Triggers>
-            </Style>
-        </Button.Resources>
-        <materialDesign:PackIcon Kind="Power" Width="35" Height="35" Foreground="Red" VerticalAlignment="Center"/>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Button.Triggers>
     </Button>
 </UserControl>

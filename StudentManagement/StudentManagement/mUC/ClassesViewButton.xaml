@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="StudentManagement.mUC.ClassesViewButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:StudentManagement.mUC"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d">
+    <Grid Width="200"
+          Height="160" Margin="35 0 0 0">
+        <Grid.Style>
+            <Style>
+                <Style.Triggers>
+                    <EventTrigger RoutedEvent="Grid.MouseEnter">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                Duration="0:0:1" 
+                                From="0.25" To="1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Border Background="DimGray"
+                BorderThickness="5"
+                CornerRadius="30">
+            <Button x:Name="cvBtn"
+                    Height="auto"
+                    Width="auto"
+                    Background="Transparent"
+                    BorderThickness="0"
+                Click="Button_Click">
+                <Button.Content>
+                    <Grid Width="auto">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <TextBlock x:Name="classNameTxbl"
+                                       Text="Name"
+                                       FontSize="45"
+                                       Foreground="SeaShell"
+                                       Margin="6"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                        <Separator Grid.Row="1"/>
+                        <Grid Grid.Row="2">
+                            <TextBlock x:Name="classYearTxbl"
+                                       Text="Year"
+                                       FontSize="30"
+                                       Foreground="SeaShell"
+                                       Margin="6"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       TextWrapping="Wrap"/>
+                        </Grid>
+                    </Grid>
+                </Button.Content>
+            </Button>
+        </Border>
+    </Grid>
+</UserControl>
