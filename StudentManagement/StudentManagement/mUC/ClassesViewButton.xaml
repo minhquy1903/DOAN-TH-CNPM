@@ -7,7 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Grid Width="200"
-          Height="160">
+          Height="160" Margin="35 0 0 0">
         <Grid.Style>
             <Style>
                 <Style.Triggers>
@@ -43,7 +43,7 @@
                         <Grid>
                             <TextBlock x:Name="classNameTxbl"
                                        Text="Name"
-                                       FontSize="50"
+                                       FontSize="45"
                                        Foreground="SeaShell"
                                        Margin="6"
                                        HorizontalAlignment="Center"

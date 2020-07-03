@@ -33,5 +33,15 @@ namespace StudentManagement
         {
             this.Close();
         }
+
+        public void FillInfo(string name = null, int grade = 0, string teacher = null, int count = 0, int year = 0)
+        {
+            tb1.Text = name;
+            tb2.Text = grade.ToString();
+            tb3.Text = teacher;
+            tb4.Text = count.ToString();
+            tb5.Text = year.ToString();
+        }
+
     }
 }

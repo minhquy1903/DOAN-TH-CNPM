@@ -37,6 +37,13 @@ namespace StudentManagement.mUC
             set { classYearTxbl.Text = value; }
         }
 
+        //Luu id de phan biet
+        public object IdClass
+        {
+            get { return cvBtn.Tag; }
+            set { cvBtn.Tag = value; }
+        }
+
         public event RoutedEventHandler Click;
         private void Button_Click(object sender, RoutedEventArgs e)
         {

@@ -406,22 +406,58 @@
                                                Margin="20"
                                                IsChecked="{Binding ElementName=ClassesViewToggleButton, Path=IsChecked, Mode=TwoWay}" />
                                 <TextBlock  Text="Classes"
+                                            Margin="0 20 80 0"
                                             DockPanel.Dock="Right"
                                             FontSize="60"
                                             Foreground="Black"
                                             FontWeight="Bold"
                                             Style="{StaticResource txblInfoPanel}"/>
                             </DockPanel>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button x:Name="ClassesViewCheckClassButton"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Check in side"
+                                        Margin="0 10 0 0"
+                                        Click="ClassesViewCheckClassButton_Click">
+                                    <materialDesign:PackIcon Kind="Eye" />
+                                </Button>
+                                <Button x:Name="ClassesViewAddClassButton"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Add Class"
+                                        Margin="0 10 0 0"
+                                        Click="ClassesViewAddClassButton_Click">
+                                    <materialDesign:PackIcon Kind="AccountPlus" />
+                                </Button>
+                                <Button x:Name="ClassesViewDeleteClassButton"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Delete Class"
+                                        Margin="0 10 0 0"
+                                        Click="ClassesViewDeleteClassButton_Click">
+                                    <materialDesign:PackIcon Kind="DeleteCircleOutline" />
+                                </Button>
+                                <Button x:Name="ClassesViewEditClassButton"
+                                        Style="{StaticResource MaterialDesignIconButton}"
+                                        ToolTip="Edit Class"
+                                        Margin="0 10 0 0"
+                                        Click="ClassesViewEditClassButton_Click">
+                                    <materialDesign:PackIcon Kind="SquareEditOutline" />
+                                </Button>
+                            </StackPanel>
+                            <Grid Width="300" 
+                                  Height="auto">
+                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="BlueViolet">
+                                    <TextBlock x:Name="selectedClassName"
+                                               HorizontalAlignment="Center"
+                                               FontSize="24"
+                                               Margin="10"/>
+                                </Border>
+                            </Grid>
                             <!--ClassName toi da 4 ky tu do fontsize co dinh-->
-                            <WrapPanel Orientation="Horizontal" Margin="20 30 20 20" Width="1000">
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
-                                <uc:ClassesViewButton ClassName="PMCL" ClassYear="2020" Margin="35 0 0 0" Click="ClassesViewButton_Click"/>
+                            <WrapPanel x:Name="panelClassview" 
+                                       Orientation="Horizontal" 
+                                       Margin="20 30 20 20" 
+                                       Width="1000"
+                                       Loaded="panelClassview_Loaded">
                             </WrapPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -474,7 +510,7 @@
                             </StackPanel>
                             <Grid Width="500" 
                                   Height="auto">
-                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="DarkOrchid">
+                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="BlueViolet">
                                     <TextBlock x:Name="selectedStudentTbName"
                                                HorizontalAlignment="Center"
                                                FontSize="16"
@@ -484,27 +520,29 @@
                             <ListView x:Name="studentsLv"
                                       MinHeight="500"
                                       Margin="10"
-                                      Background="Azure">
+                                      Background="Azure"
+                                      HorizontalAlignment="Center"
+                                      Foreground="Black">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoStudentName}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="demoStudentName" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoStudentName" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSex}">
-                                            <GridViewColumnHeader Content="demoSex" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoSex" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoDoB}">
-                                            <GridViewColumnHeader Content="demoDoB" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoDoB" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoCountry}">
-                                            <GridViewColumnHeader Content="demoCountry" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoCountry" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoParentName}">
-                                            <GridViewColumnHeader Content="demoParentName" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoParentName" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoPhoneNb}">
-                                            <GridViewColumnHeader Content="demoPhoneNb" Click="GridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoPhoneNb" Foreground="Black" Click="GridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

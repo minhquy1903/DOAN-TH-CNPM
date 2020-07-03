@@ -22,9 +22,13 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
+        //2 cai list nay xoa di
         List<DemoStudentInfo> items;
+        List<DemoClassInfo> classItems;
+
         public bool isStudentsListViewSorted;
         public CollectionView collectionView;
+
         public MenuWindow()
         {
             InitializeComponent();
@@ -37,7 +41,7 @@ namespace StudentManagement
                 idStudent = "0",
                 demoStudentName = "Nguyen Minh Thang", 
                 demoSex = Sex.Male, 
-                demoDoB = "11/22/3344", 
+                demoDoB = "1/1/2000", 
                 demoCountry = "Los Angles", 
                 demoParentName = "God", 
                 demoPhoneNb = 0123456789 });
@@ -46,7 +50,7 @@ namespace StudentManagement
                 idStudent = "1",
                 demoStudentName = "Vo Minh Quy",
                 demoSex = Sex.Male,
-                demoDoB = "44/33/2211",
+                demoDoB = "2/2/2222",
                 demoCountry = "California",
                 demoParentName = "Lucifer",
                 demoPhoneNb = 0951623847
@@ -56,7 +60,7 @@ namespace StudentManagement
                 idStudent = "2",
                 demoStudentName = "Nguyen Pham Minh Nhat",
                 demoSex = Sex.Male,
-                demoDoB = "11/22/3344",
+                demoDoB = "3/3/2222",
                 demoCountry = "China",
                 demoParentName = "Zeus",
                 demoPhoneNb = 0321654987
@@ -66,7 +70,7 @@ namespace StudentManagement
                 idStudent = "3",
                 demoStudentName = "Ngoc Trinh",
                 demoSex = Sex.Female,
-                demoDoB = "16/16/1616",
+                demoDoB = "4/4/1999",
                 demoCountry = "Thang's House",
                 demoParentName = "Thang's Neighborhood",
                 demoPhoneNb = 0999999999
@@ -76,7 +80,7 @@ namespace StudentManagement
                 idStudent = "4",
                 demoStudentName = "Ngoc Trinh",
                 demoSex = Sex.Female,
-                demoDoB = "11/11/1111",
+                demoDoB = "5/5/1999",
                 demoCountry = "Thang's House",
                 demoParentName = "Thang's Neighborhood",
                 demoPhoneNb = 0111111111
@@ -87,10 +91,42 @@ namespace StudentManagement
 
             collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
             collectionView.Filter = StudentListviewFilter;
+
+            //demo class view
+            classItems = new List<DemoClassInfo>();
+            classItems.Add(new DemoClassInfo() 
+            { 
+                idClass = "0", 
+                demoClassName = "10A1", 
+                demoGrade = 10, 
+                demoTeacher = "AAA", 
+                demoCount = 30, 
+                demoYear = 2020 
+            });
+            classItems.Add(new DemoClassInfo()
+            {
+                idClass = "1",
+                demoClassName = "10A2",
+                demoGrade = 10,
+                demoTeacher = "BBB",
+                demoCount = 30,
+                demoYear = 2019
+            });
+            classItems.Add(new DemoClassInfo()
+            {
+                idClass = "2",
+                demoClassName = "11A1",
+                demoGrade = 11,
+                demoTeacher = "CCC",
+                demoCount = 30,
+                demoYear = 2020
+            });
         }
 
+        #region demo binding 
         private void StudentsLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //Neu da select thi gan cho textbox ten cua hoc sinh
             if (studentsLv.SelectedValue != null)
             {
                 for (int i = 0; i < items.Count; i++)
@@ -103,16 +139,16 @@ namespace StudentManagement
 
         private bool StudentListviewFilter(object item)
         {
+            //thanh search
             if (String.IsNullOrEmpty(studentsLvSearchNameTb.Text))
                 return true;
             else
                 return ((item as DemoStudentInfo).demoStudentName.IndexOf(studentsLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-        #region demo binding 
         private void GridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
-            //Giu cai nay lai vi van dung
+            //sorting
             GridViewColumnHeader header = sender as GridViewColumnHeader;
             if(isStudentsListViewSorted)
             {
@@ -129,10 +165,11 @@ namespace StudentManagement
 
         private void studentsLvSearchNameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //refresh (ho tro thanh search)
             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
-        //Cai nay se la DTO c lay tu dtb
+        //Xoa 2 cai nay
         public enum Sex { Male, Female };
 
         public class DemoStudentInfo
@@ -146,6 +183,15 @@ namespace StudentManagement
             public int demoPhoneNb { get; set; }
         }
         #endregion
+        public class DemoClassInfo
+        {
+            public string idClass { get; set; }
+            public string demoClassName { get; set; }
+            public int demoGrade { get; set; }
+            public string demoTeacher { get; set; }
+            public int demoCount { get; set; }
+            public int demoYear { get; set; }
+        }
 
         //Mo Left Drawer Content se focus vao thanh Search
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
@@ -257,12 +303,6 @@ namespace StudentManagement
             InfoToggleButton.IsChecked = false;
         }
 
-        private void ClassesViewButton_Click(object sender, RoutedEventArgs e)
-        {
-            ClassesViewToggleButton.IsChecked = false;
-            HidenClassListViewToggleButton.IsChecked = true;
-            studentsLvSearchNameTb.Focus();
-        }
         #endregion
 
         #region Commands Execute
@@ -287,18 +327,22 @@ namespace StudentManagement
 
         private void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-            //Viet cau query delete o day neu select Ok
-            if(result == MessageBoxResult.OK)
+            if (studentsLv.SelectedValue != null)
             {
-                MessageBox.Show("Viet cau query xoa trong nay");
+                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
+                //Viet cau query delete o day neu select Ok
+                if (result == MessageBoxResult.OK)
+                {
+                    MessageBox.Show("Viet cau query xoa trong nay");
+                }
             }
         }
 
         private void StudentsListviewEditStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            EditStudentsWindow esw = new EditStudentsWindow();
             if (studentsLv.SelectedValue != null)
+            {
+                EditStudentsWindow esw = new EditStudentsWindow();
                 for (int i = 0; i < items.Count; i++)
                     if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
                         esw.FillInfo(items.ElementAt(i).demoStudentName,
@@ -307,7 +351,76 @@ namespace StudentManagement
                             items.ElementAt(i).demoCountry,
                             items.ElementAt(i).demoParentName,
                             items.ElementAt(i).demoPhoneNb); //currentClass thi phai ket noi dtb class o doan chon lop
-            esw.ShowDialog();
+                esw.ShowDialog();
+            }
+        }
+
+        private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
+            AddClassesWindow acw = new AddClassesWindow();
+            acw.ShowDialog();
+            panelClassview.Children.Add(classesViewButton);
+        }
+
+        private void panelClassview_Loaded(object sender, RoutedEventArgs e)
+        {
+            for (int i = 0; i < classItems.Count; i++)
+            {
+                mUC.ClassesViewButton cvBtn = new mUC.ClassesViewButton();
+                cvBtn.IdClass = classItems.ElementAt(i).idClass;
+                cvBtn.ClassName = classItems.ElementAt(i).demoClassName;
+                cvBtn.ClassYear = classItems.ElementAt(i).demoYear.ToString();
+                cvBtn.Click += ClassesViewButton_Click;
+                panelClassview.Children.Add(cvBtn);
+            }
+        }
+
+        private void ClassesViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Save Id of Class selected
+            var btn = sender as mUC.ClassesViewButton;
+            selectedClassName.Tag = btn.IdClass.ToString(); //prop Tag t se dung de luu Id luon cho tien., khoi phai tao bien ngoai`
+            selectedClassName.Text = btn.ClassName;
+        }
+
+        private void ClassesViewCheckClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedClassName.Tag != null)
+            {
+                ClassesViewToggleButton.IsChecked = false;
+                HidenClassListViewToggleButton.IsChecked = true;
+                studentsLvSearchNameTb.Focus();
+            }
+        }
+
+        private void ClassesViewDeleteClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedClassName.Tag != null)
+            {
+                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
+                //Viet cau query delete o day neu select Ok
+                if (result == MessageBoxResult.OK)
+                {
+                    MessageBox.Show("Viet cau query xoa trong nay");
+                }
+            }
+        }
+
+        private void ClassesViewEditClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedClassName.Tag != null)
+            {
+                EditClassesWindow ecw = new EditClassesWindow();
+                for (int i = 0; i < classItems.Count; i++)
+                    if (classItems.ElementAt(i).idClass == selectedClassName.Tag.ToString())
+                        ecw.FillInfo(classItems.ElementAt(i).demoClassName,
+                            classItems.ElementAt(i).demoGrade,
+                            classItems.ElementAt(i).demoTeacher,
+                            classItems.ElementAt(i).demoCount,
+                            classItems.ElementAt(i).demoYear);
+                ecw.ShowDialog();
+            }
         }
     }
 
