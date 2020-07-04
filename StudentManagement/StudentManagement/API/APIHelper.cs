@@ -12,22 +12,22 @@ using Newtonsoft.Json;
 
 namespace StudentManagement.API
 {
-    public class API<T>
+    public class APIHelper
     {
         private HttpClient apiClient { get; set; }
 
-        private static API<T> instance;
-        public static API<T> Instance
+        private static APIHelper instance;
+        public static APIHelper Instance
         {
             get
             {
                 if (instance == null)
-                    instance = new API<T>();
+                    instance = new APIHelper();
                 return instance;
             }
         }
 
-        private API()
+        private APIHelper()
         {
             Init();
         }
@@ -42,7 +42,7 @@ namespace StudentManagement.API
             apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<T> Post(string route, object body)
+        public async Task<T> Post<T>(string route, object body)
         {
             Init();
 
@@ -63,7 +63,7 @@ namespace StudentManagement.API
             }
         }
 
-        public async Task<T> Get(string route)
+        public async Task<T> Get<T>(string route)
         {
             using (HttpResponseMessage response = await apiClient.GetAsync(route))
             {

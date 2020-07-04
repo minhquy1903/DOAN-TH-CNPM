@@ -27,7 +27,7 @@ namespace StudentManagement.Controllers
         {
             Account user = new Account(_username, _password);
 
-            return await API<LoginResult>.Instance.Post(APIRoute.Account.Login, user);
+            return await APIHelper.Instance.Post<LoginResult>(APIRoute.Account.Login, user);
         }
 
         public async Task<ResultYN> SignUp(string _username, string _password, string _email, string _name)
@@ -35,42 +35,42 @@ namespace StudentManagement.Controllers
             Account account = new Account(_username, _password);
             account.Email = _email;
             account.Name = _name;
-            return await API<ResultYN>.Instance.Post(APIRoute.Account.SignUp, account);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Account.SignUp, account);
         }
         #endregion
         #region Control Class
         public async Task<List<ClassInfo>> GetAllClass()
         {
             //List<ClassInfo> classInfos = new List<ClassInfo>();
-            return await API<List<ClassInfo>>.Instance.Get(APIRoute.Class.GetAllClass);
+            return await APIHelper.Instance.Get<List<ClassInfo>>(APIRoute.Class.GetAllClass);
         }
 
         public async Task<ResultYN> InsertNewClass(ClassInfo classInfo)
         {
-            return await API<ResultYN>.Instance.Post(APIRoute.Class.InsertNewClass, classInfo);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, classInfo);
         }
 
         public async Task<ResultYN> DeleteClass(string MaLop)
         {
-            return await API<ResultYN>.Instance.Post(APIRoute.Class.InsertNewClass, MaLop);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, MaLop);
         }
         #endregion
         #region Control Student
         public async Task<List<Student>> GetAllStudent(string MaLop)
         {
-            return await API<List<Student>>.Instance.Post(APIRoute.Student.GetAllStudent,MaLop);
+            return await APIHelper.Instance.Post<List<Student>>(APIRoute.Student.GetAllStudent,MaLop);
         }
         public async Task<ResultYN> InsertNewStudent(Student student)
         {
-            return await API<ResultYN>.Instance.Post(APIRoute.Student.InsertNewStudent, student);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, student);
         }
         public async Task<ResultYN> UpdateStudent(Student student)
         {
-            return await API<ResultYN>.Instance.Post(APIRoute.Student.InsertNewStudent, student);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, student);
         }
         public async Task<ResultYN> DeleteStudent(string MaHS)
         {
-            return await API<ResultYN>.Instance.Post(APIRoute.Student.InsertNewStudent, MaHS);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, MaHS);
         }
         #endregion
     }
