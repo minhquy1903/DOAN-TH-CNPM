@@ -8,7 +8,7 @@ using StudentManegementServer.DAL.DataProvider;
 using StudentManegementServer.Models.Class;
 
 namespace StudentManegementServer.DAL.Controls
-{ 
+{
     public class DALControl
     {
         private static DALControl instance;
@@ -23,15 +23,15 @@ namespace StudentManegementServer.DAL.Controls
             }
             set => instance = value;
         }
-
+        #region DAL Account
         public DataRow Login(Account account)
         {
             try
             {
                 DataRow data = DataProvider.DataProvider.Instance.ExecuteQuery(SQLQuery.Account.ProcLogin,
-                    new object[] { account.Username,account.Password }).Rows[0];
+                    new object[] { account.Username, account.Password }).Rows[0];
 
-                return data; 
+                return data;
             }
             catch (Exception e)
             {
@@ -43,19 +43,21 @@ namespace StudentManegementServer.DAL.Controls
         {
             try
             {
-                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Account.ProcSignUp, 
-                    new object[] { 
-                        account.Username, 
-                        account.Password, 
-                        account.Email, 
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Account.ProcSignUp,
+                    new object[] {
+                        account.Username,
+                        account.Password,
+                        account.Email,
                         account.Name }) > 0;
-               
+
             }
             catch (Exception e)
             {
                 return false;
             }
         }
+        #endregion
+        #region DAL Class
         public DataTable GetAllClass()
         {
             try
@@ -72,13 +74,13 @@ namespace StudentManegementServer.DAL.Controls
         {
             try
             {
-                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcInsertClass, 
-                    new object[] { 
-                        classInfo.MaLop, 
-                        classInfo.TenLop, 
-                        classInfo.SiSo, 
-                        classInfo.TenGVCN, 
-                        classInfo.Khoi, 
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcInsertClass,
+                    new object[] {
+                        classInfo.MaLop,
+                        classInfo.TenLop,
+                        classInfo.SiSo,
+                        classInfo.TenGVCN,
+                        classInfo.Khoi,
                         classInfo.NienKhoa }) > 0;
 
             }
@@ -100,5 +102,95 @@ namespace StudentManegementServer.DAL.Controls
                 return false;
             }
         }
+        public bool UpdateClass(ClassInfo classInfo)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcUpdateClass,
+                    new object[] {
+                        classInfo.MaLop,
+                        classInfo.TenLop,
+                        classInfo.SiSo,
+                        classInfo.TenGVCN,
+                        classInfo.Khoi,
+                        classInfo.NienKhoa }) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        #endregion
+        #region DAL Student
+        public DataTable GetAllStudent(string Malop)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteQuery(SQLQuery.Student.ProcGetAllStudent,
+                    new object[] { Malop });
+
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public bool InsertNewStudent(Student student)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Student.ProcInsertNewStudent,
+                    new object[] {
+                    student.MaHS,
+                    student.MaLop,
+                    student.Hoten,
+                    student.NgaySinh,
+                    student.GioiTinh,
+                    student.NoiSinh,
+                    student.TenNgGianHo,
+                    student.SDT}) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool Updatetudent(Student student)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Student.ProcUpdateStudent,
+                    new object[] {
+                    student.MaHS,
+                    student.MaLop,
+                    student.Hoten,
+                    student.NgaySinh,
+                    student.GioiTinh,
+                    student.NoiSinh,
+                    student.TenNgGianHo,
+                    student.SDT}) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        public bool DeleteStudent(int MaHS)
+        {
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Student.ProcDeleteStudent,
+                    new object[] { MaHS }) > 0;
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+        }
+        #endregion
     }
 }
