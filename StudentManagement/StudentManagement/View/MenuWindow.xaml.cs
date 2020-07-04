@@ -179,7 +179,7 @@ namespace StudentManagement
         }
 
         //Xoa 2 cai nay
-        public enum Sex { Male, Female };
+        public enum Sex { Male, Female, LGBT };
 
         public class DemoStudentInfo
         {
@@ -191,7 +191,7 @@ namespace StudentManagement
             public string demoParentName { get; set; }
             public int demoPhoneNb { get; set; }
         }
-        #endregion
+
         public class DemoClassInfo
         {
             public string idClass { get; set; }
@@ -201,6 +201,7 @@ namespace StudentManagement
             public int demoCount { get; set; }
             public int demoYear { get; set; }
         }
+        #endregion
 
         //Mo Left Drawer Content se focus vao thanh Search
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
@@ -328,6 +329,7 @@ namespace StudentManagement
                 Sex temp = Sex.Male;
                 if (asw.sexTb.Text == "Male") temp = Sex.Male;
                 if (asw.sexTb.Text == "Female") temp = Sex.Female;
+                if (asw.sexTb.Text == "LGBT") temp = Sex.LGBT;
                 items.Add(new DemoStudentInfo()
                 {
                     idStudent = items.Count.ToString(),
@@ -386,6 +388,7 @@ namespace StudentManagement
                 Sex temp = Sex.Male;
                 if (esw.sexTb.Text == "Male") temp = Sex.Male;
                 if (esw.sexTb.Text == "Female") temp = Sex.Female;
+                if (esw.sexTb.Text == "LGBT") temp = Sex.LGBT;
 
                 items.ElementAt(flag).demoStudentName = esw.studentNameTb.Text;
                 items.ElementAt(flag).demoSex = temp;

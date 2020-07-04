@@ -45,9 +45,21 @@
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
                                       x:Name="studentNameTb"
                                       materialDesign:HintAssist.Hint="Tên Học sinh"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="sexTb"
-                                      materialDesign:HintAssist.Hint="Giới tính"/>
+                    <ComboBox Grid.Column="1"
+                              x:Name="sexTb"
+                              materialDesign:HintAssist.Hint="Giới tính"
+                              Margin="30 30 30 15"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem>
+                            Male
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Female
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            LGBT
+                        </ComboBoxItem>
+                    </ComboBox>
                     <DatePicker Grid.Column="0" Grid.Row="1"
                                 x:Name="dobTb"
                                 Margin="30"
@@ -62,7 +74,8 @@
                                       materialDesign:HintAssist.Hint="Tên Người giám hộ"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
                                       x:Name="phoneNumberTb"
-                                      materialDesign:HintAssist.Hint="Số điện thoại"/>
+                                      materialDesign:HintAssist.Hint="Số điện thoại"
+                                      materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="3"
                                       x:Name="currentClassTb"
                                       materialDesign:HintAssist.Hint="Lớp đang học"/>

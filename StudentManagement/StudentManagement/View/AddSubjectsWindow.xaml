@@ -44,7 +44,8 @@
                                       materialDesign:HintAssist.Hint="Tên Môn học mới"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
                                       x:Name="countTb"
-                                      materialDesign:HintAssist.Hint="Số tiết"/>
+                                      materialDesign:HintAssist.Hint="Số tiết"
+                                      materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                 </Grid>
                 <Button Content="Add"
                         Height="auto"

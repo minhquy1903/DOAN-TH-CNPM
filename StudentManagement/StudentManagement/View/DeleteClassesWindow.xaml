@@ -44,18 +44,44 @@
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
                                       x:Name="classNameTb"
                                       materialDesign:HintAssist.Hint="Tên Lớp"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="gradeTb"
-                                      materialDesign:HintAssist.Hint="Khối lớp"/>
+                    <ComboBox Grid.Column="1"
+                              x:Name="gradeTb"
+                              materialDesign:HintAssist.Hint="Khối lớp"
+                              Margin="30 30 30 15"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem>
+                            6
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            7
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            8
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            9
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            10
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            11
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            12
+                        </ComboBoxItem>
+                    </ComboBox>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
                                       x:Name="teacherNameTb"
                                       materialDesign:HintAssist.Hint="Giáo viên chủ nhiệm"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
                                       x:Name="countTb"
-                                      materialDesign:HintAssist.Hint="Sĩ số"/>
+                                      materialDesign:HintAssist.Hint="Sĩ số"
+                                      materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
                                       x:Name="yearTb"
-                                      materialDesign:HintAssist.Hint="Năm học"/>
+                                      materialDesign:HintAssist.Hint="Năm học"
+                                      materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                 </Grid>
                 <Button Content="Delete"
                         Height="auto"

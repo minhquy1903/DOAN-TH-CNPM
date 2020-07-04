@@ -389,7 +389,7 @@
                         <StackPanel x:Name="ClassesPanel" 
                                 MinHeight="500" 
                                 Orientation="Vertical"
-                                Background="Gainsboro" >
+                                Background="Azure" >
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -590,13 +590,6 @@
                         </DockPanel>
                     </materialDesign:ColorZone>
                     <Grid>
-                        <Grid.Resources>
-                            <Style TargetType="TextBlock" x:Key="txblHeadStackPanel">
-                                <Setter Property="FontSize" Value="26"></Setter>
-                                <Setter Property="Margin" Value="6"></Setter>
-                                <Setter Property="HorizontalAlignment" Value="Center"></Setter>
-                            </Style>
-                        </Grid.Resources>
                         <ToggleButton
                             x:Name="InfoToggleButton"
                             Style="{StaticResource MaterialDesignFlatPrimaryToggleButton}"

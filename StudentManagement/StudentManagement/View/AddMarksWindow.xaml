@@ -45,21 +45,88 @@
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
                                       x:Name="studentNameTb"
                                       materialDesign:HintAssist.Hint="Tên Học sinh"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="subjectNameTb"
-                                      materialDesign:HintAssist.Hint="Môn học"/>
+                    <ComboBox Grid.Column="1"
+                              x:Name="subjectNameTb"
+                              materialDesign:HintAssist.Hint="Môn học"
+                              Margin="30 30 30 15"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem>
+                            Toán
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Văn
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Anh 
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Lí
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Hoá
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Sinh
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Sử
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Địa
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Giáo dục công dân
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Thể dục
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Giáo dục giới tính
+                        </ComboBoxItem>
+                    </ComboBox>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
                                       x:Name="classNameTb"
                                       materialDesign:HintAssist.Hint="Lớp"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
-                                      x:Name="semesterTb"
-                                      materialDesign:HintAssist.Hint="Học kỳ"/>
-                    <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
-                                      x:Name="typeTb"
-                                      materialDesign:HintAssist.Hint="Loại điểm"/>
+                    <ComboBox Grid.Column="1" Grid.Row="1"
+                              x:Name="semesterTb"
+                              materialDesign:HintAssist.Hint="Học kỳ"
+                              Margin="30 30 30 15"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem>
+                            First
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Second
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Summer
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Grid.Row="2"
+                              x:Name="typeTb"
+                              materialDesign:HintAssist.Hint="Loại điểm"
+                              Margin="30 30 30 15"
+                              VerticalAlignment="Center">
+                        <ComboBoxItem>
+                            Exercises
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            15 minutes
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            45 minutes
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Mid term
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            End term
+                        </ComboBoxItem>
+                    </ComboBox>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
                                       x:Name="valueTb"
-                                      materialDesign:HintAssist.Hint="Điểm"/>
+                                      materialDesign:HintAssist.Hint="Điểm"
+                                      materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                 </Grid>
                 <Button Content="Add"
                         Height="auto"
