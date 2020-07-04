@@ -42,22 +42,6 @@ namespace StudentManagement.mUC
             var btn = sender as Button;
             switch (btn.Tag.ToString())
             {
-                case "Search Marks":
-                    SearchMarksWindow smw = new SearchMarksWindow();
-                    smw.ShowDialog();
-                    break;
-                case "Search Students":
-                    SearchStudentsWindow ssw = new SearchStudentsWindow();
-                    ssw.ShowDialog();
-                    break;
-                case "Search Subjects":
-                    SearchSubjectsWindow ssjw = new SearchSubjectsWindow();
-                    ssjw.ShowDialog();
-                    break;
-                case "Search Classes":
-                    SearchClassesWindow scw = new SearchClassesWindow();
-                    scw.ShowDialog();
-                    break;
                 case "Add Marks":
                     AddMarksWindow amw = new AddMarksWindow();
                     amw.ShowDialog();

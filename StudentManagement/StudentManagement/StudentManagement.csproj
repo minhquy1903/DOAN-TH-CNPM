@@ -137,18 +137,6 @@
     <Compile Include="View\RegisterWindow.xaml.cs">
       <DependentUpon>RegisterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\SearchClassesWindow.xaml.cs">
-      <DependentUpon>SearchClassesWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchMarksWindow.xaml.cs">
-      <DependentUpon>SearchMarksWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchStudentsWindow.xaml.cs">
-      <DependentUpon>SearchStudentsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SearchSubjectsWindow.xaml.cs">
-      <DependentUpon>SearchSubjectsWindow.xaml</DependentUpon>
-    </Compile>
     <Page Include="Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -240,22 +228,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\RegisterWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\SearchClassesWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\SearchMarksWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\SearchStudentsWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\SearchSubjectsWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
