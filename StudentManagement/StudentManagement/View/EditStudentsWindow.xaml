@@ -43,28 +43,28 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
+                                      x:Name="studentNameTb"
                                       materialDesign:HintAssist.Hint="Tên Học sinh"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
+                                      x:Name="sexTb"
                                       materialDesign:HintAssist.Hint="Giới tính"/>
                     <DatePicker Grid.Column="0" Grid.Row="1"
-                                x:Name="tb3"
+                                x:Name="dobTb"
                                 Margin="30"
                                 VerticalAlignment="Center"
                                 Style="{StaticResource MaterialDesignFloatingHintDatePicker}"
                                 materialDesign:HintAssist.Hint="Ngày sinh" />
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
-                                      x:Name="tb4"
+                                      x:Name="countryTb"
                                       materialDesign:HintAssist.Hint="Nơi sinh"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
-                                      x:Name="tb5"
+                                      x:Name="parentNameTb"
                                       materialDesign:HintAssist.Hint="Tên Người giám hộ"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
-                                      x:Name="tb6"
+                                      x:Name="phoneNumberTb"
                                       materialDesign:HintAssist.Hint="Số điện thoại"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="3"
-                                      x:Name="tb7"
+                                      x:Name="currentClassTb"
                                       materialDesign:HintAssist.Hint="Lớp đang học"/>
                 </Grid>
                 <Button Content="Edit"

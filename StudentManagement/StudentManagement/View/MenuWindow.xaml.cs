@@ -121,6 +121,15 @@ namespace StudentManagement
                 demoCount = 30,
                 demoYear = 2020
             });
+            classItems.Add(new DemoClassInfo()
+            {
+                idClass = "3",
+                demoClassName = "12A1",
+                demoGrade = 11,
+                demoTeacher = "CCC",
+                demoCount = 30,
+                demoYear = 2020
+            });
         }
 
         #region demo binding 
@@ -323,6 +332,31 @@ namespace StudentManagement
         {
             AddStudentsWindow asw = new AddStudentsWindow();
             asw.ShowDialog();
+
+            if (asw.studentNameTb.Text != "" &&
+                  asw.sexTb.Text != "" &&
+                  asw.dobTb.Text != "" &&
+                  asw.countryTb.Text != "" &&
+                  asw.parentNameTb.Text != "" &&
+                  asw.phoneNumberTb.Text != "" &&
+                  asw.currentClassTb.Text != "")
+            {
+                Sex temp = Sex.Male;
+                if (asw.sexTb.Text == "Male") temp = Sex.Male;
+                if (asw.sexTb.Text == "Female") temp = Sex.Female;
+                items.Add(new DemoStudentInfo()
+                {
+                    idStudent = items.Count.ToString(),
+                    demoStudentName = asw.studentNameTb.Text,
+                    demoSex = temp,
+                    demoDoB = asw.dobTb.Text,
+                    demoCountry = asw.countryTb.Text,
+                    demoParentName = asw.parentNameTb.Text,
+                    demoPhoneNb = Convert.ToInt32(asw.phoneNumberTb.Text),
+                });
+            }
+
+            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
         private void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
@@ -333,7 +367,13 @@ namespace StudentManagement
                 //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
-                    MessageBox.Show("Viet cau query xoa trong nay");
+                    for (int i = 0; i < items.Count; i++)
+                        if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                        {
+                            items.RemoveAt(i);
+                            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                            break;
+                        }
                 }
             }
         }
@@ -343,24 +383,35 @@ namespace StudentManagement
             if (studentsLv.SelectedValue != null)
             {
                 EditStudentsWindow esw = new EditStudentsWindow();
+                int flag = 0;
+                //Mo form va dien thong tin
                 for (int i = 0; i < items.Count; i++)
                     if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                    {
+                        flag = i;
                         esw.FillInfo(items.ElementAt(i).demoStudentName,
                             items.ElementAt(i).demoSex.ToString(),
                             items.ElementAt(i).demoDoB,
                             items.ElementAt(i).demoCountry,
                             items.ElementAt(i).demoParentName,
                             items.ElementAt(i).demoPhoneNb); //currentClass thi phai ket noi dtb class o doan chon lop
+                        break;
+                    }
                 esw.ShowDialog();
-            }
-        }
 
-        private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
-        {
-            mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
-            AddClassesWindow acw = new AddClassesWindow();
-            acw.ShowDialog();
-            panelClassview.Children.Add(classesViewButton);
+                Sex temp = Sex.Male;
+                if (esw.sexTb.Text == "Male") temp = Sex.Male;
+                if (esw.sexTb.Text == "Female") temp = Sex.Female;
+
+                items.ElementAt(flag).demoStudentName = esw.studentNameTb.Text;
+                items.ElementAt(flag).demoSex = temp;
+                items.ElementAt(flag).demoDoB = esw.dobTb.Text;
+                items.ElementAt(flag).demoCountry = esw.countryTb.Text;
+                items.ElementAt(flag).demoParentName = esw.parentNameTb.Text;
+                items.ElementAt(flag).demoPhoneNb = Convert.ToInt32(esw.phoneNumberTb.Text);
+
+                CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+            }
         }
 
         private void panelClassview_Loaded(object sender, RoutedEventArgs e)
@@ -394,6 +445,39 @@ namespace StudentManagement
             }
         }
 
+        private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
+        {
+            //Mo window them lop
+            AddClassesWindow acw = new AddClassesWindow();
+            acw.ShowDialog();
+
+            if (acw.classNameTb.Text != "" &&
+                  acw.gradeTb.Text != "" &&
+                  acw.teacherNameTb.Text != "" &&
+                  acw.countTb.Text != "" &&
+                  acw.yearTb.Text != "")
+            {
+                classItems.Add(new DemoClassInfo()
+                {
+                    idClass = (Convert.ToInt32(classItems.Last().idClass) + 1).ToString(),  //Brainfuck ((:
+                    demoClassName = acw.classNameTb.Text,
+                    demoGrade = Convert.ToInt32(acw.gradeTb.Text),
+                    demoTeacher = acw.teacherNameTb.Text,
+                    demoCount = Convert.ToInt32(acw.countTb.Text),
+                    demoYear = Convert.ToInt32(acw.yearTb.Text)
+                });
+
+                //classes view button se nhan cac thong tin can thiet
+                mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
+                classesViewButton.IdClass = classItems.Last().idClass;
+                classesViewButton.ClassName = classItems.Last().demoClassName;
+                classesViewButton.ClassYear = classItems.Last().demoYear.ToString();
+                classesViewButton.Click += ClassesViewButton_Click;
+
+                panelClassview.Children.Add(classesViewButton);
+            }
+        }
+
         private void ClassesViewDeleteClassButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedClassName.Tag != null)
@@ -402,7 +486,16 @@ namespace StudentManagement
                 //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
-                    MessageBox.Show("Viet cau query xoa trong nay");
+                    for (int i = 0; i < classItems.Count; i++)
+                        if (classItems.ElementAt(i).idClass == selectedClassName.Tag.ToString())
+                        {
+                            //Dont know how the fuck it work :D
+                            panelClassview.Children.RemoveAt(i);
+                            classItems.RemoveAt(i);
+                        }
+
+                    selectedClassName.Tag = null;
+                    selectedClassName.Text = "";
                 }
             }
         }
@@ -412,14 +505,36 @@ namespace StudentManagement
             if (selectedClassName.Tag != null)
             {
                 EditClassesWindow ecw = new EditClassesWindow();
+                int flag = 0;
                 for (int i = 0; i < classItems.Count; i++)
                     if (classItems.ElementAt(i).idClass == selectedClassName.Tag.ToString())
+                    {
+                        flag = i;
                         ecw.FillInfo(classItems.ElementAt(i).demoClassName,
                             classItems.ElementAt(i).demoGrade,
                             classItems.ElementAt(i).demoTeacher,
                             classItems.ElementAt(i).demoCount,
                             classItems.ElementAt(i).demoYear);
+                        panelClassview.Children.RemoveAt(i);
+                        break;
+                    }
                 ecw.ShowDialog();
+
+                //Thay doi thong tin cua item tai vi tri flag
+                classItems.ElementAt(flag).demoClassName = ecw.classNameTb.Text;
+                classItems.ElementAt(flag).demoGrade = Convert.ToInt32(ecw.gradeTb.Text);
+                classItems.ElementAt(flag).demoTeacher = ecw.teacherNameTb.Text;
+                classItems.ElementAt(flag).demoCount = Convert.ToInt32(ecw.countTb.Text);
+                classItems.ElementAt(flag).demoYear = Convert.ToInt32(ecw.yearTb.Text);
+
+                //classes view button se nhan cac thong tin can thiet
+                mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
+                classesViewButton.IdClass = classItems.ElementAt(flag).idClass;
+                classesViewButton.ClassName = classItems.ElementAt(flag).demoClassName;
+                classesViewButton.ClassYear = classItems.ElementAt(flag).demoYear.ToString();
+                classesViewButton.Click += ClassesViewButton_Click;
+
+                panelClassview.Children.Add(classesViewButton);
             }
         }
     }

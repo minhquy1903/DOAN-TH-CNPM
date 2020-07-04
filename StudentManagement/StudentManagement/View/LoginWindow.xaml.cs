@@ -23,8 +23,6 @@ namespace StudentManagement
     /// </summary>
     public partial class LoginWindow : Window
     {
-        //T luu cai nay lai ne, dung dc thi dung kh thi xoa dum`
-
         public LoginWindow()
         {
             InitializeComponent();

@@ -42,19 +42,19 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
+                                      x:Name="classNameTb"
                                       materialDesign:HintAssist.Hint="Tên Lớp"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
+                                      x:Name="gradeTb"
                                       materialDesign:HintAssist.Hint="Khối lớp"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
-                                      x:Name="tb3"
+                                      x:Name="teacherNameTb"
                                       materialDesign:HintAssist.Hint="Giáo viên chủ nhiệm"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
-                                      x:Name="tb4"
+                                      x:Name="countTb"
                                       materialDesign:HintAssist.Hint="Sĩ số"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
-                                      x:Name="tb5"
+                                      x:Name="yearTb"
                                       materialDesign:HintAssist.Hint="Năm học"/>
                 </Grid>
                 <Button Content="Edit"

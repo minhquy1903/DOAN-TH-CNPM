@@ -26,6 +26,24 @@ namespace StudentManagement
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (classNameTb.Text != "" &&
+                  gradeTb.Text != "" &&
+                  teacherNameTb.Text != "" &&
+                  countTb.Text != "" &&
+                  yearTb.Text != "")
+            {
+                string className = classNameTb.Text;
+                int grade = Convert.ToInt32(gradeTb.Text);
+                string teacherName = teacherNameTb.Text;
+                int count = Convert.ToInt32(countTb.Text);
+                int year = Convert.ToInt32(yearTb.Text);
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out the form");
+            }
 
         }
 

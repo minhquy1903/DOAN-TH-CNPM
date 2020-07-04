@@ -26,6 +26,27 @@ namespace StudentManagement
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (studentNameTb.Text != "" &&
+                  sexTb.Text != "" &&
+                  dobTb.Text != "" &&
+                  countryTb.Text != "" &&
+                  parentNameTb.Text != "" &&
+                  phoneNumberTb.Text != "" &&
+                  currentClassTb.Text != "")
+            {
+                string studentName = studentNameTb.Text;
+                string sex = sexTb.Text;
+                string dob = dobTb.Text;
+                string country = countryTb.Text;
+                string parentName = parentNameTb.Text;
+                int phoneNumber = Convert.ToInt32(phoneNumberTb.Text);
+                string currentClassName = currentClassTb.Text;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out the form");
+            }
 
         }
 
@@ -36,13 +57,13 @@ namespace StudentManagement
 
         public void FillInfo(string name = null, string sex = null, string dob = null, string country = null, string parentname = null, int phonenumber = 0, string currentclass = null)
         {
-            tb1.Text = name;
-            tb2.Text = sex;
-            tb3.Text = dob;
-            tb4.Text = country;
-            tb5.Text = parentname;
-            tb6.Text = phonenumber.ToString();
-            tb7.Text = currentclass;
+            studentNameTb.Text = name;
+            sexTb.Text = sex;
+            dobTb.Text = dob;
+            countryTb.Text = country;
+            parentNameTb.Text = parentname;
+            phoneNumberTb.Text = phonenumber.ToString();
+            currentClassTb.Text = currentclass;
         }
 
     }

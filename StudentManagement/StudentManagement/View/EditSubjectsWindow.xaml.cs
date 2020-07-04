@@ -26,6 +26,18 @@ namespace StudentManagement
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (subjectNameTb.Text != "" &&
+               countTb.Text != "")
+            {
+                string subjectName = subjectNameTb.Text;
+                int count = Convert.ToInt32(countTb.Text);
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out the form");
+            }
 
         }
 

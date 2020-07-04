@@ -26,6 +26,24 @@ namespace StudentManagement
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (classNameTb.Text != "" &&
+                  gradeTb.Text != "" &&
+                  teacherNameTb.Text != "" &&
+                  countTb.Text != "" &&
+                  yearTb.Text != "")
+            {
+                string className = classNameTb.Text;
+                int grade = Convert.ToInt32(gradeTb.Text);
+                string teacherName = teacherNameTb.Text;
+                int count = Convert.ToInt32(countTb.Text);
+                int year = Convert.ToInt32(yearTb.Text);
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out the form");
+            }
 
         }
 
@@ -36,11 +54,11 @@ namespace StudentManagement
 
         public void FillInfo(string name = null, int grade = 0, string teacher = null, int count = 0, int year = 0)
         {
-            tb1.Text = name;
-            tb2.Text = grade.ToString();
-            tb3.Text = teacher;
-            tb4.Text = count.ToString();
-            tb5.Text = year.ToString();
+            classNameTb.Text = name;
+            gradeTb.Text = grade.ToString();
+            teacherNameTb.Text = teacher;
+            countTb.Text = count.ToString();
+            yearTb.Text = year.ToString();
         }
 
     }

@@ -40,10 +40,10 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
+                                      x:Name="subjectNameTb"
                                       materialDesign:HintAssist.Hint="Tên Môn học"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
+                                      x:Name="countTb"
                                       materialDesign:HintAssist.Hint="Số tiết"/>
                 </Grid>
                 <Button Content="Edit"

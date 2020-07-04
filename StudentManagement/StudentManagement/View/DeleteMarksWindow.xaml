@@ -42,22 +42,22 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
+                                      x:Name="studentNameTb"
                                       materialDesign:HintAssist.Hint="Tên Học sinh"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
+                                      x:Name="subjectNameTb"
                                       materialDesign:HintAssist.Hint="Môn học"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
-                                      x:Name="tb3"
+                                      x:Name="classNameTb"
                                       materialDesign:HintAssist.Hint="Lớp"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="1"
-                                      x:Name="tb4"
+                                      x:Name="semesterTb"
                                       materialDesign:HintAssist.Hint="Học kỳ"/>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="2"
-                                      x:Name="tb5"
+                                      x:Name="typeTb"
                                       materialDesign:HintAssist.Hint="Loại điểm"/>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="2"
-                                      x:Name="tb6"
+                                      x:Name="valueTb"
                                       materialDesign:HintAssist.Hint="Điểm"/>
                 </Grid>
                 <Button Content="Delete"

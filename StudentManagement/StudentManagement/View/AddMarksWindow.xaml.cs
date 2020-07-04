@@ -26,6 +26,25 @@ namespace StudentManagement
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            if (studentNameTb.Text != "" &&
+                  subjectNameTb.Text != "" &&
+                  classNameTb.Text != "" &&
+                  semesterTb.Text != "" &&
+                  typeTb.Text != "" &&
+                  valueTb.Text != "")
+            {
+                string studentName = studentNameTb.Text;
+                string subjectName = subjectNameTb.Text;
+                string className = classNameTb.Text;
+                string semester = semesterTb.Text;
+                string type = typeTb.Text;
+                float value = Convert.ToInt32(valueTb.Text);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Please fill out the form");
+            }
 
         }
 
