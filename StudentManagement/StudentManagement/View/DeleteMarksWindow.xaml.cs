@@ -19,6 +19,8 @@ namespace StudentManagement
     /// </summary>
     public partial class DeleteMarksWindow : Window
     {
+        public bool isCorrected = false;
+
         public DeleteMarksWindow()
         {
             InitializeComponent();
@@ -33,6 +35,25 @@ namespace StudentManagement
                   typeTb.Text != "" &&
                   valueTb.Text != "")
             {
+                if (!InputTester.IsAName(studentNameTb.Text))
+                {
+                    MessageBox.Show("Tên học sinh không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAClassName(classNameTb.Text))
+                {
+                    MessageBox.Show("Tên lớp không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAFloatNumber(valueTb.Text))
+                {
+                    MessageBox.Show("Điểm không hợp lệ");
+                    return;
+                }
+
+                isCorrected = true;
                 string studentName = studentNameTb.Text;
                 string subjectName = subjectNameTb.Text;
                 string className = classNameTb.Text;

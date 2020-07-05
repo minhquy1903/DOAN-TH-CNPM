@@ -29,10 +29,10 @@ namespace StudentManagement
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = tb3.Text;
+            string username = usernameTb.Text;
             string password = passwordBox.Password.ToString();
-            string email = tb2.Text;
-            string name = tb1.Text;
+            string email = emailTb.Text;
+            string name = nameTb.Text;
 
             if (!IsValidEmail(email))
             {

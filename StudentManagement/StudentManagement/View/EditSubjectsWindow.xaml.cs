@@ -19,6 +19,8 @@ namespace StudentManagement
     /// </summary>
     public partial class EditSubjectsWindow : Window
     {
+        public bool isCorrected = false;
+
         public EditSubjectsWindow()
         {
             InitializeComponent();
@@ -29,6 +31,19 @@ namespace StudentManagement
             if (subjectNameTb.Text != "" &&
                countTb.Text != "")
             {
+                if (!InputTester.IsAName(subjectNameTb.Text))
+                {
+                    MessageBox.Show("Tên môn học không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsANumber(countTb.Text, 2))
+                {
+                    MessageBox.Show("Số tiết không hợp lệ");
+                    return;
+                }
+
+                isCorrected = true;
                 string subjectName = subjectNameTb.Text;
                 int count = Convert.ToInt32(countTb.Text);
 

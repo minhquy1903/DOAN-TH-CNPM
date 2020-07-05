@@ -19,6 +19,8 @@ namespace StudentManagement
     /// </summary>
     public partial class DeleteClassesWindow : Window
     {
+        public bool isCorrected = false;
+
         public DeleteClassesWindow()
         {
             InitializeComponent();
@@ -32,6 +34,31 @@ namespace StudentManagement
                   countTb.Text != "" &&
                   yearTb.Text != "")
             {
+                if (!InputTester.IsAClassName(classNameTb.Text))
+                {
+                    MessageBox.Show("Tên lớp không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAName(teacherNameTb.Text))
+                {
+                    MessageBox.Show("Tên giáo viên không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsANumber(countTb.Text, 2))
+                {
+                    MessageBox.Show("Sĩ số không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsANumber(yearTb.Text, 4))
+                {
+                    MessageBox.Show("Năm không hợp lệ");
+                    return;
+                }
+
+                isCorrected = true;
                 string className = classNameTb.Text;
                 int grade = Convert.ToInt32(gradeTb.Text);
                 string teacherName = teacherNameTb.Text;

@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
+using System.Text.RegularExpressions;
 
 namespace StudentManagement
 {
@@ -404,13 +405,7 @@ namespace StudentManagement
             AddStudentsWindow asw = new AddStudentsWindow();
             asw.ShowDialog();
 
-            if (asw.studentNameTb.Text != "" &&
-                  asw.sexTb.Text != "" &&
-                  asw.dobTb.Text != "" &&
-                  asw.countryTb.Text != "" &&
-                  asw.parentNameTb.Text != "" &&
-                  asw.phoneNumberTb.Text != "" &&
-                  asw.currentClassTb.Text != "")
+            if (asw.isCorrected)
             {
                 Sex temp = Sex.Male;
                 if (asw.sexTb.Text == "Male") temp = Sex.Male;
@@ -523,11 +518,7 @@ namespace StudentManagement
             AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
-            if (acw.classNameTb.Text != "" &&
-                  acw.gradeTb.Text != "" &&
-                  acw.teacherNameTb.Text != "" &&
-                  acw.countTb.Text != "" &&
-                  acw.yearTb.Text != "")
+            if (acw.isCorrected)
             {
                 classItems.Add(new DemoClassInfo()
                 {
@@ -625,12 +616,7 @@ namespace StudentManagement
             amw.ShowDialog();
             //Fill student name
 
-            if (amw.studentNameTb.Text != "" &&
-                  amw.subjectNameTb.Text != "" &&
-                  amw.classNameTb.Text != "" &&
-                  amw.semesterTb.Text != "" &&
-                  amw.typeTb.Text != "" &&
-                  amw.valueTb.Text != "")
+            if (amw.isCorrected)
             {
                 Subject sub = Subject.Toán;
                 if (amw.subjectNameTb.Text == "Toán") sub = Subject.Toán;
@@ -773,5 +759,78 @@ namespace StudentManagement
                 "CloseWindow",
                 typeof(CustomCommands)
             );
+    }
+
+    public static class InputTester
+    {
+        public static bool IsAName(string str)
+        {
+            //is a name without number and less than 40 characters
+            try
+            {
+                Regex rx = new Regex(@"^[a-zA-Z]{1,40}$");
+                return rx.IsMatch(str);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsANumber(string str, int maxDigit = 0)
+        {
+            //is number and less than maxDigit digits
+            string pattern = "^[0-9]{1," + maxDigit + "}$";
+            try
+            {
+                Regex rx = new Regex(@pattern);
+                return rx.IsMatch(str);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsAFloatNumber(string str)
+        {
+            try
+            {
+                Regex rx = new Regex(@"^[0 - 9.]{ 1, 3 }$");
+                return rx.IsMatch(str);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsAClassName(string str)
+        {
+            //A class name include a-z A-Z 0-9 and less than 4 digits
+            try
+            {
+                Regex rx = new Regex(@"^[a-zA-Z0-9]{1,4}$");
+                return rx.IsMatch(str);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+
+        public static bool IsADate(string str)
+        {
+            //A date with DD/MM/YYYY
+            try
+            {
+                Regex rx = new Regex(@"^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$");
+                return rx.IsMatch(str);
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
     }
 }

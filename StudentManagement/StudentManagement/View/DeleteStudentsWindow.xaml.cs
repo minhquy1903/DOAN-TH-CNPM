@@ -19,6 +19,8 @@ namespace StudentManagement
     /// </summary>
     public partial class DeleteStudentsWindow : Window
     {
+        public bool isCorrected = false;
+
         public DeleteStudentsWindow()
         {
             InitializeComponent();
@@ -34,6 +36,43 @@ namespace StudentManagement
                   phoneNumberTb.Text != "" &&
                   currentClassTb.Text != "")
             {
+                if (!InputTester.IsAName(studentNameTb.Text))
+                {
+                    MessageBox.Show("Tên học sinh không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsADate(dobTb.Text))
+                {
+                    MessageBox.Show("Ngày không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAName(countryTb.Text))
+                {
+                    MessageBox.Show("Tên quê không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAName(parentNameTb.Text))
+                {
+                    MessageBox.Show("Tên phụ huynh không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsANumber(phoneNumberTb.Text, 10))
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ");
+                    return;
+                }
+
+                if (!InputTester.IsAClassName(currentClassTb.Text))
+                {
+                    MessageBox.Show("Tên lớp không hợp lệ");
+                    return;
+                }
+
+                isCorrected = true;
                 string studentName = studentNameTb.Text;
                 string sex = sexTb.Text;
                 string dob = dobTb.Text;

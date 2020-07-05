@@ -41,14 +41,13 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <uc:InsertTextBox Grid.Column="0" Grid.Row="0"
-                                      x:Name="tb1"
+                    <uc:InsertTextBox x:Name="nameTb"
                                       materialDesign:HintAssist.Hint="Your Name"/>
-                    <uc:InsertTextBox Grid.Column="1" Grid.Row="0"
-                                      x:Name="tb2"
+                    <uc:InsertTextBox Grid.Column="1"
+                                      x:Name="emailTb"
                                       materialDesign:HintAssist.Hint="Email"/>
-                    <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
-                                      x:Name="tb3"
+                    <uc:InsertTextBox Grid.Row="1"
+                                      x:Name="usernameTb"
                                       materialDesign:HintAssist.Hint="User Name"/>
                     <PasswordBox x:Name="passwordBox"
                              Grid.Column="1" Grid.Row="1"
