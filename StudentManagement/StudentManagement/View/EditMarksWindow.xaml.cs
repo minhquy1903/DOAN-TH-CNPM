@@ -38,7 +38,7 @@ namespace StudentManagement
                 string className = classNameTb.Text;
                 string semester = semesterTb.Text;
                 string type = typeTb.Text;
-                float value = Convert.ToInt32(valueTb.Text);
+                double value = Convert.ToDouble(valueTb.Text);
                 this.Close();
             }
             else
@@ -52,5 +52,16 @@ namespace StudentManagement
         {
             this.Close();
         }
+
+        public void FillInfo(string studentName = null, string subjectName = null, string className = null, string semester = null, string type = null, double value = 0)
+        {
+            classNameTb.Text = studentName;
+            subjectNameTb.Text = subjectName;
+            classNameTb.Text = className;
+            semesterTb.Text = semester;
+            typeTb.Text = type;
+            valueTb.Text = value.ToString();
+        }
+
     }
 }

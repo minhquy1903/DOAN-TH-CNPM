@@ -75,13 +75,13 @@
                             Địa
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Giáo dục công dân
+                            GiáoDụcCôngDân
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Thể dục
+                            ThểDục
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Giáo dục giới tính
+                            GiáoDụcGiớiTính
                         </ComboBoxItem>
                     </ComboBox>
                     <uc:InsertTextBox Grid.Column="0" Grid.Row="1"
@@ -93,13 +93,13 @@
                               Margin="30 30 30 15"
                               VerticalAlignment="Center">
                         <ComboBoxItem>
-                            First
+                            HọcKỳ1
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Second
+                            HọcKỳ2
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Summer
+                            HọcKỳHè
                         </ComboBoxItem>
                     </ComboBox>
                     <ComboBox Grid.Row="2"
@@ -108,19 +108,19 @@
                               Margin="30 30 30 15"
                               VerticalAlignment="Center">
                         <ComboBoxItem>
-                            Exercises
+                            BàiTập
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            15 minutes
+                            Kt15Phút
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            45 minutes
+                            Kt45Phút
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            Mid term
+                            GiữaKỳ
                         </ComboBoxItem>
                         <ComboBoxItem>
-                            End term
+                            CuốiKỳ
                         </ComboBoxItem>
                     </ComboBox>
                     <uc:InsertTextBox Grid.Column="1" Grid.Row="2"

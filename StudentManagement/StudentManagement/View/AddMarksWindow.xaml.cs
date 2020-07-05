@@ -38,7 +38,7 @@ namespace StudentManagement
                 string className = classNameTb.Text;
                 string semester = semesterTb.Text;
                 string type = typeTb.Text;
-                float value = Convert.ToInt32(valueTb.Text);
+                double value = Convert.ToDouble(valueTb.Text);
                 this.Close();
             }
             else
