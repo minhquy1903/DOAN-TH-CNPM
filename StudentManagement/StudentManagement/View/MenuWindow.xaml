@@ -660,7 +660,7 @@
                                        Orientation="Horizontal" 
                                        Margin="20 30 20 20" 
                                        Width="1000"
-                                       Loaded="panelClassview_Loaded">
+                                       >
                                 </WrapPanel>
                             </StackPanel>
                         </ScrollViewer>

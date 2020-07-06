@@ -15,6 +15,8 @@ using MaterialDesignThemes.Wpf;
 using System.Windows.Controls.Primitives;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using DTO;
+using StudentManagement.Controllers;
 
 namespace StudentManagement
 {
@@ -25,7 +27,7 @@ namespace StudentManagement
     {
         //2 cai list nay xoa di
         List<DemoStudentInfo> items;
-        List<DemoClassInfo> classItems;
+        List<ClassInfo> classInfos;
         List<DemoMarkInfo> markItems;
 
         public bool isStudentsListViewSorted;
@@ -37,7 +39,7 @@ namespace StudentManagement
         public MenuWindow()
         {
             InitializeComponent();
-
+            PanelClassview_Loaded();
             //demo binding for Listview of Student (understand ? -> delete)
             isStudentsListViewSorted = false;
             items = new List<DemoStudentInfo>();
@@ -98,43 +100,7 @@ namespace StudentManagement
             collectionView.Filter = StudentListviewFilter;
 
             //demo class view
-            classItems = new List<DemoClassInfo>();
-            classItems.Add(new DemoClassInfo() 
-            { 
-                idClass = "0", 
-                demoClassName = "10A1", 
-                demoGrade = 10, 
-                demoTeacher = "AAA", 
-                demoCount = 30, 
-                demoYear = 2020 
-            });
-            classItems.Add(new DemoClassInfo()
-            {
-                idClass = "1",
-                demoClassName = "10A2",
-                demoGrade = 10,
-                demoTeacher = "BBB",
-                demoCount = 30,
-                demoYear = 2019
-            });
-            classItems.Add(new DemoClassInfo()
-            {
-                idClass = "2",
-                demoClassName = "11A1",
-                demoGrade = 11,
-                demoTeacher = "CCC",
-                demoCount = 30,
-                demoYear = 2020
-            });
-            classItems.Add(new DemoClassInfo()
-            {
-                idClass = "3",
-                demoClassName = "12A1",
-                demoGrade = 11,
-                demoTeacher = "CCC",
-                demoCount = 30,
-                demoYear = 2020
-            });
+            classInfos = new List<ClassInfo>();
 
             //demo mark view
             isMarksListViewSorted = false;
@@ -482,15 +448,23 @@ namespace StudentManagement
             }
         }
 
-        private void panelClassview_Loaded(object sender, RoutedEventArgs e)
+        private async void PanelClassview_Loaded()
         {
-            for (int i = 0; i < classItems.Count; i++)
+            //for (int i = 0; i < ListSize; i++)
+            //{
+            //    classInfos.RemoveAt(i);
+            //}
+            //classInfos.Clear();
+            classInfos = await Controller.Instance.GetAllClass();
+            List<mUC.ClassesViewButton> classesViewButtons = new List<mUC.ClassesViewButton>();
+            int ListSize = classInfos.Count;
+            for (int i = 0; i < ListSize; i++)
             {
                 mUC.ClassesViewButton cvBtn = new mUC.ClassesViewButton();
-                cvBtn.IdClass = classItems.ElementAt(i).idClass;
-                cvBtn.ClassName = classItems.ElementAt(i).demoClassName;
-                cvBtn.ClassYear = classItems.ElementAt(i).demoYear.ToString();
-                cvBtn.Click += ClassesViewButton_Click;
+                cvBtn.IdClass = classInfos.ElementAt(i).maLop;
+                cvBtn.ClassName = classInfos.ElementAt(i).tenLop;
+                cvBtn.ClassYear = classInfos.ElementAt(i).nienKhoa;
+                classesViewButtons.Add(cvBtn);
                 panelClassview.Children.Add(cvBtn);
             }
         }
@@ -518,30 +492,35 @@ namespace StudentManagement
             AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
-            if (acw.isCorrected)
+            if(acw.isCorrected)
             {
-                classItems.Add(new DemoClassInfo()
-                {
-                    idClass = (Convert.ToInt32(classItems.Last().idClass) + 1).ToString(),  //Brainfuck ((:
-                    demoClassName = acw.classNameTb.Text,
-                    demoGrade = Convert.ToInt32(acw.gradeTb.Text),
-                    demoTeacher = acw.teacherNameTb.Text,
-                    demoCount = Convert.ToInt32(acw.countTb.Text),
-                    demoYear = Convert.ToInt32(acw.yearTb.Text)
-                });
-
-                //classes view button se nhan cac thong tin can thiet
-                mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
-                classesViewButton.IdClass = classItems.Last().idClass;
-                classesViewButton.ClassName = classItems.Last().demoClassName;
-                classesViewButton.ClassYear = classItems.Last().demoYear.ToString();
-                classesViewButton.Click += ClassesViewButton_Click;
-
-                panelClassview.Children.Add(classesViewButton);
+                PanelClassview_Loaded();
+                acw.isCorrected = false;
             }
+            //if (acw.isCorrected)
+            //{
+            //    classInfos.Add(new DemoClassInfo()
+            //    {
+            //        idClass = (Convert.ToInt32(classInfos.Last().idClass) + 1).ToString(),  //Brainfuck ((:
+            //        demoClassName = acw.classNameTb.Text,
+            //        demoGrade = Convert.ToInt32(acw.gradeTb.Text),
+            //        demoTeacher = acw.teacherNameTb.Text,
+            //        demoCount = Convert.ToInt32(acw.countTb.Text),
+            //        demoYear = Convert.ToInt32(acw.yearTb.Text)
+            //    });
+
+            //    //classes view button se nhan cac thong tin can thiet
+            //    mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
+            //    classesViewButton.IdClass = classInfos.Last().idClass;
+            //    classesViewButton.ClassName = classInfos.Last().demoClassName;
+            //    classesViewButton.ClassYear = classInfos.Last().demoYear.ToString();
+            //    classesViewButton.Click += ClassesViewButton_Click;
+
+            //    panelClassview.Children.Add(classesViewButton);
+            //}
         }
 
-        private void ClassesViewDeleteClassButton_Click(object sender, RoutedEventArgs e)
+        private async void ClassesViewDeleteClassButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedClassName.Tag != null)
             {
@@ -549,13 +528,8 @@ namespace StudentManagement
                 //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
-                    for (int i = 0; i < classItems.Count; i++)
-                        if (classItems.ElementAt(i).idClass == selectedClassName.Tag.ToString())
-                        {
-                            //Dont know how the fuck it work :D
-                            panelClassview.Children.RemoveAt(i);
-                            classItems.RemoveAt(i);
-                        }
+                    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(selectedClassName.Tag.ToString());
+                    
 
                     selectedClassName.Tag = null;
                     selectedClassName.Text = "";
@@ -569,35 +543,40 @@ namespace StudentManagement
             {
                 EditClassesWindow ecw = new EditClassesWindow();
                 int flag = 0;
-                for (int i = 0; i < classItems.Count; i++)
-                    if (classItems.ElementAt(i).idClass == selectedClassName.Tag.ToString())
+                for (int i = 0; i < classInfos.Count; i++)
+                    if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
                     {
                         flag = i;
-                        ecw.FillInfo(classItems.ElementAt(i).demoClassName,
-                            classItems.ElementAt(i).demoGrade,
-                            classItems.ElementAt(i).demoTeacher,
-                            classItems.ElementAt(i).demoCount,
-                            classItems.ElementAt(i).demoYear);
+                        ecw.FillInfo(classInfos.ElementAt(i).tenLop,
+                            Convert.ToInt32(classInfos.ElementAt(i).khoi),
+                            classInfos.ElementAt(i).tenGVCN,
+                            classInfos.ElementAt(i).siSo,
+                            Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
                         panelClassview.Children.RemoveAt(i);
                         break;
                     }
                 ecw.ShowDialog();
 
-                //Thay doi thong tin cua item tai vi tri flag
-                classItems.ElementAt(flag).demoClassName = ecw.classNameTb.Text;
-                classItems.ElementAt(flag).demoGrade = Convert.ToInt32(ecw.gradeTb.Text);
-                classItems.ElementAt(flag).demoTeacher = ecw.teacherNameTb.Text;
-                classItems.ElementAt(flag).demoCount = Convert.ToInt32(ecw.countTb.Text);
-                classItems.ElementAt(flag).demoYear = Convert.ToInt32(ecw.yearTb.Text);
+                if (ecw.isCorrected)
+                {
+                    PanelClassview_Loaded();
+                    ecw.isCorrected = false;
+                }
+                ////Thay doi thong tin cua item tai vi tri flag
+                //classInfos.ElementAt(flag).demoClassName = ecw.classNameTb.Text;
+                //classInfos.ElementAt(flag).demoGrade = Convert.ToInt32(ecw.gradeTb.Text);
+                //classInfos.ElementAt(flag).demoTeacher = ecw.teacherNameTb.Text;
+                //classInfos.ElementAt(flag).demoCount = Convert.ToInt32(ecw.countTb.Text);
+                //classInfos.ElementAt(flag).demoYear = Convert.ToInt32(ecw.yearTb.Text);
 
-                //classes view button se nhan cac thong tin can thiet
-                mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
-                classesViewButton.IdClass = classItems.ElementAt(flag).idClass;
-                classesViewButton.ClassName = classItems.ElementAt(flag).demoClassName;
-                classesViewButton.ClassYear = classItems.ElementAt(flag).demoYear.ToString();
-                classesViewButton.Click += ClassesViewButton_Click;
+                ////classes view button se nhan cac thong tin can thiet
+                //mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
+                //classesViewButton.IdClass = classInfos.ElementAt(flag).idClass;
+                //classesViewButton.ClassName = classInfos.ElementAt(flag).demoClassName;
+                //classesViewButton.ClassYear = classInfos.ElementAt(flag).demoYear.ToString();
+                //classesViewButton.Click += ClassesViewButton_Click;
 
-                panelClassview.Children.Add(classesViewButton);
+                //panelClassview.Children.Add(classesViewButton);
             }
         }
 
@@ -768,7 +747,7 @@ namespace StudentManagement
             //is a name without number and less than 40 characters
             try
             {
-                Regex rx = new Regex(@"^[a-zA-Z]{1,40}$");
+                Regex rx = new Regex(@"^[a-zA-Z\s]{1,40}$");
                 return rx.IsMatch(str);
             }
             catch (FormatException)

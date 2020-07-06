@@ -6,11 +6,11 @@ namespace DTO
 {
     public class ClassInfo
     {
-        public string MaLop { get; set; }
-        public string TenLop { get; set; }
-        public int SiSo { get; set; }
-        public string TenGVCN { get; set; }
-        public string Khoi { get; set; }
-        public string NienKhoa { get; set; }
+        public string maLop { get; set; }
+        public string tenLop { get; set; }
+        public int siSo { get; set; }
+        public string tenGVCN { get; set; }
+        public string khoi { get; set; }
+        public string nienKhoa { get; set; }
     }
 }
