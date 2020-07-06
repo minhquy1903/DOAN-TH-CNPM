@@ -49,7 +49,10 @@ namespace StudentManagement.Controllers
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, classInfo);
         }
-
+        public async Task<ResultYN> UpdateClass(ClassInfo classInfo)
+        {
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.UpdateClass, classInfo);
+        }
         public async Task<ResultYN> DeleteClass(string MaLop)
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, MaLop);
@@ -73,6 +76,10 @@ namespace StudentManagement.Controllers
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, MaHS);
         }
         #endregion
+        #region Control Mark
+        //public async Task<GetMarkStudent> 
+        #endregion
     }
+
 }
 
