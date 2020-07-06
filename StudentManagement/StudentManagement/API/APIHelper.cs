@@ -16,7 +16,7 @@ namespace StudentManagement.API
     {
         private HttpClient apiClient { get; set; }
 
-        private static APIHelper instance;
+        private static APIHelper instance = null;
         public static APIHelper Instance
         {
             get
@@ -70,9 +70,10 @@ namespace StudentManagement.API
                 if (response.IsSuccessStatusCode)
                 {
                     var jsonstring = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<T>(jsonstring);
+                    //var data = JsonConvert.DeserializeObject<T>(jsonstring);
+                    var data = await response.Content.ReadAsAsync<APIResponse<T>>();
                     if (data != null)
-                        return data;
+                        return data.Data;
                 }
                 else
                 {

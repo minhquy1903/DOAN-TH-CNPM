@@ -24,7 +24,9 @@ namespace StudentManagement.API
 
             public const string InsertNewClass = Base + "/Class/InsertNewClass";
 
-            public const string DeleteLop = Base + "/Class/DeleteClass";
+            public const string DeleteClass = Base + "/Class/DeleteClass";
+
+            public const string UpdateClass = Base + "/Class/UpdateClass";
         }
         public static class Student
         {

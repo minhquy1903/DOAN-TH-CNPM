@@ -20,7 +20,7 @@ namespace StudentManegementServer.Controllers
         {
             List<ClassInfo> classInfos = BusControls.Instance.GetAllClass();
             if (classInfos != null)
-                return new JsonResult(new APIResponse<object>(classInfos));
+                return new JsonResult(new APIResponse<List<ClassInfo>>(classInfos));
             return new JsonResult(new APIResponse<object>(200));
         }
 
