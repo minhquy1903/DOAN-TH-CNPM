@@ -59,20 +59,14 @@ namespace StudentManagement
                     return;
                 }
 
-                string className = classNameTb.Text;
-                int grade = Convert.ToInt32(gradeTb.Text);
-                string teacherName = teacherNameTb.Text;
-                int count = Convert.ToInt32(countTb.Text);
-                int year = Convert.ToInt32(yearTb.Text);
-
                 ClassInfo classInfo = new ClassInfo()
                 {
-                    maLop = className,
-                    tenLop = className,
-                    khoi = grade.ToString(),
-                    tenGVCN = teacherName,
-                    siSo = count,
-                    nienKhoa = year.ToString()
+                    maLop = classNameTb.Text,   //tam thoi
+                    tenLop = classNameTb.Text,
+                    khoi = gradeTb.Text,
+                    tenGVCN = teacherNameTb.Text,
+                    siSo = Convert.ToInt32(countTb.Text),
+                    nienKhoa = yearTb.Text
                 };
 
                 ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace StudentManagement
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (studentNameTb.Text != "" &&
                   sexTb.Text != "" &&
@@ -72,15 +73,24 @@ namespace StudentManagement
                     return;
                 }
 
-                isCorrected = true;
-                string studentName = studentNameTb.Text;
-                string sex = sexTb.Text;
-                string dob = dobTb.Text;
-                string country = countryTb.Text;
-                string parentName = parentNameTb.Text;
-                int phoneNumber = Convert.ToInt32(phoneNumberTb.Text);
-                string currentClassName = currentClassTb.Text;
-                this.Close();
+                Student student = new Student()
+                {
+                    MaHS = Convert.ToInt32(studentNameTb.Text),
+                    Hoten = studentNameTb.Text,
+                    GioiTinh = sexTb.Text,
+                    NgaySinh = dobTb.Text,
+                    NoiSinh = countryTb.Text,
+                    TenNgGianHo = parentNameTb.Text,
+                    SDT = phoneNumberTb.Text,
+                    MaLop = currentClassTb.Text
+                };
+
+                ResultYN resultYN = await Controllers.Controller.Instance.InsertNewStudent(student);
+                if (resultYN.Result)
+                {
+                    this.Close();
+                    isCorrected = true;
+                }
             }
             else
             {

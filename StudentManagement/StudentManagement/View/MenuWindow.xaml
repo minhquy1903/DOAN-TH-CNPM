@@ -530,24 +530,24 @@
                                       Foreground="Black">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoStudentName}">
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding HoTen}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="demoStudentName" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="HoTen" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSex}">
-                                            <GridViewColumnHeader Content="demoSex" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding GioiTinh}">
+                                            <GridViewColumnHeader Content="GioiTinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoDoB}">
-                                            <GridViewColumnHeader Content="demoDoB" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NgaySinh}">
+                                            <GridViewColumnHeader Content="NgaySinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoCountry}">
-                                            <GridViewColumnHeader Content="demoCountry" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NoiSinh}">
+                                            <GridViewColumnHeader Content="NoiSinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoParentName}">
-                                            <GridViewColumnHeader Content="demoParentName" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding TenNgGianHo}">
+                                            <GridViewColumnHeader Content="TenNgGianHo" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoPhoneNb}">
-                                            <GridViewColumnHeader Content="demoPhoneNb" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding SDT}">
+                                            <GridViewColumnHeader Content="SDT" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
