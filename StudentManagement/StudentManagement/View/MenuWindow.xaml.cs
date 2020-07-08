@@ -52,7 +52,7 @@ namespace StudentManagement
         public MenuWindow()
         {
             InitializeComponent();
-            //PanelClassview_Loaded();
+            PanelClassview_Loaded();
 
             isStudentsListViewSorted = false;
             //List Students
