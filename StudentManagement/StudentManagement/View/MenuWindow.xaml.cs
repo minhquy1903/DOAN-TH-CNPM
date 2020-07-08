@@ -52,7 +52,7 @@ namespace StudentManagement
         public MenuWindow()
         {
             InitializeComponent();
-            PanelClassview_Loaded();
+            //PanelClassview_Loaded();
 
             isStudentsListViewSorted = false;
             //List Students
@@ -397,6 +397,7 @@ namespace StudentManagement
         private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
         {
             //Open ACW
+            //AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
             if(acw.isCorrected)
