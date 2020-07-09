@@ -397,6 +397,7 @@ namespace StudentManagement
         private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
         {
             //Open ACW
+            //AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
             if(acw.isCorrected)

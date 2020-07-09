@@ -30,5 +30,19 @@ namespace StudentManagement.mUC
             get { return ucInsertTb.Text; }
             set { ucInsertTb.Text = value; }
         }
+
+        private void ucInsertTb_LostFocus(object sender, RoutedEventArgs e)
+        {
+            ucInsertTb.Text = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(ucInsertTb.Text.ToLower());
+        }
+
+        public event RoutedEventHandler TextChanged;
+        private void ucInsertTb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (this.TextChanged != null)
+            {
+                this.TextChanged(this, e);
+            }
+        }
     }
 }
