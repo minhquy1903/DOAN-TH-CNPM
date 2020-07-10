@@ -88,7 +88,7 @@ namespace StudentManagement
                 ResultYN resultYN = await Controllers.Controller.Instance.UpdateStudent(student);
                 if (resultYN.Result)
                 {
-                    this.Close();
+                    this.Hide();
                     isCorrected = true;
                 }
             }
@@ -101,7 +101,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         public void FillInfo(string name = null, string sex = null, string dob = null, string country = null, string parentname = null, int phonenumber = 0, string currentclass = null)

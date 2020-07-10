@@ -47,7 +47,7 @@ namespace StudentManagement
                 string subjectName = subjectNameTb.Text;
                 int count = Convert.ToInt32(countTb.Text);
 
-                this.Close();
+                this.Hide();
             }
             else
             {
@@ -58,7 +58,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }

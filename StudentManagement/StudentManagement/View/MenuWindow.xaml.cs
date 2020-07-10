@@ -417,6 +417,7 @@ namespace StudentManagement
                 {
                     ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(selectedClassName.Tag.ToString());
 
+                    PanelClassview_Loaded();
                     selectedClassName.Tag = null;
                     selectedClassName.Text = "";
                 }

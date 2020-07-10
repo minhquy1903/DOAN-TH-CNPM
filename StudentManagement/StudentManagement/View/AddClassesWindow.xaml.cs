@@ -72,7 +72,7 @@ namespace StudentManagement
                 ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
                 if (resultYN.Result)
                 {
-                    this.Close();
+                    this.Hide();
                     isCorrected = true;
                 }
             }
@@ -85,7 +85,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }
