@@ -59,25 +59,20 @@ namespace StudentManagement
                     return;
                 }
 
-                string className = classNameTb.Text;
-                int grade = Convert.ToInt32(gradeTb.Text);
-                string teacherName = teacherNameTb.Text;
-                int count = Convert.ToInt32(countTb.Text);
-                int year = Convert.ToInt32(yearTb.Text);
-
                 ClassInfo classInfo = new ClassInfo()
                 {
-                    tenLop = className,
-                    khoi = grade.ToString(),
-                    tenGVCN = teacherName,
-                    siSo = count,
-                    nienKhoa = year.ToString()
+                    maLop = classNameTb.Text,   //tam thoi
+                    tenLop = classNameTb.Text,
+                    khoi = gradeTb.Text,
+                    tenGVCN = teacherNameTb.Text,
+                    siSo = Convert.ToInt32(countTb.Text),
+                    nienKhoa = yearTb.Text
                 };
 
                 ResultYN resultYN = await Controllers.Controller.Instance.UpdateClass(classInfo);
                 if (resultYN.Result)
                 {
-                    this.Close();
+                    this.Hide();
                     isCorrected = true;
                 }
             }
@@ -90,7 +85,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
 
         public void FillInfo(string name = null, int grade = 0, string teacher = null, int count = 0, int year = 0)

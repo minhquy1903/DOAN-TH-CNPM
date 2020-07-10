@@ -26,7 +26,7 @@ namespace StudentManagement
     public partial class MenuWindow : Window
     {
         //2 cai list nay xoa di
-        List<DemoStudentInfo> items;
+        List<Student> studentInfos;
         List<ClassInfo> classInfos;
         List<DemoMarkInfo> markItems;
 
@@ -36,70 +36,35 @@ namespace StudentManagement
         public bool isMarksListViewSorted;
         public CollectionView markCollectionView;
 
+        AddMarksWindow amw = new AddMarksWindow();
+        AddStudentsWindow asw = new AddStudentsWindow();
+        AddSubjectsWindow asjw = new AddSubjectsWindow();
+        AddClassesWindow acw = new AddClassesWindow();
+        DeleteMarksWindow dmw = new DeleteMarksWindow();
+        DeleteStudentsWindow dsw = new DeleteStudentsWindow();
+        DeleteSubjectsWindow dsjw = new DeleteSubjectsWindow();
+        DeleteClassesWindow dcw = new DeleteClassesWindow();
+        EditMarksWindow emw = new EditMarksWindow();
+        EditStudentsWindow esw = new EditStudentsWindow();
+        EditSubjectsWindow esjw = new EditSubjectsWindow();
+        EditClassesWindow ecw = new EditClassesWindow();
+
         public MenuWindow()
         {
             InitializeComponent();
             PanelClassview_Loaded();
-            //demo binding for Listview of Student (understand ? -> delete)
+
             isStudentsListViewSorted = false;
-            items = new List<DemoStudentInfo>();
-            items.Add(new DemoStudentInfo() 
-            { 
-                idStudent = "0",
-                demoStudentName = "Nguyen Minh Thang", 
-                demoSex = Sex.Male, 
-                demoDoB = "1/1/2000", 
-                demoCountry = "Los Angles", 
-                demoParentName = "God", 
-                demoPhoneNb = 0123456789 });
-            items.Add(new DemoStudentInfo()
-            {
-                idStudent = "1",
-                demoStudentName = "Vo Minh Quy",
-                demoSex = Sex.Male,
-                demoDoB = "2/2/2222",
-                demoCountry = "California",
-                demoParentName = "Lucifer",
-                demoPhoneNb = 0951623847
-            });
-            items.Add(new DemoStudentInfo()
-            {
-                idStudent = "2",
-                demoStudentName = "Nguyen Pham Minh Nhat",
-                demoSex = Sex.Male,
-                demoDoB = "3/3/2222",
-                demoCountry = "China",
-                demoParentName = "Zeus",
-                demoPhoneNb = 0321654987
-            });
-            items.Add(new DemoStudentInfo()
-            {
-                idStudent = "3",
-                demoStudentName = "Ngoc Trinh",
-                demoSex = Sex.Female,
-                demoDoB = "4/4/1999",
-                demoCountry = "Thang's House",
-                demoParentName = "Thang's Neighborhood",
-                demoPhoneNb = 0999999999
-            });
-            items.Add(new DemoStudentInfo()
-            {
-                idStudent = "4",
-                demoStudentName = "Ngoc Trinh",
-                demoSex = Sex.Female,
-                demoDoB = "5/5/1999",
-                demoCountry = "Thang's House",
-                demoParentName = "Thang's Neighborhood",
-                demoPhoneNb = 0111111111
-            });
-            studentsLv.ItemsSource = items;
-            studentsLv.SelectedValuePath = "idStudent";
+            //List Students
+            studentInfos = new List<Student>();
+            studentsLv.ItemsSource = studentInfos;
+            studentsLv.SelectedValuePath = "MaHS";
             studentsLv.SelectionChanged += StudentsLv_SelectionChanged;
 
             collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
             collectionView.Filter = StudentListviewFilter;
 
-            //demo class view
+            //List Classes 
             classInfos = new List<ClassInfo>();
 
             //demo mark view
@@ -145,9 +110,9 @@ namespace StudentManagement
             //Neu da select thi gan cho textbox ten cua hoc sinh
             if (studentsLv.SelectedValue != null)
             {
-                for (int i = 0; i < items.Count; i++)
-                    if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
-                        selectedStudentTbName.Text = items.ElementAt(i).demoStudentName;
+                for (int i = 0; i < studentInfos.Count; i++)
+                    if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
+                        selectedStudentTbName.Text = studentInfos.ElementAt(i).Hoten;
             }
             else
                 selectedStudentTbName.Text = "";
@@ -159,7 +124,7 @@ namespace StudentManagement
             if (String.IsNullOrEmpty(studentsLvSearchNameTb.Text))
                 return true;
             else
-                return ((item as DemoStudentInfo).demoStudentName.IndexOf(studentsLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as Student).Hoten.IndexOf(studentsLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         private bool MarkListviewFilter(object item)
@@ -207,37 +172,13 @@ namespace StudentManagement
 
         private void studentsLvSearchNameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //refresh (ho tro thanh search)
+            //Refresh Listview
             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
         private void marksLvSearchNameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
             CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
-        }
-
-        //Xoa 2 cai nay
-        public enum Sex { Male, Female, LGBT };
-
-        public class DemoStudentInfo
-        {
-            public string idStudent { get; set; }
-            public string demoStudentName { get; set; }
-            public Sex demoSex { get; set; }
-            public string demoDoB { get; set; }
-            public string demoCountry { get; set; }
-            public string demoParentName { get; set; }
-            public int demoPhoneNb { get; set; }
-        }
-
-        public class DemoClassInfo
-        {
-            public string idClass { get; set; }
-            public string demoClassName { get; set; }
-            public int demoGrade { get; set; }
-            public string demoTeacher { get; set; }
-            public int demoCount { get; set; }
-            public int demoYear { get; set; }
         }
 
         public enum Subject { Toán, Văn, Anh, Lí, Hoá, Sinh, Sử, Địa, GiáoDụcCôngDân, ThểDục, GiáoDụcGiớiTính}
@@ -287,51 +228,39 @@ namespace StudentManagement
                 switch(((TreeViewItem)e.NewValue).Tag.ToString())
                 {
                     case "Add Marks":
-                        AddMarksWindow amw = new AddMarksWindow();
                         amw.ShowDialog();
                         break;
                     case "Add Students":
-                        AddStudentsWindow asw = new AddStudentsWindow();
                         asw.ShowDialog();
                         break;
                     case "Add Subjects":
-                        AddSubjectsWindow asjw = new AddSubjectsWindow();
                         asjw.ShowDialog();
                         break;
                     case "Add Classes":
-                        AddClassesWindow acw = new AddClassesWindow();
                         acw.ShowDialog();
                         break;
                     case "Delete Marks":
-                        DeleteMarksWindow dmw = new DeleteMarksWindow();
                         dmw.ShowDialog();
                         break;
                     case "Delete Students":
-                        DeleteStudentsWindow dsw = new DeleteStudentsWindow();
                         dsw.ShowDialog();
                         break;
                     case "Delete Subjects":
-                        DeleteSubjectsWindow dsjw = new DeleteSubjectsWindow();
                         dsjw.ShowDialog();
                         break;
                     case "Delete Classes":
-                        DeleteClassesWindow dcw = new DeleteClassesWindow();
                         dcw.ShowDialog();
                         break;
                     case "Edit Marks":
-                        EditMarksWindow emw = new EditMarksWindow();
                         emw.ShowDialog();
                         break;
                     case "Edit Students":
-                        EditStudentsWindow esw = new EditStudentsWindow();
                         esw.ShowDialog();
                         break;
                     case "Edit Subjects":
-                        EditSubjectsWindow esjw = new EditSubjectsWindow();
                         esjw.ShowDialog();
                         break;
                     case "Edit Classes":
-                        EditClassesWindow ecw = new EditClassesWindow();
                         ecw.ShowDialog();
                         break;
                 }
@@ -368,42 +297,29 @@ namespace StudentManagement
 
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            AddStudentsWindow asw = new AddStudentsWindow();
+            //Open ASW
             asw.ShowDialog();
 
             if (asw.isCorrected)
             {
-                Sex temp = Sex.Male;
-                if (asw.sexTb.Text == "Male") temp = Sex.Male;
-                if (asw.sexTb.Text == "Female") temp = Sex.Female;
-                if (asw.sexTb.Text == "LGBT") temp = Sex.LGBT;
-                items.Add(new DemoStudentInfo()
-                {
-                    idStudent = items.Count.ToString(),
-                    demoStudentName = asw.studentNameTb.Text,
-                    demoSex = temp,
-                    demoDoB = asw.dobTb.Text,
-                    demoCountry = asw.countryTb.Text,
-                    demoParentName = asw.parentNameTb.Text,
-                    demoPhoneNb = Convert.ToInt32(asw.phoneNumberTb.Text),
-                });
+                CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                asw.isCorrected = false;
             }
-
-            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
-        private void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
+        private async void StudentsListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
         {
             if (studentsLv.SelectedValue != null)
             {
+                //Delete selected Student
                 MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
-                    for (int i = 0; i < items.Count; i++)
-                        if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                    for (int i = 0; i < studentInfos.Count; i++)
+                        if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                         {
-                            items.RemoveAt(i);
+                            ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(studentsLv.SelectedValue.ToString());
+
                             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                             break;
                         }
@@ -415,36 +331,26 @@ namespace StudentManagement
         {
             if (studentsLv.SelectedValue != null)
             {
-                EditStudentsWindow esw = new EditStudentsWindow();
-                int flag = 0;
-                //Mo form va dien thong tin
-                for (int i = 0; i < items.Count; i++)
-                    if (items.ElementAt(i).idStudent == studentsLv.SelectedValue.ToString())
+                //Fill info into ESW
+                for (int i = 0; i < studentInfos.Count; i++)
+                    if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                     {
-                        flag = i;
-                        esw.FillInfo(items.ElementAt(i).demoStudentName,
-                            items.ElementAt(i).demoSex.ToString(),
-                            items.ElementAt(i).demoDoB,
-                            items.ElementAt(i).demoCountry,
-                            items.ElementAt(i).demoParentName,
-                            items.ElementAt(i).demoPhoneNb); //currentClass thi phai ket noi dtb class o doan chon lop
+                        esw.FillInfo(studentInfos.ElementAt(i).Hoten,
+                            studentInfos.ElementAt(i).GioiTinh,
+                            studentInfos.ElementAt(i).NgaySinh,
+                            studentInfos.ElementAt(i).NoiSinh,
+                            studentInfos.ElementAt(i).TenNgGianHo,
+                            Convert.ToInt32(studentInfos.ElementAt(i).SDT),
+                            selectedClassName.Tag.ToString()); 
                         break;
                     }
                 esw.ShowDialog();
 
-                Sex temp = Sex.Male;
-                if (esw.sexTb.Text == "Male") temp = Sex.Male;
-                if (esw.sexTb.Text == "Female") temp = Sex.Female;
-                if (esw.sexTb.Text == "LGBT") temp = Sex.LGBT;
-
-                items.ElementAt(flag).demoStudentName = esw.studentNameTb.Text;
-                items.ElementAt(flag).demoSex = temp;
-                items.ElementAt(flag).demoDoB = esw.dobTb.Text;
-                items.ElementAt(flag).demoCountry = esw.countryTb.Text;
-                items.ElementAt(flag).demoParentName = esw.parentNameTb.Text;
-                items.ElementAt(flag).demoPhoneNb = Convert.ToInt32(esw.phoneNumberTb.Text);
-
-                CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                if (esw.isCorrected)
+                {
+                    CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                    esw.isCorrected = false;
+                }
             }
         }
 
@@ -464,6 +370,7 @@ namespace StudentManagement
                 cvBtn.IdClass = classInfos.ElementAt(i).maLop;
                 cvBtn.ClassName = classInfos.ElementAt(i).tenLop;
                 cvBtn.ClassYear = classInfos.ElementAt(i).nienKhoa;
+                cvBtn.Click += ClassesViewButton_Click;
                 classesViewButtons.Add(cvBtn);
                 panelClassview.Children.Add(cvBtn);
             }
@@ -479,6 +386,7 @@ namespace StudentManagement
 
         private void ClassesViewCheckClassButton_Click(object sender, RoutedEventArgs e)
         {
+            //Open StudentListview
             if (selectedClassName.Tag != null)
             {
                 HidenClassListViewToggleButton.IsChecked = true;
@@ -488,8 +396,8 @@ namespace StudentManagement
 
         private void ClassesViewAddClassButton_Click(object sender, RoutedEventArgs e)
         {
-            //Mo window them lop
-            AddClassesWindow acw = new AddClassesWindow();
+            //Open ACW
+            //AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
             if(acw.isCorrected)
@@ -497,40 +405,19 @@ namespace StudentManagement
                 PanelClassview_Loaded();
                 acw.isCorrected = false;
             }
-            //if (acw.isCorrected)
-            //{
-            //    classInfos.Add(new DemoClassInfo()
-            //    {
-            //        idClass = (Convert.ToInt32(classInfos.Last().idClass) + 1).ToString(),  //Brainfuck ((:
-            //        demoClassName = acw.classNameTb.Text,
-            //        demoGrade = Convert.ToInt32(acw.gradeTb.Text),
-            //        demoTeacher = acw.teacherNameTb.Text,
-            //        demoCount = Convert.ToInt32(acw.countTb.Text),
-            //        demoYear = Convert.ToInt32(acw.yearTb.Text)
-            //    });
-
-            //    //classes view button se nhan cac thong tin can thiet
-            //    mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
-            //    classesViewButton.IdClass = classInfos.Last().idClass;
-            //    classesViewButton.ClassName = classInfos.Last().demoClassName;
-            //    classesViewButton.ClassYear = classInfos.Last().demoYear.ToString();
-            //    classesViewButton.Click += ClassesViewButton_Click;
-
-            //    panelClassview.Children.Add(classesViewButton);
-            //}
         }
 
         private async void ClassesViewDeleteClassButton_Click(object sender, RoutedEventArgs e)
         {
             if (selectedClassName.Tag != null)
             {
+                //Delete selected Class
                 MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
                     ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(selectedClassName.Tag.ToString());
-                    
 
+                    PanelClassview_Loaded();
                     selectedClassName.Tag = null;
                     selectedClassName.Text = "";
                 }
@@ -541,9 +428,9 @@ namespace StudentManagement
         {
             if (selectedClassName.Tag != null)
             {
-                EditClassesWindow ecw = new EditClassesWindow();
-                int flag = 0;
+                //Fill info selected class into ECW
                 for (int i = 0; i < classInfos.Count; i++)
+                
                     //if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
                     //{
                     //    flag = i;
@@ -555,6 +442,7 @@ namespace StudentManagement
                     //    panelClassview.Children.RemoveAt(i);
                     //    break;
                     //}
+
                 ecw.ShowDialog();
 
                 if (ecw.isCorrected)
@@ -562,21 +450,6 @@ namespace StudentManagement
                     PanelClassview_Loaded();
                     ecw.isCorrected = false;
                 }
-                ////Thay doi thong tin cua item tai vi tri flag
-                //classInfos.ElementAt(flag).demoClassName = ecw.classNameTb.Text;
-                //classInfos.ElementAt(flag).demoGrade = Convert.ToInt32(ecw.gradeTb.Text);
-                //classInfos.ElementAt(flag).demoTeacher = ecw.teacherNameTb.Text;
-                //classInfos.ElementAt(flag).demoCount = Convert.ToInt32(ecw.countTb.Text);
-                //classInfos.ElementAt(flag).demoYear = Convert.ToInt32(ecw.yearTb.Text);
-
-                ////classes view button se nhan cac thong tin can thiet
-                //mUC.ClassesViewButton classesViewButton = new mUC.ClassesViewButton();
-                //classesViewButton.IdClass = classInfos.ElementAt(flag).idClass;
-                //classesViewButton.ClassName = classInfos.ElementAt(flag).demoClassName;
-                //classesViewButton.ClassYear = classInfos.ElementAt(flag).demoYear.ToString();
-                //classesViewButton.Click += ClassesViewButton_Click;
-
-                //panelClassview.Children.Add(classesViewButton);
             }
         }
 
@@ -591,7 +464,6 @@ namespace StudentManagement
 
         private void MarksListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            AddMarksWindow amw = new AddMarksWindow();
             amw.ShowDialog();
             //Fill student name
 
@@ -659,7 +531,6 @@ namespace StudentManagement
         {
             if (marksLv.SelectedValue != null)
             {
-                EditMarksWindow emw = new EditMarksWindow();
                 int flag = 0;
                 //Mo form va dien thong tin
                 for (int i = 0; i < markItems.Count; i++)
@@ -747,7 +618,9 @@ namespace StudentManagement
             //is a name without number and less than 40 characters
             try
             {
-                Regex rx = new Regex(@"^[a-zA-Z\s]{1,40}$");
+                Regex rx = new Regex(@"^[aAàÀảẢãÃáÁạẠăĂằẰẳẲẵẴắẮặẶâÂầẦẩẨẫẪấẤậẬbBcCdDđĐeEèÈẻẺẽẼéÉẹẸêÊềỀểỂễỄếẾệỆ
+fFgGhHiIìÌỉỈĩĨíÍịỊjJkKlLmMnNoOòÒỏỎõÕóÓọỌôÔồỒổỔỗỖốỐộỘơƠờỜởỞỡỠớỚợỢpPqQrRsStTu
+UùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶỹỸýÝỵỴzZ\s]{1,40}$");
                 return rx.IsMatch(str);
             }
             catch (FormatException)

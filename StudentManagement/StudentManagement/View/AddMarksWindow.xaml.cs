@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace StudentManagement
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (studentNameTb.Text != "" &&
                   subjectNameTb.Text != "" &&
@@ -53,14 +54,24 @@ namespace StudentManagement
                     return;
                 }
 
-                isCorrected = true;
                 string studentName = studentNameTb.Text;
                 string subjectName = subjectNameTb.Text;
                 string className = classNameTb.Text;
                 string semester = semesterTb.Text;
                 string type = typeTb.Text;
                 double value = Convert.ToDouble(valueTb.Text);
-                this.Close();
+
+                StudentMark studentMark = new StudentMark()
+                {
+
+                };
+
+                //ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
+                //if (resultYN.Result)
+                {
+                    this.Hide();
+                    isCorrected = true;
+                }
             }
             else
             {
@@ -71,7 +82,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }

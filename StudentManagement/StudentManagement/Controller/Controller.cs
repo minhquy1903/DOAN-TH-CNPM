@@ -55,7 +55,7 @@ namespace StudentManagement.Controllers
         }
         public async Task<ResultYN> DeleteClass(string MaLop)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, MaLop);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.DeleteClass, MaLop);
         }
         #endregion
         #region Control Student

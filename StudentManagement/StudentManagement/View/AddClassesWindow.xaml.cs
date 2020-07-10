@@ -59,12 +59,6 @@ namespace StudentManagement
                     return;
                 }
 
-                string className = classNameTb.Text;
-                int grade = Convert.ToInt32(gradeTb.Text);
-                string teacherName = teacherNameTb.Text;
-                int count = Convert.ToInt32(countTb.Text);
-                int year = Convert.ToInt32(yearTb.Text);
-
                 ClassInfo classInfo = new ClassInfo()
                 {
                     tenLop = className,
@@ -72,12 +66,13 @@ namespace StudentManagement
                     tenGVCN = teacherName,
                     siSo = count,
                     nienKhoa = year.ToString()
+
                 };
 
                 ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
                 if (resultYN.Result)
                 {
-                    this.Close();
+                    this.Hide();
                     isCorrected = true;
                 }
             }
@@ -90,7 +85,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }

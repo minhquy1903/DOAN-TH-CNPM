@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace StudentManagement
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             if (classNameTb.Text != "" &&
                   gradeTb.Text != "" &&
@@ -58,14 +59,22 @@ namespace StudentManagement
                     return;
                 }
 
-                isCorrected = true;
-                string className = classNameTb.Text;
-                int grade = Convert.ToInt32(gradeTb.Text);
-                string teacherName = teacherNameTb.Text;
-                int count = Convert.ToInt32(countTb.Text);
-                int year = Convert.ToInt32(yearTb.Text);
+                ClassInfo classInfo = new ClassInfo()
+                {
+                    maLop = classNameTb.Text,   //tam thoi
+                    tenLop = classNameTb.Text,
+                    khoi = gradeTb.Text,
+                    tenGVCN = teacherNameTb.Text,
+                    siSo = Convert.ToInt32(countTb.Text),
+                    nienKhoa = yearTb.Text
+                };
 
-                this.Close();
+                ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(classInfo.maLop);
+                if (resultYN.Result)
+                {
+                    this.Hide();
+                    isCorrected = true;
+                }
             }
             else
             {
@@ -76,7 +85,7 @@ namespace StudentManagement
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Hide();
         }
     }
 }
