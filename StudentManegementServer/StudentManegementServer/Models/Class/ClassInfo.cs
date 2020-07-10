@@ -7,7 +7,7 @@ namespace StudentManegementServer.Models.Class
 {
     public class ClassInfo
     {
-        public string MaLop { get; set; }
+        public int MaLop { get; set; }
         public string TenLop { get; set; }
         public int SiSo { get; set; }
         public string TenGVCN { get; set; }

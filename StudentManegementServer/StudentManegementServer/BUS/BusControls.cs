@@ -55,9 +55,9 @@ namespace StudentManegementServer.BUS
             foreach (DataRow row in classinfo.Rows)
             {
                 ClassInfo classInfo = new ClassInfo();
-                classInfo.MaLop = row["MALOP"].ToString();
+                classInfo.MaLop = (int)row["MALOP"];
                 classInfo.TenLop = row["TENLOP"].ToString();
-                classInfo.SiSo = Convert.ToInt32(row["SISO"]);
+                classInfo.SiSo = (int)row["SISO"];
                 classInfo.TenGVCN = row["TENGV"].ToString();
                 classInfo.Khoi = row["KHOI"].ToString();
                 classInfo.NienKhoa = row["TENNAMHOC"].ToString();
@@ -70,7 +70,7 @@ namespace StudentManegementServer.BUS
             return DALControl.Instance.InsertNewClass(classInfo);
         }
 
-        public bool DeleteClass(string MaLop)
+        public bool DeleteClass(int MaLop)
         {
             return DALControl.Instance.DeleteClass(MaLop);
         }
@@ -82,14 +82,14 @@ namespace StudentManegementServer.BUS
 
         #region Bus Student
 
-        public List<Student> GetAllStudent(string Malop)
+        public List<Student> GetAllStudent(int Malop)
         {
             DataTable dataTableStudent = DALControl.Instance.GetAllStudent(Malop);
             List<Student> students = new List<Student>();
             foreach (DataRow row in dataTableStudent.Rows)
             {
                 Student student = new Student();
-                student.MaHS = Convert.ToInt32(row["MAHS"]);
+                student.MaHS = (int)row["MAHS"];
                 student.MaLop = row["MALOP"].ToString();
                 student.Hoten = row["HOTEN"].ToString();
                 student.NgaySinh = row["NGAYSINH"].ToString();

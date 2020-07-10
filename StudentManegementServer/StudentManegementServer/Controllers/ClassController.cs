@@ -33,9 +33,9 @@ namespace StudentManegementServer.Controllers
                 return new JsonResult(new APIResponse<object>(200));
         }
         [HttpPost("DeleteClass")]
-        public ActionResult DeleteClass([FromBody] ClassInfo classInfo)
+        public ActionResult DeleteClass([FromBody] int maLop)
         {
-            if (BusControls.Instance.DeleteClass(classInfo.MaLop))
+            if (BusControls.Instance.DeleteClass(maLop))
                 return new JsonResult(new APIResponse<object>("Deleted"));
             return new JsonResult(new APIResponse<object>(200));
         }

@@ -76,7 +76,6 @@ namespace StudentManegementServer.DAL.Controls
             {
                 return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Class.ProcInsertClass,
                     new object[] {
-                        classInfo.MaLop,
                         classInfo.TenLop,
                         classInfo.SiSo,
                         classInfo.TenGVCN,
@@ -89,7 +88,7 @@ namespace StudentManegementServer.DAL.Controls
                 return false;
             }
         }
-        public bool DeleteClass(string Malop)
+        public bool DeleteClass(int Malop)
         {
             try
             {
@@ -123,7 +122,7 @@ namespace StudentManegementServer.DAL.Controls
         }
         #endregion
         #region DAL Student
-        public DataTable GetAllStudent(string Malop)
+        public DataTable GetAllStudent(int Malop)
         {
             try
             {
@@ -142,7 +141,6 @@ namespace StudentManegementServer.DAL.Controls
             {
                 return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Student.ProcInsertNewStudent,
                     new object[] {
-                    student.MaHS,
                     student.MaLop,
                     student.Hoten,
                     student.NgaySinh,
@@ -190,6 +188,20 @@ namespace StudentManegementServer.DAL.Controls
             {
                 return false;
             }
+        }
+        #endregion
+        #region DAL Mark
+        public bool GetAllMark()
+        {
+            return true;
+        }
+        public bool InsertMark()
+        {
+            return true;
+        }
+        public bool DeleteMark()
+        {
+            return true;
         }
         #endregion
     }
