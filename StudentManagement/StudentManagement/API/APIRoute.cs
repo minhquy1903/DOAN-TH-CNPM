@@ -35,6 +35,8 @@ namespace StudentManagement.API
             public const string InsertNewStudent = Base + "/Student/InsertNewStudent";
 
             public const string DeleteStudent = Base + "/Student/DeleteStudent";
+
+            public const string UpdateStudent = Base + "/Student/UpdateStudent";
         }
     }
 }

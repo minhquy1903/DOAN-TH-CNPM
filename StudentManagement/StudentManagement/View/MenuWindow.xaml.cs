@@ -544,17 +544,17 @@ namespace StudentManagement
                 EditClassesWindow ecw = new EditClassesWindow();
                 int flag = 0;
                 for (int i = 0; i < classInfos.Count; i++)
-                    if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
-                    {
-                        flag = i;
-                        ecw.FillInfo(classInfos.ElementAt(i).tenLop,
-                            Convert.ToInt32(classInfos.ElementAt(i).khoi),
-                            classInfos.ElementAt(i).tenGVCN,
-                            classInfos.ElementAt(i).siSo,
-                            Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
-                        panelClassview.Children.RemoveAt(i);
-                        break;
-                    }
+                    //if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
+                    //{
+                    //    flag = i;
+                    //    ecw.FillInfo(classInfos.ElementAt(i).tenLop,
+                    //        Convert.ToInt32(classInfos.ElementAt(i).khoi),
+                    //        classInfos.ElementAt(i).tenGVCN,
+                    //        classInfos.ElementAt(i).siSo,
+                    //        Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
+                    //    panelClassview.Children.RemoveAt(i);
+                    //    break;
+                    //}
                 ecw.ShowDialog();
 
                 if (ecw.isCorrected)

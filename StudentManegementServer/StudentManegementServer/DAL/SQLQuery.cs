@@ -17,7 +17,7 @@ namespace StudentManegementServer.DAL
         {
             public const string ProcGetAllClass = "EXECUTE GetAllClass";
 
-            public const string ProcInsertClass = "EXECUTE InsertNewClass @malop , @tenlop , @siso , @tengv , @khoi , @tennamhoc";
+            public const string ProcInsertClass = "EXECUTE InsertNewClass @tenlop , @siso , @tengv , @khoi , @tennamhoc";
 
             public const string ProcDeleteClass = "EXECUTE DeleteClass @malop";
 
@@ -27,11 +27,20 @@ namespace StudentManegementServer.DAL
         {
             public const string ProcGetAllStudent = "EXECUTE GetAllHS @malop";
 
-            public const string ProcInsertNewStudent = "EXECUTE InsertNewStudent @mahs , @malop , @hoten , @ngaysinh , @gioitinh , @noisinh , @tennggiamho , @sodt";
+            public const string ProcInsertNewStudent = "EXECUTE InsertNewStudent @malop , @hoten , @ngaysinh , @gioitinh , @noisinh , @tennggiamho , @sodt";
 
             public const string ProcUpdateStudent = "EXECUTE UpdateStudent @mahs , @malop , @hoten , @ngaysinh , @gioitinh , @noisinh , @tennggiamho , @sodt";
 
             public const string ProcDeleteStudent = "EXECUTE DeleteStudent @mahs";
+        }
+
+        public static class Mark
+        {
+            public const string ProcGetAllMark = "EXECUTE GetAllMark @mahs , @malop";
+
+            public const string ProcInsertMark = "EXECUTE InsertMark @mahs , @mamh , @loaidiem , @malop , @hocky , @diem";
+
+            public const string ProDeleteMark = "EXECUTE DeleteMark @madiem";
         }
     }
 }

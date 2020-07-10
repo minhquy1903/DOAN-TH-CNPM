@@ -6,7 +6,7 @@ namespace DTO
 {
     public class ClassInfo
     {
-        public string maLop { get; set; }
+        public int maLop { get; set; }
         public string tenLop { get; set; }
         public int siSo { get; set; }
         public string tenGVCN { get; set; }

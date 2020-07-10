@@ -69,11 +69,11 @@ namespace StudentManagement.Controllers
         }
         public async Task<ResultYN> UpdateStudent(Student student)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, student);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.UpdateStudent, student);
         }
         public async Task<ResultYN> DeleteStudent(string MaHS)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, MaHS);
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.DeleteStudent, MaHS);
         }
         #endregion
         #region Control Mark

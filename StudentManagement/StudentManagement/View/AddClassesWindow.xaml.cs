@@ -67,7 +67,6 @@ namespace StudentManagement
 
                 ClassInfo classInfo = new ClassInfo()
                 {
-                    maLop = className,
                     tenLop = className,
                     khoi = grade.ToString(),
                     tenGVCN = teacherName,
