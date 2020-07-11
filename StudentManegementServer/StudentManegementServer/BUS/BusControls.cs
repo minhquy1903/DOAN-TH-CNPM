@@ -115,5 +115,34 @@ namespace StudentManegementServer.BUS
         }
         #endregion
 
+        #region Bus Mark
+        public List<Mark> GetAllMark(Mark _mark)
+        {
+            DataTable dataTableMark = DALControl.Instance.GetAllMark(_mark);
+            List<Mark> marks = new List<Mark>();
+            foreach (DataRow row in dataTableMark.Rows)
+            {
+                Mark mark = new Mark();
+                mark.maDiem = (int)row["MADIEM"];
+                mark.loaiDiem = row["LOAIDIEM"].ToString();
+                mark.maHS = (int)row["MAHS"];
+                mark.maMonHoc = row["MAMONHOC"].ToString();
+                mark.hocKy = row["HOCKY"].ToString();
+                mark.maLop = (int)row["MALOP"];
+                mark.giaTriDiem = (int)row["GIATRIDIEM"];
+                marks.Add(mark);
+            }
+            return marks;
+        }
+        public bool InsertMark(Mark mark)
+        {
+            return DALControl.Instance.InsertMark(mark);
+        }
+        public bool DeleteMark(int maDiem)
+        {
+            return DALControl.Instance.DeleteMark(maDiem);
+        }
+        #endregion
+
     }
 }

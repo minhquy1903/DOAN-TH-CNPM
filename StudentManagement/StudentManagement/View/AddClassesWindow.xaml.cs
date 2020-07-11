@@ -61,11 +61,11 @@ namespace StudentManagement
 
                 ClassInfo classInfo = new ClassInfo()
                 {
-                    tenLop = className,
-                    khoi = grade.ToString(),
-                    tenGVCN = teacherName,
-                    siSo = count,
-                    nienKhoa = year.ToString()
+                    //tenLop = className,
+                    //khoi = grade.ToString(),
+                    //tenGVCN = teacherName,
+                    //siSo = count,
+                    //nienKhoa = year.ToString()
 
                 };
 
