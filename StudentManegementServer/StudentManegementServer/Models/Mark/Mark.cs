@@ -7,11 +7,12 @@ namespace StudentManegementServer.Models
 {
     public class Mark
     {
-        int maDiem { get; set; }
-        string loaiDiem { get; set; }
-        int maHS { get; set; }
-        string maMonHoc { get; set; }
-        string hocKy { get; set; }
-        int giaTriDiem { get; set; }
+        public int maDiem { get; set; }
+        public string loaiDiem { get; set; }
+        public int maHS { get; set; }
+        public int maLop { get; set; }
+        public string maMonHoc { get; set; }
+        public string hocKy { get; set; }
+        public int giaTriDiem { get; set; }
     }
 }

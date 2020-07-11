@@ -53,13 +53,13 @@ namespace StudentManagement.Controllers
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.UpdateClass, classInfo);
         }
-        public async Task<ResultYN> DeleteClass(string MaLop)
+        public async Task<ResultYN> DeleteClass(int MaLop)
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.DeleteClass, MaLop);
         }
         #endregion
         #region Control Student
-        public async Task<List<Student>> GetAllStudent(string MaLop)
+        public async Task<List<Student>> GetAllStudent(int MaLop)
         {
             return await APIHelper.Instance.Post<List<Student>>(APIRoute.Student.GetAllStudent,MaLop);
         }
@@ -71,13 +71,24 @@ namespace StudentManagement.Controllers
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.UpdateStudent, student);
         }
-        public async Task<ResultYN> DeleteStudent(string MaHS)
+        public async Task<ResultYN> DeleteStudent(int MaHS)
         {
             return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.DeleteStudent, MaHS);
         }
         #endregion
         #region Control Mark
-        //public async Task<GetMarkStudent> 
+        public async Task<StudentMark> GetAllMark(StudentMark studentMark)
+        {
+            return await APIHelper.Instance.Post<StudentMark>(APIRoute.Mark.GetAllMark, studentMark);
+        }
+        public async Task<ResultYN> InsertMark(StudentMark studentMark)
+        {
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Mark.InsertMark, studentMark);
+        }
+        public async Task<ResultYN> DeleteMark(int maDiem)
+        {
+            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Mark.GetAllMark, maDiem);
+        }
         #endregion
     }
 

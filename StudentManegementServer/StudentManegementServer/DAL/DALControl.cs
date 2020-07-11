@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StudentManegementServer.DAL.DataProvider;
 using StudentManegementServer.Models.Class;
+using System.Linq.Expressions;
 
 namespace StudentManegementServer.DAL.Controls
 {
@@ -191,17 +192,55 @@ namespace StudentManegementServer.DAL.Controls
         }
         #endregion
         #region DAL Mark
-        public bool GetAllMark()
+        public DataTable GetAllMark(Mark mark)
         {
-            return true;
+            
+            try
+            {
+                DataTable dataTableMark = DataProvider.DataProvider.Instance.ExecuteQuery(SQLQuery.Mark.ProcGetAllMark,
+                    new object[]
+                    {
+                        mark.maHS,
+                        mark.maLop
+                    });
+                return dataTableMark;
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
-        public bool InsertMark()
+        public bool InsertMark(Mark mark)
         {
-            return true;
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Mark.ProcInsertMark,
+                new object[]
+                {
+                    mark.maHS,
+                    mark.maMonHoc,
+                    mark.loaiDiem,
+                    mark.maLop,
+                    mark.hocKy,
+                    mark.giaTriDiem
+                }) > 0;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            
         }
-        public bool DeleteMark()
+        public bool DeleteMark(int maDiem)
         {
-            return true;
+            try
+            {
+                return DataProvider.DataProvider.Instance.ExecuteNonQuery(SQLQuery.Mark.ProDeleteMark, new object[] { maDiem }) > 0;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
         #endregion
     }

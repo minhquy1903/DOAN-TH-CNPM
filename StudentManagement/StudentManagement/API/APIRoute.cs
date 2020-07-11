@@ -38,5 +38,13 @@ namespace StudentManagement.API
 
             public const string UpdateStudent = Base + "/Student/UpdateStudent";
         }
+        public static class Mark
+        {
+            public const string GetAllMark = Base + "/Mark/GetAllMark";
+
+            public const string InsertMark = Base + "/Mark/InsertMark";
+
+            public const string DeleteMark = Base + "/Mark/DeleteMark";
+        }
     }
 }
