@@ -75,7 +75,6 @@ namespace StudentManagement
 
                 Student student = new Student()
                 {
-                    MaHS = Convert.ToInt32(studentNameTb.Text),
                     Hoten = studentNameTb.Text,
                     GioiTinh = sexTb.Text,
                     NgaySinh = dobTb.Text,

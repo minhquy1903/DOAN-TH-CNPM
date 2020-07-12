@@ -318,7 +318,7 @@ namespace StudentManagement
                     for (int i = 0; i < studentInfos.Count; i++)
                         if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                         {
-                            ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(studentsLv.SelectedValue.ToString());
+                            ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
 
                             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                             break;
@@ -415,7 +415,7 @@ namespace StudentManagement
                 MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
                 if (result == MessageBoxResult.OK)
                 {
-                    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(selectedClassName.Tag.ToString());
+                    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
 
                     PanelClassview_Loaded();
                     selectedClassName.Tag = null;
