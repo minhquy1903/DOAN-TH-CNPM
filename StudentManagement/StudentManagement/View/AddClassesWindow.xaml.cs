@@ -61,12 +61,11 @@ namespace StudentManagement
 
                 ClassInfo classInfo = new ClassInfo()
                 {
-                    //tenLop = className,
-                    //khoi = grade.ToString(),
-                    //tenGVCN = teacherName,
-                    //siSo = count,
-                    //nienKhoa = year.ToString()
-
+                    tenLop = classNameTb.Text,
+                    khoi = gradeTb.Text,
+                    tenGVCN = teacherNameTb.Text,
+                    siSo = Convert.ToInt32(countTb.Text),
+                    nienKhoa = yearTb.Text
                 };
 
                 ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);

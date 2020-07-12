@@ -60,8 +60,7 @@ namespace StudentManagement
                 }
 
                 ClassInfo classInfo = new ClassInfo()
-                {
-                    maLop = classNameTb.Text,   //tam thoi
+                { 
                     tenLop = classNameTb.Text,
                     khoi = gradeTb.Text,
                     tenGVCN = teacherNameTb.Text,

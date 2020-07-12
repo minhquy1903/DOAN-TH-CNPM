@@ -75,7 +75,6 @@ namespace StudentManagement
 
                 Student student = new Student()
                 {
-                    MaHS = Convert.ToInt32(studentNameTb.Text),
                     Hoten = studentNameTb.Text,
                     GioiTinh = sexTb.Text,
                     NgaySinh = dobTb.Text,
@@ -85,7 +84,7 @@ namespace StudentManagement
                     MaLop = currentClassTb.Text
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(student.MaHS.ToString());
+                ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(student.MaHS);
                 if (resultYN.Result)
                 {
                     this.Hide();
