@@ -49,15 +49,16 @@ namespace StudentManegementServer.BUS
         public List<ClassInfo> GetAllClass()
         {
             DataTable classinfo = DALControl.Instance.GetAllClass();
-
+            if (classinfo == null)
+                return null;
             List<ClassInfo> classInfos = new List<ClassInfo>();
-
+            
             foreach (DataRow row in classinfo.Rows)
             {
                 ClassInfo classInfo = new ClassInfo();
-                classInfo.MaLop = (int)row["MALOP"];
+                classInfo.MaLop = Convert.ToInt32(row["MALOP"]);
                 classInfo.TenLop = row["TENLOP"].ToString();
-                classInfo.SiSo = (int)row["SISO"];
+                classInfo.SiSo = Convert.ToInt32(row["SISO"]);
                 classInfo.TenGVCN = row["TENGV"].ToString();
                 classInfo.Khoi = row["KHOI"].ToString();
                 classInfo.NienKhoa = row["TENNAMHOC"].ToString();
@@ -89,7 +90,7 @@ namespace StudentManegementServer.BUS
             foreach (DataRow row in dataTableStudent.Rows)
             {
                 Student student = new Student();
-                student.MaHS = (int)row["MAHS"];
+                student.MaHS = Convert.ToInt32(row["MAHS"]);
                 student.MaLop = row["MALOP"].ToString();
                 student.Hoten = row["HOTEN"].ToString();
                 student.NgaySinh = row["NGAYSINH"].ToString();
@@ -123,13 +124,13 @@ namespace StudentManegementServer.BUS
             foreach (DataRow row in dataTableMark.Rows)
             {
                 Mark mark = new Mark();
-                mark.maDiem = (int)row["MADIEM"];
+                mark.maDiem = Convert.ToInt32(row["MADIEM"]);
                 mark.loaiDiem = row["LOAIDIEM"].ToString();
-                mark.maHS = (int)row["MAHS"];
+                mark.maHS = Convert.ToInt32(row["MAHS"]);
                 mark.maMonHoc = row["MAMONHOC"].ToString();
                 mark.hocKy = row["HOCKY"].ToString();
-                mark.maLop = (int)row["MALOP"];
-                mark.giaTriDiem = (int)row["GIATRIDIEM"];
+                mark.maLop = Convert.ToInt32(row["MALOP"]);
+                mark.giaTriDiem = Convert.ToInt32(row["GIATRIDIEM"]);
                 marks.Add(mark);
             }
             return marks;
