@@ -312,8 +312,10 @@ namespace StudentManagement
             if (studentsLv.SelectedValue != null)
             {
                 //Delete selected Student
-                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
+                mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
+                iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedStudentTbName.Text + " ?";
+                iNotifierBoxOKCancel.ShowDialog();
+                if (iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     for (int i = 0; i < studentInfos.Count; i++)
                         if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
@@ -356,11 +358,7 @@ namespace StudentManagement
 
         private async void PanelClassview_Loaded()
         {
-            //for (int i = 0; i < ListSize; i++)
-            //{
-            //    classInfos.RemoveAt(i);
-            //}
-            //classInfos.Clear();
+            panelClassview.Children.RemoveRange(0, panelClassview.Children.Count);
             classInfos = await Controller.Instance.GetAllClass();
             List<mUC.ClassesViewButton> classesViewButtons = new List<mUC.ClassesViewButton>();
             int ListSize = classInfos.Count;
@@ -412,8 +410,19 @@ namespace StudentManagement
             if (selectedClassName.Tag != null)
             {
                 //Delete selected Class
-                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
+                //MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
+                //if (result == MessageBoxResult.OK)
+                //{
+                //    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
+
+                //    PanelClassview_Loaded();
+                //    selectedClassName.Tag = null;
+                //    selectedClassName.Text = "";
+                //}
+                mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
+                iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedClassName.Text + " ?";
+                iNotifierBoxOKCancel.ShowDialog();
+                if(iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
 
@@ -430,19 +439,15 @@ namespace StudentManagement
             {
                 //Fill info selected class into ECW
                 for (int i = 0; i < classInfos.Count; i++)
-                
-                    //if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
-                    //{
-                    //    flag = i;
-                    //    ecw.FillInfo(classInfos.ElementAt(i).tenLop,
-                    //        Convert.ToInt32(classInfos.ElementAt(i).khoi),
-                    //        classInfos.ElementAt(i).tenGVCN,
-                    //        classInfos.ElementAt(i).siSo,
-                    //        Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
-                    //    panelClassview.Children.RemoveAt(i);
-                    //    break;
-                    //}
-
+                    if (classInfos.ElementAt(i).maLop == Convert.ToInt32(selectedClassName.Tag))
+                    {
+                        ecw.FillInfo(classInfos.ElementAt(i).tenLop,
+                            Convert.ToInt32(classInfos.ElementAt(i).khoi),
+                            classInfos.ElementAt(i).tenGVCN,
+                            classInfos.ElementAt(i).siSo,
+                            Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
+                        break;
+                    }
                 ecw.ShowDialog();
 
                 if (ecw.isCorrected)

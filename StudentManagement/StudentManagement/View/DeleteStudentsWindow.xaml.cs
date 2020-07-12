@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.mUC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace StudentManagement
     public partial class DeleteStudentsWindow : Window
     {
         public bool isCorrected = false;
+        iNotifierBox iNotifierBox = new iNotifierBox();
 
         public DeleteStudentsWindow()
         {
@@ -39,37 +41,43 @@ namespace StudentManagement
             {
                 if (!InputTester.IsAName(studentNameTb.Text))
                 {
-                    MessageBox.Show("Tên học sinh không hợp lệ");
+                    iNotifierBox.Text = "Tên học sinh không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsADate(dobTb.Text))
                 {
-                    MessageBox.Show("Ngày không hợp lệ");
+                    iNotifierBox.Text = "Ngày không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAName(countryTb.Text))
                 {
-                    MessageBox.Show("Tên quê không hợp lệ");
+                    iNotifierBox.Text = "Tên quê không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAName(parentNameTb.Text))
                 {
-                    MessageBox.Show("Tên phụ huynh không hợp lệ");
+                    iNotifierBox.Text = "Tên phụ huynh không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsANumber(phoneNumberTb.Text, 10))
                 {
-                    MessageBox.Show("Số điện thoại không hợp lệ");
+                    iNotifierBox.Text = "Số điện thoại không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAClassName(currentClassTb.Text))
                 {
-                    MessageBox.Show("Tên lớp không hợp lệ");
+                    iNotifierBox.Text = "Tên lớp không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
@@ -89,11 +97,21 @@ namespace StudentManagement
                 {
                     this.Hide();
                     isCorrected = true;
+                    studentNameTb.Text = "";
+                    sexTb.Text = "";
+                    dobTb.Text = "";
+                    countryTb.Text = "";
+                    parentNameTb.Text = "";
+                    phoneNumberTb.Text = "";
+                    currentClassTb.Text = "";
+                    iNotifierBox.Text = "Xoá thành công !";
+                    iNotifierBox.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Please fill out the form");
+                iNotifierBox.Text = "Vui lòng điền đầy đủ thông tin";
+                iNotifierBox.ShowDialog();
             }
 
         }
