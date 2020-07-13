@@ -116,9 +116,9 @@ namespace StudentManagement
 
         }
 
-        public void FillCurrentClass(int MaLop)
+        public void FillCurrentClass(string TenLop)
         {
-            currentClassTb.Text = MaLop.ToString();
+            currentClassTb.Text = TenLop;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

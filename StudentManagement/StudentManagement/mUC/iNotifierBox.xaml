@@ -15,7 +15,7 @@
         Background="Transparent">
     <!--AllowsTransparency is important to create BORDER-->
     <Border BorderThickness="4" CornerRadius="15" Background="{StaticResource backgroundThemeColor}">
-        <StackPanel Height="210" Width="300">
+        <StackPanel Height="auto" Width="300">
             <DockPanel Background="Transparent" LastChildFill="False">
                 <uc:CloseButton DockPanel.Dock="Right" 
                                     Margin="10"
@@ -28,7 +28,7 @@
                         Margin="10 0 10 10"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Height="85"
+                        Height="auto"
                         TextWrapping="Wrap"/>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <StackPanel.Resources>

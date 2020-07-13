@@ -7,13 +7,17 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d">
     <Button x:Name="weBtn"
+            Width="100"
             Height="auto"
             FontSize="20"
             FontFamily="MV Boli"
-            Width="100"
-            Style="{StaticResource MaterialDesignFlatLightBgButton}"
+            BorderThickness="0"
             Background="{StaticResource mainThemeColor}"
             Click="ExeButton_Click">
+        <Button.Content>
+            <TextBlock x:Name="contentTbl"
+                       Text="Content"/>
+        </Button.Content>
         <Button.Triggers>
             <EventTrigger RoutedEvent="Button.MouseEnter">
                 <BeginStoryboard>

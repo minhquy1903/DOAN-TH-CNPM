@@ -305,7 +305,7 @@ namespace StudentManagement
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
             //Open ASW
-            asw.FillCurrentClass(Convert.ToInt32(selectedClassName.Tag));
+            asw.FillCurrentClass(selectedClassName.Text);
             asw.ShowDialog();
 
             if (asw.isCorrected)

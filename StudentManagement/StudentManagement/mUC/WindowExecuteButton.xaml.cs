@@ -25,10 +25,10 @@ namespace StudentManagement.mUC
             InitializeComponent();
         }
 
-        public object Content
+        public string mContent
         {
-            get { return weBtn.Content; }
-            set { weBtn.Content = value; }
+            get { return contentTbl.Text; }
+            set { contentTbl.Text = value; }
         }
 
         public event RoutedEventHandler Click;

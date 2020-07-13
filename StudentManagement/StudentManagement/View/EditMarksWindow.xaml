@@ -127,16 +127,10 @@
                                       materialDesign:HintAssist.Hint="Điểm"
                                       materialDesign:HintAssist.HelperText="Vui lòng điền số"/>
                 </Grid>
-                <Button Content="Edit"
-                        Height="auto"
-                        FontSize="20"
-                        FontFamily="MV Boli"
-                        Margin="200 25 50 50"
-                        Width="100"
-                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        Background="{StaticResource mainThemeColor}"
-                        ToolTip="Edit Marks"
-                        Click="Button_Click"/>
+                <uc:WindowExecuteButton Margin="200 25 50 50" 
+                                        mContent="Edit"
+                                        ToolTip="Edit Marks"
+                                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>
