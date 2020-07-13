@@ -98,6 +98,9 @@
     <Compile Include="mUC\TitleTextBlock.xaml.cs">
       <DependentUpon>TitleTextBlock.xaml</DependentUpon>
     </Compile>
+    <Compile Include="mUC\WindowExecuteButton.xaml.cs">
+      <DependentUpon>WindowExecuteButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AddClassesWindow.xaml.cs">
       <DependentUpon>AddClassesWindow.xaml</DependentUpon>
     </Compile>
@@ -182,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="mUC\TitleTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mUC\WindowExecuteButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

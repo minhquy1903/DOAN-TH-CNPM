@@ -10,6 +10,7 @@
             TextOptions.TextRenderingMode="Auto"
              mc:Ignorable="d">
     <TextBlock  x:Name="ucTitleTbl"
+                Text="Text here"
                 Height="100"
                 FontSize="72"
                 FontFamily="Segoe UI"

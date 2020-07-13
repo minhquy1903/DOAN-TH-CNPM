@@ -295,13 +295,22 @@ namespace StudentManagement
         }
         #endregion
 
+        #region Student Listview Control
+        private async void studentsLv_Loaded()
+        {
+            if(selectedClassName.Tag != null)
+                studentInfos = await Controller.Instance.GetAllStudent(Convert.ToInt32(selectedClassName.Tag));
+        }
+
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
             //Open ASW
+            asw.FillCurrentClass(Convert.ToInt32(selectedClassName.Tag));
             asw.ShowDialog();
 
             if (asw.isCorrected)
             {
+                studentsLv_Loaded();
                 CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                 asw.isCorrected = false;
             }
@@ -322,6 +331,7 @@ namespace StudentManagement
                         {
                             ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
 
+                            studentsLv_Loaded();
                             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                             break;
                         }
@@ -350,12 +360,15 @@ namespace StudentManagement
 
                 if (esw.isCorrected)
                 {
+                    studentsLv_Loaded();
                     CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                     esw.isCorrected = false;
                 }
             }
         }
+        #endregion
 
+        #region ClassesView Control
         private async void PanelClassview_Loaded()
         {
             panelClassview.Children.RemoveRange(0, panelClassview.Children.Count);
@@ -380,6 +393,7 @@ namespace StudentManagement
             var btn = sender as mUC.ClassesViewButton;
             selectedClassName.Tag = btn.IdClass.ToString(); //prop Tag t se dung de luu Id luon cho tien., khoi phai tao bien ngoai`
             selectedClassName.Text = btn.ClassName;
+            //studentsLv_Loaded();
         }
 
         private void ClassesViewCheckClassButton_Click(object sender, RoutedEventArgs e)
@@ -457,7 +471,9 @@ namespace StudentManagement
                 }
             }
         }
+        #endregion
 
+        #region Mark Listview Control
         private void StudentsListviewSearchMarksButton_Click(object sender, RoutedEventArgs e)
         {
             if (studentsLv.SelectedValue != null)
@@ -587,6 +603,7 @@ namespace StudentManagement
                 CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
             }
         }
+        #endregion
     }
 
     //Custom Commands for the whole app (in this namespace)

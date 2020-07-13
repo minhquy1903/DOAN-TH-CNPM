@@ -135,6 +135,7 @@
                         Margin="200 25 50 50"
                         Width="100"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        Background="{StaticResource mainThemeColor}"
                         ToolTip="Add Marks"
                         Click="Button_Click">
                 </Button>

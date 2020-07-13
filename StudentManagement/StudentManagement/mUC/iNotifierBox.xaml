@@ -14,7 +14,7 @@
         AllowsTransparency="True"   
         Background="Transparent">
     <!--AllowsTransparency is important to create BORDER-->
-    <Border BorderThickness="4" CornerRadius="20" Background="Azure">
+    <Border BorderThickness="4" CornerRadius="15" Background="{StaticResource backgroundThemeColor}">
         <StackPanel Height="210" Width="300">
             <DockPanel Background="Transparent" LastChildFill="False">
                 <uc:CloseButton DockPanel.Dock="Right" 
@@ -23,6 +23,7 @@
             </DockPanel>
             <TextBlock  x:Name="textTbl"
                         Text="Text here"
+                        FontFamily="Roboto"
                         FontSize="30"
                         Margin="10 0 10 10"
                         HorizontalAlignment="Center"
@@ -50,7 +51,7 @@
                     <Border x:Name="OKBdr"
                             BorderThickness="2" 
                             CornerRadius="10" 
-                            Background="LightBlue"
+                            Background="{StaticResource mainThemeColor}"
                             Margin="10">
                         <Button x:Name="OKBtn"
                                 VerticalAlignment="Center"

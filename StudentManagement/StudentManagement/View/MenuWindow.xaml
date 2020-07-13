@@ -49,7 +49,7 @@
                     </Style.Triggers>
                 </Style>
                 <Style TargetType="Border" x:Key="borderInfoPanel">
-                    <Setter Property="Background" Value="DimGray"></Setter>
+                    <Setter Property="Background" Value="{StaticResource mainThemeColor}"></Setter>
                     <Setter Property="BorderThickness" Value="5"></Setter>
                     <Setter Property="CornerRadius" Value="30"></Setter>
                 </Style>
@@ -59,8 +59,7 @@
                                        IsTopDrawerOpen="{Binding ElementName=MarksViewToggleButton, Path=IsChecked}"
                                        IsBottomDrawerOpen="{Binding ElementName=HidenClassListViewToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel x:Name="ToolPanel" MinWidth="286" 
-                               Background="Gainsboro">
+                    <DockPanel x:Name="ToolPanel" MinWidth="286">
                         <ToggleButton 
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                         DockPanel.Dock="Top"
@@ -76,6 +75,7 @@
                         Width="260"
                         FontSize="26"
                         BorderThickness="0"
+                        Foreground="{StaticResource mainThemeColor}"
                         materialDesign:HintAssist.Hint="Search"
                         materialDesign:HintAssist.IsFloating="True"
                         materialDesign:HintAssist.Background="{Binding ElementName=ToolPanel, Path=Background}"
@@ -147,13 +147,13 @@
                     <StackPanel x:Name="InfoPanel" 
                                 MinWidth="286" 
                                 Orientation="Vertical"
-                                Background="Gainsboro" 
+                                Background="{StaticResource darkBackgroundThemeColor}" 
                                 MouseLeave="ChangeCheckedPanel_MouseLeave">
                         <StackPanel Orientation="Horizontal"
                                     HorizontalAlignment="Center">
                             <TextBlock Text="School Bulletin Board"
                                        FontSize="47"
-                                       Foreground="Black"
+                                       Foreground="{StaticResource mainThemeColor}"
                                        FontWeight="Bold"
                                        Style="{StaticResource txblInfoPanel}"/>
                             <materialDesign:PackIcon Kind="NewspaperVariantMultiple" 
@@ -386,7 +386,7 @@
                 </materialDesign:DrawerHost.RightDrawerContent>
                 <materialDesign:DrawerHost.TopDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="MarksViewPanel" Background="Azure">
+                        <StackPanel x:Name="MarksViewPanel">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -398,7 +398,7 @@
                                             Width="500"
                                             FontSize="20"
                                             BorderThickness="0"
-                                            Foreground="DimGray"
+                                            Foreground="{StaticResource mainThemeColor}"
                                             materialDesign:HintAssist.Hint="Search Subject's Name"
                                             materialDesign:HintAssist.IsFloating="True"
                                             materialDesign:HintAssist.Background="{Binding ElementName=MarksViewPanel, Path=Background}"
@@ -412,7 +412,7 @@
                                 <Button x:Name="MarksListviewAddStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Add Mark"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="MarksListviewAddStudentButton_Click">
                                     <materialDesign:PackIcon Kind="PlusCircleOutline" />
@@ -420,7 +420,7 @@
                                 <Button x:Name="MarksListviewDeleteStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Mark"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="MarksListviewDeleteStudentButton_Click">
                                     <materialDesign:PackIcon Kind="DeleteCircleOutline" />
@@ -428,7 +428,7 @@
                                 <Button x:Name="MarksListviewEditStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Edit Mark"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="MarksListviewEditStudentButton_Click">
                                     <materialDesign:PackIcon Kind="SquareEditOutline" />
@@ -437,26 +437,24 @@
                             <ListView x:Name="marksLv"
                                       MinHeight="500"
                                       Margin="10"
-                                      Background="Azure"
-                                      HorizontalAlignment="Center"
-                                      Foreground="Black">
+                                      HorizontalAlignment="Center">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSubjectName}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="demoSubjectName" Foreground="Black" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoSubjectName" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoClassName}">
-                                            <GridViewColumnHeader Content="demoClassName" Foreground="Black" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoClassName" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSemester}">
-                                            <GridViewColumnHeader Content="demoSemester" Foreground="Black" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoSemester" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoType}">
-                                            <GridViewColumnHeader Content="demoType" Foreground="Black" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoType" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoValue}">
-                                            <GridViewColumnHeader Content="demoValue" Foreground="Black" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoValue" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -466,7 +464,7 @@
                 </materialDesign:DrawerHost.TopDrawerContent>
                 <materialDesign:DrawerHost.BottomDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="StudentViewPanel" Background="Azure">
+                        <StackPanel x:Name="StudentViewPanel">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -478,7 +476,7 @@
                                             Width="500"
                                             FontSize="20"
                                             BorderThickness="0"
-                                            Foreground="DimGray"
+                                            Foreground="{StaticResource mainThemeColor}"
                                             materialDesign:HintAssist.Hint="Search Student's Name"
                                             materialDesign:HintAssist.IsFloating="True"
                                             materialDesign:HintAssist.Background="{Binding ElementName=StudentViewPanel, Path=Background}"
@@ -492,7 +490,7 @@
                                 <Button x:Name="StudentsListviewAddStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Add Student"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="StudentsListviewAddStudentButton_Click">
                                     <materialDesign:PackIcon Kind="AccountPlus" />
@@ -500,7 +498,7 @@
                                 <Button x:Name="StudentsListviewDeleteStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Student"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="StudentsListviewDeleteStudentButton_Click">
                                     <materialDesign:PackIcon Kind="DeleteCircleOutline" />
@@ -508,7 +506,7 @@
                                 <Button x:Name="StudentsListviewEditStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Edit Student"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="StudentsListviewEditStudentButton_Click">
                                     <materialDesign:PackIcon Kind="SquareEditOutline" />
@@ -516,7 +514,7 @@
                                 <Button x:Name="StudentsListviewSearchMarksButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Show Marks"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="StudentsListviewSearchMarksButton_Click">
                                     <materialDesign:PackIcon Kind="Notebook" />
@@ -524,7 +522,7 @@
                             </StackPanel>
                             <Grid Width="500" 
                                   Height="auto">
-                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="Gray">
+                                <Border CornerRadius="8" BorderThickness="2" BorderBrush="{StaticResource mainThemeColor}">
                                     <TextBlock x:Name="selectedStudentTbName"
                                                HorizontalAlignment="Center"
                                                FontSize="16"
@@ -534,29 +532,27 @@
                             <ListView x:Name="studentsLv"
                                       MinHeight="500"
                                       Margin="10"
-                                      Background="Azure"
-                                      HorizontalAlignment="Center"
-                                      Foreground="Black">
+                                      HorizontalAlignment="Center">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding HoTen}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="HoTen" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="HoTen" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding GioiTinh}">
-                                            <GridViewColumnHeader Content="GioiTinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="GioiTinh" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NgaySinh}">
-                                            <GridViewColumnHeader Content="NgaySinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="NgaySinh" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NoiSinh}">
-                                            <GridViewColumnHeader Content="NoiSinh" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="NoiSinh" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding TenNgGianHo}">
-                                            <GridViewColumnHeader Content="TenNgGianHo" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="TenNgGianHo" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding SDT}">
-                                            <GridViewColumnHeader Content="SDT" Foreground="Black" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="SDT" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -588,7 +584,8 @@
                                                 FontSize="20"
                                                    Margin="0 0 13 0"/>
                                         <ToggleButton x:Name="DarkModeToggleButton" 
-                                                      Click="MenuDarkModeButton_Click"/>
+                                                      Click="MenuDarkModeButton_Click"
+                                                      IsChecked="True"/>
                                         <TextBlock Text="Night"
                                                 FontSize="20"
                                                    Margin="13 0 0 0"/>
@@ -615,20 +612,20 @@
                     <Grid>
                         <ScrollViewer VerticalScrollBarVisibility="Auto">
                             <StackPanel x:Name="ClassesPanel" 
-                                MinHeight="500" 
-                                Orientation="Vertical">
+                                        MinHeight="500" 
+                                        Orientation="Vertical">
                                 <TextBlock  Text="Classes"
                                             Margin="20"
                                             DockPanel.Dock="Right"
                                             FontSize="60"
-                                            Foreground="DimGray"
+                                            Foreground="{StaticResource mainThemeColor}"
                                             FontWeight="Bold"
                                             Style="{StaticResource txblInfoPanel}"/>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                     <Button x:Name="ClassesViewCheckClassButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Check in side"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="ClassesViewCheckClassButton_Click">
                                         <materialDesign:PackIcon Kind="Eye" />
@@ -636,7 +633,7 @@
                                     <Button x:Name="ClassesViewAddClassButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Add Class"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="ClassesViewAddClassButton_Click">
                                         <materialDesign:PackIcon Kind="AccountPlus" />
@@ -644,7 +641,7 @@
                                     <Button x:Name="ClassesViewDeleteClassButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Class"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="ClassesViewDeleteClassButton_Click">
                                         <materialDesign:PackIcon Kind="DeleteCircleOutline" />
@@ -652,7 +649,7 @@
                                     <Button x:Name="ClassesViewEditClassButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Edit Class"
-                                        Foreground="DimGray"
+                                        Foreground="{StaticResource mainThemeColor}"
                                         Margin="0 10 0 0"
                                         Click="ClassesViewEditClassButton_Click">
                                         <materialDesign:PackIcon Kind="SquareEditOutline" />
@@ -660,7 +657,7 @@
                                 </StackPanel>
                                 <Grid Width="300" 
                                   Height="auto">
-                                    <Border CornerRadius="8" BorderThickness="2" BorderBrush="DimGray">
+                                    <Border CornerRadius="8" BorderThickness="2" BorderBrush="{StaticResource mainThemeColor}">
                                         <TextBlock x:Name="selectedClassName"
                                                HorizontalAlignment="Center"
                                                FontSize="24"

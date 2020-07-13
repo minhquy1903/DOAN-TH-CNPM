@@ -54,6 +54,7 @@
                         Margin="200 25 50 50"
                         Width="100"
                         Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                        Background="{StaticResource mainThemeColor}"
                         ToolTip="Edit Subjects"
                         Click="Button_Click"/>
             </StackPanel>

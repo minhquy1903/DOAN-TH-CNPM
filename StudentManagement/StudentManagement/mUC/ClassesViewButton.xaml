@@ -24,7 +24,7 @@
                 </Style.Triggers>
             </Style>
         </Grid.Style>
-        <Border Background="DimGray"
+        <Border Background="{StaticResource mainThemeColor}"
                 BorderThickness="5"
                 CornerRadius="30">
             <Button x:Name="cvBtn"
@@ -44,7 +44,7 @@
                             <TextBlock x:Name="classNameTxbl"
                                        Text="Name"
                                        FontSize="45"
-                                       Foreground="SeaShell"
+                                       Foreground="{StaticResource secondaryThemeColor}"
                                        Margin="6"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -55,7 +55,7 @@
                             <TextBlock x:Name="classYearTxbl"
                                        Text="Year"
                                        FontSize="30"
-                                       Foreground="SeaShell"
+                                       Foreground="{StaticResource secondaryThemeColor}"
                                        Margin="6"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
