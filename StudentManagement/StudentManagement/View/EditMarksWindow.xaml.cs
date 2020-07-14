@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.mUC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace StudentManagement
     public partial class EditMarksWindow : Window
     {
         public bool isCorrected = false;
+        iNotifierBox iNotifierBox = new iNotifierBox();
 
         public EditMarksWindow()
         {
@@ -38,19 +40,22 @@ namespace StudentManagement
             {
                 if (!InputTester.IsAName(studentNameTb.Text))
                 {
-                    MessageBox.Show("Tên học sinh không hợp lệ");
+                    iNotifierBox.Text = "Tên học sinh không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAClassName(classNameTb.Text))
                 {
-                    MessageBox.Show("Tên lớp không hợp lệ");
+                    iNotifierBox.Text = "Tên lớp không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAFloatNumber(valueTb.Text))
                 {
-                    MessageBox.Show("Điểm không hợp lệ");
+                    iNotifierBox.Text = "Điểm không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
@@ -71,11 +76,20 @@ namespace StudentManagement
                 {
                     this.Hide();
                     isCorrected = true;
+                    studentNameTb.Text = "";
+                    subjectNameTb.Text = "";
+                    classNameTb.Text = "";
+                    semesterTb.Text = "";
+                    typeTb.Text = "";
+                    valueTb.Text = "";
+                    iNotifierBox.Text = "Sửa thành công !";
+                    iNotifierBox.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Please fill out the form");
+                iNotifierBox.Text = "Vui lòng điền đầy đủ thông tin";
+                iNotifierBox.ShowDialog();
             }
 
         }

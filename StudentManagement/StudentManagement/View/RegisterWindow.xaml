@@ -56,15 +56,10 @@
                              Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
                              VerticalAlignment="Center" />
                 </Grid>
-                <Button Content="Sign Up"
-                        Height="auto"
-                        FontSize="20"
-                        FontFamily="MV Boli"
-                        Margin="200 25 50 50"
-                        Width="120"
-                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Register"
-                        Click="Button_Click"/>
+                <uc:WindowExecuteButton Margin="200 25 50 50" 
+                                        mContent="Confirm"
+                                        ToolTip="Sign Up"
+                                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>
