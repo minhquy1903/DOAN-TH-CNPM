@@ -16,9 +16,9 @@ namespace StudentManegementServer.Controllers
     public class StudentController : ControllerBase
     {
         [HttpPost("GetAllStudent")]
-        public ActionResult GetAllStudent([FromBody] ClassInfo classInfo)
+        public ActionResult GetAllStudent([FromBody] int maLop)
         {
-            List<Student> students = BusControls.Instance.GetAllStudent(classInfo.MaLop);
+            List<Student> students = BusControls.Instance.GetAllStudent(maLop);
             if (students != null)
                 return new JsonResult(new APIResponse<object>(students));
             return new JsonResult(new APIResponse<object>(200));

@@ -220,6 +220,7 @@ namespace StudentManagement
         }
         #endregion
 
+        #region Left Treeview
         //TreeView 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -266,6 +267,7 @@ namespace StudentManagement
                 }
             }
         }
+        #endregion
 
         #region Open Panels 
         private void ChangeCheckedToggleButton_MouseEnter(object sender, MouseEventArgs e)
@@ -295,13 +297,24 @@ namespace StudentManagement
         }
         #endregion
 
+        #region Student Listview Control
+        private async void studentsLv_Loaded()
+        {
+            if(selectedClassName.Tag != null)
+                studentInfos = await Controller.Instance.GetAllStudent(Convert.ToInt32(selectedClassName.Tag));
+            studentsLv.ItemsSource = studentInfos;
+            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+        }
+
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
             //Open ASW
+            asw.FillCurrentClass(selectedClassName.Text);
             asw.ShowDialog();
 
             if (asw.isCorrected)
             {
+                studentsLv_Loaded();
                 CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                 asw.isCorrected = false;
             }
@@ -312,14 +325,17 @@ namespace StudentManagement
             if (studentsLv.SelectedValue != null)
             {
                 //Delete selected Student
-                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedStudentTbName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
+                mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
+                iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedStudentTbName.Text + " ?";
+                iNotifierBoxOKCancel.ShowDialog();
+                if (iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     for (int i = 0; i < studentInfos.Count; i++)
                         if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                         {
                             ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
 
+                            studentsLv_Loaded();
                             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                             break;
                         }
@@ -341,26 +357,25 @@ namespace StudentManagement
                             studentInfos.ElementAt(i).NoiSinh,
                             studentInfos.ElementAt(i).TenNgGianHo,
                             Convert.ToInt32(studentInfos.ElementAt(i).SDT),
-                            selectedClassName.Tag.ToString()); 
+                            selectedClassName.Text); 
                         break;
                     }
                 esw.ShowDialog();
 
                 if (esw.isCorrected)
                 {
+                    studentsLv_Loaded();
                     CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
                     esw.isCorrected = false;
                 }
             }
         }
+        #endregion
 
+        #region ClassesView Control
         private async void PanelClassview_Loaded()
         {
-            //for (int i = 0; i < ListSize; i++)
-            //{
-            //    classInfos.RemoveAt(i);
-            //}
-            //classInfos.Clear();
+            panelClassview.Children.RemoveRange(0, panelClassview.Children.Count);
             classInfos = await Controller.Instance.GetAllClass();
             List<mUC.ClassesViewButton> classesViewButtons = new List<mUC.ClassesViewButton>();
             int ListSize = classInfos.Count;
@@ -382,6 +397,7 @@ namespace StudentManagement
             var btn = sender as mUC.ClassesViewButton;
             selectedClassName.Tag = btn.IdClass.ToString(); //prop Tag t se dung de luu Id luon cho tien., khoi phai tao bien ngoai`
             selectedClassName.Text = btn.ClassName;
+            //studentsLv_Loaded();
         }
 
         private void ClassesViewCheckClassButton_Click(object sender, RoutedEventArgs e)
@@ -391,6 +407,7 @@ namespace StudentManagement
             {
                 HidenClassListViewToggleButton.IsChecked = true;
                 studentsLvSearchNameTb.Focus();
+                studentsLv_Loaded();
             }
         }
 
@@ -412,8 +429,19 @@ namespace StudentManagement
             if (selectedClassName.Tag != null)
             {
                 //Delete selected Class
-                MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                if (result == MessageBoxResult.OK)
+                //MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
+                //if (result == MessageBoxResult.OK)
+                //{
+                //    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
+
+                //    PanelClassview_Loaded();
+                //    selectedClassName.Tag = null;
+                //    selectedClassName.Text = "";
+                //}
+                mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
+                iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedClassName.Text + " ?";
+                iNotifierBoxOKCancel.ShowDialog();
+                if(iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
 
@@ -430,19 +458,15 @@ namespace StudentManagement
             {
                 //Fill info selected class into ECW
                 for (int i = 0; i < classInfos.Count; i++)
-                
-                    //if (classInfos.ElementAt(i).maLop == selectedClassName.Tag.ToString())
-                    //{
-                    //    flag = i;
-                    //    ecw.FillInfo(classInfos.ElementAt(i).tenLop,
-                    //        Convert.ToInt32(classInfos.ElementAt(i).khoi),
-                    //        classInfos.ElementAt(i).tenGVCN,
-                    //        classInfos.ElementAt(i).siSo,
-                    //        Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
-                    //    panelClassview.Children.RemoveAt(i);
-                    //    break;
-                    //}
-
+                    if (classInfos.ElementAt(i).maLop == Convert.ToInt32(selectedClassName.Tag))
+                    {
+                        ecw.FillInfo(classInfos.ElementAt(i).tenLop,
+                            Convert.ToInt32(classInfos.ElementAt(i).khoi),
+                            classInfos.ElementAt(i).tenGVCN,
+                            classInfos.ElementAt(i).siSo,
+                            Convert.ToInt32(classInfos.ElementAt(i).nienKhoa));
+                        break;
+                    }
                 ecw.ShowDialog();
 
                 if (ecw.isCorrected)
@@ -452,7 +476,9 @@ namespace StudentManagement
                 }
             }
         }
+        #endregion
 
+        #region Mark Listview Control
         private void StudentsListviewSearchMarksButton_Click(object sender, RoutedEventArgs e)
         {
             if (studentsLv.SelectedValue != null)
@@ -582,6 +608,7 @@ namespace StudentManagement
                 CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
             }
         }
+        #endregion
     }
 
     //Custom Commands for the whole app (in this namespace)

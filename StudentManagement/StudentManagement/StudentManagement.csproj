@@ -83,6 +83,12 @@
     <Compile Include="mUC\DrawerContentButton.xaml.cs">
       <DependentUpon>DrawerContentButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="mUC\iNotifierBox.xaml.cs">
+      <DependentUpon>iNotifierBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="mUC\iNotifierBoxOKCancel.xaml.cs">
+      <DependentUpon>iNotifierBoxOKCancel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="mUC\InsertTextBox.xaml.cs">
       <DependentUpon>InsertTextBox.xaml</DependentUpon>
     </Compile>
@@ -91,6 +97,9 @@
     </Compile>
     <Compile Include="mUC\TitleTextBlock.xaml.cs">
       <DependentUpon>TitleTextBlock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="mUC\WindowExecuteButton.xaml.cs">
+      <DependentUpon>WindowExecuteButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\AddClassesWindow.xaml.cs">
       <DependentUpon>AddClassesWindow.xaml</DependentUpon>
@@ -159,6 +168,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="mUC\iNotifierBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mUC\iNotifierBoxOKCancel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="mUC\InsertTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -168,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="mUC\TitleTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="mUC\WindowExecuteButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

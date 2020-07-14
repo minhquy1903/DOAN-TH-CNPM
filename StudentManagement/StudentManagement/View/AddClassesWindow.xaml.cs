@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.mUC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace StudentManagement
     public partial class AddClassesWindow : Window
     {
         public bool isCorrected = false;
+        iNotifierBox iNotifierBox = new iNotifierBox();
 
         public AddClassesWindow()
         {
@@ -37,25 +39,29 @@ namespace StudentManagement
             {
                 if(!InputTester.IsAClassName(classNameTb.Text))
                 {
-                    MessageBox.Show("Tên lớp không hợp lệ");
+                    iNotifierBox.Text = "Tên lớp không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsAName(teacherNameTb.Text))
                 {
-                    MessageBox.Show("Tên giáo viên không hợp lệ");
+                    iNotifierBox.Text = "Tên giáo viên không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsANumber(countTb.Text, 2))
                 {
-                    MessageBox.Show("Sĩ số không hợp lệ");
+                    iNotifierBox.Text = "Sĩ số không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!InputTester.IsANumber(yearTb.Text, 4))
                 {
-                    MessageBox.Show("Năm không hợp lệ");
+                    iNotifierBox.Text = "Năm không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
@@ -73,11 +79,19 @@ namespace StudentManagement
                 {
                     this.Hide();
                     isCorrected = true;
+                    classNameTb.Text = "";
+                    gradeTb.Text = "";
+                    teacherNameTb.Text = "";
+                    countTb.Text = "";
+                    yearTb.Text = "";
+                    iNotifierBox.Text = "Thêm thành công !";
+                    iNotifierBox.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Please fill out the form");
+                iNotifierBox.Text = "Vui lòng điền đầy đủ thông tin";
+                iNotifierBox.ShowDialog();
             }
 
         }

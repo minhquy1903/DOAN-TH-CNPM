@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.mUC;
 using StudentManagement.Controllers;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace StudentManagement
     /// </summary>
     public partial class LoginWindow : Window
     {
+        iNotifierBox iNotifierBox = new iNotifierBox();
         public LoginWindow()
         {
             InitializeComponent();
@@ -53,7 +55,8 @@ namespace StudentManagement
             }
             else
             {
-                MessageBox.Show("Error");
+                iNotifierBox.Text = "Lỗi";
+                iNotifierBox.ShowDialog();
             }
             
         }

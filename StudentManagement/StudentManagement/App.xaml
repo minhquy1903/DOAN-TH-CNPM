@@ -7,11 +7,15 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Button.xaml"/>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <SolidColorBrush x:Key="mainThemeColor" Color="SkyBlue"/>
+            <SolidColorBrush x:Key="secondaryThemeColor" Color="SeaShell"/>
+            <SolidColorBrush x:Key="backgroundThemeColor" Color="Azure"/>
+            <SolidColorBrush x:Key="darkBackgroundThemeColor" Color="#303030"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

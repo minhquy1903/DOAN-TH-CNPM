@@ -95,7 +95,7 @@ namespace StudentManegementServer.BUS
                 student.Hoten = row["HOTEN"].ToString();
                 student.NgaySinh = row["NGAYSINH"].ToString();
                 student.GioiTinh = row["GIOITINH"].ToString();
-                student.NoiSinh = row["NOISINIH"].ToString();
+                student.NoiSinh = row["NOISINH"].ToString();
                 student.TenNgGianHo = row["TENNGGIAMHO"].ToString();
                 student.SDT = row["SODT"].ToString();
                 students.Add(student);

@@ -80,15 +80,10 @@
                                       x:Name="currentClassTb"
                                       materialDesign:HintAssist.Hint="Lớp đang học"/>
                 </Grid>
-                <Button Content="Edit"
-                        Height="auto"
-                        FontSize="20"
-                        FontFamily="MV Boli"
-                        Margin="200 25 50 50"
-                        Width="100"
-                        Style="{StaticResource MaterialDesignFlatLightBgButton}"
-                        ToolTip="Edit Students"
-                        Click="Button_Click"/>
+                <uc:WindowExecuteButton Margin="200 25 50 50" 
+                                        mContent="Edit"
+                                        ToolTip="Edit Students"
+                                        Click="Button_Click"/>
             </StackPanel>
         </materialDesign:Card>
     </Grid>

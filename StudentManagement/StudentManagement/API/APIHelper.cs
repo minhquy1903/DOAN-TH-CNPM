@@ -50,10 +50,9 @@ namespace StudentManagement.API
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    var jsonstring = await response.Content.ReadAsStringAsync();
-                    var data = JsonConvert.DeserializeObject<T>(jsonstring);
+                    var data = await response.Content.ReadAsAsync<APIResponse<T>>();
                     if (data != null)
-                        return data;
+                        return data.Data;
                 }
                 else
                 {
@@ -68,9 +67,7 @@ namespace StudentManagement.API
             using (HttpResponseMessage response = await apiClient.GetAsync(route))
             {
                 if (response.IsSuccessStatusCode)
-                {
-                    var jsonstring = await response.Content.ReadAsStringAsync();
-                    //var data = JsonConvert.DeserializeObject<T>(jsonstring);
+                {                    //var data = JsonConvert.DeserializeObject<T>(jsonstring);
                     var data = await response.Content.ReadAsAsync<APIResponse<T>>();
                     if (data != null)
                         return data.Data;
