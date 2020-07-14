@@ -220,6 +220,7 @@ namespace StudentManagement
         }
         #endregion
 
+        #region Left Treeview
         //TreeView 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
@@ -266,6 +267,7 @@ namespace StudentManagement
                 }
             }
         }
+        #endregion
 
         #region Open Panels 
         private void ChangeCheckedToggleButton_MouseEnter(object sender, MouseEventArgs e)
@@ -300,6 +302,8 @@ namespace StudentManagement
         {
             if(selectedClassName.Tag != null)
                 studentInfos = await Controller.Instance.GetAllStudent(Convert.ToInt32(selectedClassName.Tag));
+            studentsLv.ItemsSource = studentInfos;
+            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
@@ -353,7 +357,7 @@ namespace StudentManagement
                             studentInfos.ElementAt(i).NoiSinh,
                             studentInfos.ElementAt(i).TenNgGianHo,
                             Convert.ToInt32(studentInfos.ElementAt(i).SDT),
-                            selectedClassName.Tag.ToString()); 
+                            selectedClassName.Text); 
                         break;
                     }
                 esw.ShowDialog();
@@ -403,6 +407,7 @@ namespace StudentManagement
             {
                 HidenClassListViewToggleButton.IsChecked = true;
                 studentsLvSearchNameTb.Focus();
+                studentsLv_Loaded();
             }
         }
 

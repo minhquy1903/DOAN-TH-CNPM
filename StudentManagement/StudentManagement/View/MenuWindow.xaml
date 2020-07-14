@@ -442,19 +442,19 @@
                                     <GridView>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSubjectName}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="demoSubjectName" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoSubjectName" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoClassName}">
-                                            <GridViewColumnHeader Content="demoClassName" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoClassName" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSemester}">
-                                            <GridViewColumnHeader Content="demoSemester" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoSemester" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoType}">
-                                            <GridViewColumnHeader Content="demoType" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoType" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoValue}">
-                                            <GridViewColumnHeader Content="demoValue" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="demoValue" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
@@ -535,24 +535,24 @@
                                       HorizontalAlignment="Center">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding HoTen}">
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Hoten}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="HoTen" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="Hoten" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding GioiTinh}">
-                                            <GridViewColumnHeader Content="GioiTinh" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="GioiTinh" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NgaySinh}">
-                                            <GridViewColumnHeader Content="NgaySinh" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="NgaySinh" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding NoiSinh}">
-                                            <GridViewColumnHeader Content="NoiSinh" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="NoiSinh" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding TenNgGianHo}">
-                                            <GridViewColumnHeader Content="TenNgGianHo" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="TenNgGianHo" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                         <GridViewColumn Width="auto" DisplayMemberBinding="{Binding SDT}">
-                                            <GridViewColumnHeader Content="SDT" Click="StudentsGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="SDT" Width="auto" Click="StudentsGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>
