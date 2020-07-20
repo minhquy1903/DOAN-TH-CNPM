@@ -48,6 +48,7 @@ namespace StudentManagement
         EditStudentsWindow esw = new EditStudentsWindow();
         EditSubjectsWindow esjw = new EditSubjectsWindow();
         EditClassesWindow ecw = new EditClassesWindow();
+        mUC.iNotifierBox iNotifierBox = new mUC.iNotifierBox();
 
         public MenuWindow()
         {
@@ -310,6 +311,7 @@ namespace StudentManagement
         {
             //Open ASW
             asw.FillCurrentClass(selectedClassName.Text);
+            asw.savedMaLop = Convert.ToInt32(selectedClassName.Tag);
             asw.ShowDialog();
 
             if (asw.isCorrected)
@@ -334,10 +336,19 @@ namespace StudentManagement
                         if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                         {
                             ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
-
-                            studentsLv_Loaded();
-                            CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
-                            break;
+                            if (resultYN.Result)
+                            {
+                                studentsLv_Loaded();
+                                CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                                iNotifierBox.Text = "Xoá thành công !";
+                                iNotifierBox.ShowDialog();
+                                break;
+                            }
+                            else
+                            {
+                                iNotifierBox.Text = "Lỗi";
+                                iNotifierBox.ShowDialog();
+                            }
                         }
                 }
             }
@@ -428,26 +439,25 @@ namespace StudentManagement
         {
             if (selectedClassName.Tag != null)
             {
-                //Delete selected Class
-                //MessageBoxResult result = MessageBox.Show("Do you want to delete " + selectedClassName.Text + " ?", "Delete", MessageBoxButton.OKCancel);
-                //if (result == MessageBoxResult.OK)
-                //{
-                //    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
-
-                //    PanelClassview_Loaded();
-                //    selectedClassName.Tag = null;
-                //    selectedClassName.Text = "";
-                //}
                 mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
                 iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedClassName.Text + " ?";
                 iNotifierBoxOKCancel.ShowDialog();
                 if(iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
-
-                    PanelClassview_Loaded();
-                    selectedClassName.Tag = null;
-                    selectedClassName.Text = "";
+                    if (resultYN.Result)
+                    {
+                        PanelClassview_Loaded();
+                        selectedClassName.Tag = null;
+                        selectedClassName.Text = "";
+                        iNotifierBox.Text = "Xoá thành công !";
+                        iNotifierBox.ShowDialog();
+                    }
+                    else
+                    {
+                        iNotifierBox.Text = "Lỗi";
+                        iNotifierBox.ShowDialog();
+                    }
                 }
             }
         }
