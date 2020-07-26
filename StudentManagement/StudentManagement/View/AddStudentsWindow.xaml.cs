@@ -24,6 +24,8 @@ namespace StudentManagement
         public bool isCorrected = false;
         iNotifierBox iNotifierBox = new iNotifierBox();
 
+        public int savedMaLop;
+
         public AddStudentsWindow()
         {
             InitializeComponent();
@@ -89,7 +91,7 @@ namespace StudentManagement
                     NoiSinh = countryTb.Text,
                     TenNgGianHo = parentNameTb.Text,
                     SDT = phoneNumberTb.Text,
-                    MaLop = currentClassTb.Text
+                    MaLop = savedMaLop.ToString()
                 };
 
                 ResultYN resultYN = await Controllers.Controller.Instance.InsertNewStudent(student);
