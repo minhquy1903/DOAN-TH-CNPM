@@ -11,5 +11,5 @@ FROM mcr.Microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 EXPOSE 80
 COPY --from=build-env /app/out .
-ENTRYPOINT [ "dotnet","StudentManagementSever.dll" ]
+ENTRYPOINT [ "dotnet","StudentManegementSever.dll" ]
 

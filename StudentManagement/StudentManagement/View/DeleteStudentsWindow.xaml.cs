@@ -85,7 +85,7 @@ namespace StudentManagement
                 {
                     Hoten = studentNameTb.Text,
                     GioiTinh = sexTb.Text,
-                    NgaySinh = dobTb.Text,
+                    NgaySinh = Convert.ToDateTime(dobTb.Text),
                     NoiSinh = countryTb.Text,
                     TenNgGianHo = parentNameTb.Text,
                     SDT = phoneNumberTb.Text,

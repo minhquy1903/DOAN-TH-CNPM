@@ -10,7 +10,7 @@ namespace StudentManegementServer.Models
         public int MaHS { get; set; }
         public string MaLop { get; set; }
         public string Hoten { get; set; }
-        public string NgaySinh { get; set; }
+        public DateTime NgaySinh { get; set; }
         public string GioiTinh { get; set; }
         public string NoiSinh { get; set; }
         public string TenNgGianHo { get; set; }

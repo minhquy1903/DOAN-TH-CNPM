@@ -93,7 +93,7 @@ namespace StudentManegementServer.BUS
                 student.MaHS = Convert.ToInt32(row["MAHS"]);
                 student.MaLop = row["MALOP"].ToString();
                 student.Hoten = row["HOTEN"].ToString();
-                student.NgaySinh = row["NGAYSINH"].ToString();
+                student.NgaySinh = Convert.ToDateTime(row["NGAYSINH"]);
                 student.GioiTinh = row["GIOITINH"].ToString();
                 student.NoiSinh = row["NOISINH"].ToString();
                 student.TenNgGianHo = row["TENNGGIAMHO"].ToString();
