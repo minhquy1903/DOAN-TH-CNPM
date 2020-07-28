@@ -59,7 +59,8 @@
                                        IsTopDrawerOpen="{Binding ElementName=MarksViewToggleButton, Path=IsChecked}"
                                        IsBottomDrawerOpen="{Binding ElementName=HidenClassListViewToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel x:Name="ToolPanel" MinWidth="286">
+                    <DockPanel x:Name="ToolPanel" MinWidth="286"
+                               Background="{StaticResource darkBackgroundThemeColor}">
                         <ToggleButton 
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                         DockPanel.Dock="Top"
@@ -386,7 +387,8 @@
                 </materialDesign:DrawerHost.RightDrawerContent>
                 <materialDesign:DrawerHost.TopDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="MarksViewPanel">
+                        <StackPanel x:Name="MarksViewPanel"
+                                    Background="{StaticResource darkBackgroundThemeColor}">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -464,7 +466,8 @@
                 </materialDesign:DrawerHost.TopDrawerContent>
                 <materialDesign:DrawerHost.BottomDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="StudentViewPanel">
+                        <StackPanel x:Name="StudentViewPanel"
+                                    Background="{StaticResource darkBackgroundThemeColor}">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
