@@ -21,31 +21,31 @@ namespace StudentManegementServer.Controllers
             List<ClassInfo> classInfos = BusControls.Instance.GetAllClass();
             if (classInfos != null)
                 return new JsonResult(new APIResponse<List<ClassInfo>>(classInfos));
-            return new JsonResult(new APIResponse<object>(200));
+            return new JsonResult(new APIResponse<object>(false));
         }
 
         [HttpPost("InsertNewClass")]
         public ActionResult InsertNewClass([FromBody] ClassInfo classInfo)
         {
             if (BusControls.Instance.InsertNewClass(classInfo))
-                return new JsonResult(new APIResponse<object>("Insert Success"));
+                return new JsonResult(new APIResponse<bool>(true));
             else
-                return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(false));
         }
         [HttpPost("DeleteClass")]
         public ActionResult DeleteClass([FromBody] int maLop)
         {
             if (BusControls.Instance.DeleteClass(maLop))
-                return new JsonResult(new APIResponse<object>("Deleted"));
-            return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
 
         [HttpPost("UpdateClass")]
         public ActionResult UpdateClass([FromBody] ClassInfo classInfo)
         {
             if (BusControls.Instance.UpdateClass(classInfo))
-                return new JsonResult(new APIResponse<object>("Update Success"));
-            return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
     }
 }

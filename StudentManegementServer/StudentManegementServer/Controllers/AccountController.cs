@@ -35,7 +35,7 @@ namespace StudentManegementServer.Controllers
             {
                 return new JsonResult(new APIResponse<object>("Sign Up Success"));
             }
-            return new JsonResult(new APIResponse<UserProfile>(200));
+            return new JsonResult(new APIResponse<object>(200));
         }
     }
 }

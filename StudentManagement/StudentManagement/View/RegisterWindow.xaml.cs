@@ -49,9 +49,9 @@ namespace StudentManagement
 
             /*Regex regex1 = new Regex("^[a-zA-Z]+[a-zA-Z0-9]+[[a-zA-Z0-9-_.!#$%'*+/=?^]{1,20}@[a-zA-Z0-9]{1,20}.[a-zA-Z]{2,3}$")*/;
 
-            ResultYN result = await Controller.Instance.SignUp(username, password, email, name);
+            bool result = await Controller.Instance.SignUp(username, password, email, name);
 
-            if (result.Result)
+            if (result)
             {
                 this.Close();
             }

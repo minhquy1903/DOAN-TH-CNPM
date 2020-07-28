@@ -335,8 +335,8 @@ namespace StudentManagement
                     for (int i = 0; i < studentInfos.Count; i++)
                         if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
                         {
-                            ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
-                            if (resultYN.Result)
+                            bool resultYN = await Controllers.Controller.Instance.DeleteStudent(Convert.ToInt32(studentsLv.SelectedValue.ToString()));
+                            if (resultYN)
                             {
                                 studentsLv_Loaded();
                                 CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
@@ -356,30 +356,30 @@ namespace StudentManagement
 
         private void StudentsListviewEditStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            if (studentsLv.SelectedValue != null)
-            {
-                //Fill info into ESW
-                for (int i = 0; i < studentInfos.Count; i++)
-                    if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
-                    {
-                        esw.FillInfo(studentInfos.ElementAt(i).Hoten,
-                            studentInfos.ElementAt(i).GioiTinh,
-                            studentInfos.ElementAt(i).NgaySinh,
-                            studentInfos.ElementAt(i).NoiSinh,
-                            studentInfos.ElementAt(i).TenNgGianHo,
-                            Convert.ToInt32(studentInfos.ElementAt(i).SDT),
-                            selectedClassName.Text); 
-                        break;
-                    }
-                esw.ShowDialog();
+            //if (studentsLv.SelectedValue != null)
+            //{
+            //    //Fill info into ESW
+            //    for (int i = 0; i < studentInfos.Count; i++)
+            //        if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
+            //        {
+            //            esw.FillInfo(studentInfos.ElementAt(i).Hoten,
+            //                studentInfos.ElementAt(i).GioiTinh,
+            //                studentInfos.ElementAt(i).NgaySinh,
+            //                studentInfos.ElementAt(i).NoiSinh,
+            //                studentInfos.ElementAt(i).TenNgGianHo,
+            //                Convert.ToInt32(studentInfos.ElementAt(i).SDT),
+            //                selectedClassName.Text); 
+            //            break;
+            //        }
+            //    esw.ShowDialog();
 
-                if (esw.isCorrected)
-                {
-                    studentsLv_Loaded();
-                    CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
-                    esw.isCorrected = false;
-                }
-            }
+            //    if (esw.isCorrected)
+            //    {
+            //        studentsLv_Loaded();
+            //        CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+            //        esw.isCorrected = false;
+            //    }
+            //}
         }
         #endregion
 
@@ -444,8 +444,8 @@ namespace StudentManagement
                 iNotifierBoxOKCancel.ShowDialog();
                 if(iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
-                    ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
-                    if (resultYN.Result)
+                    bool resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
+                    if (resultYN)
                     {
                         PanelClassview_Loaded();
                         selectedClassName.Tag = null;

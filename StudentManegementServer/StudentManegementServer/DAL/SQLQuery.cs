@@ -31,12 +31,12 @@ namespace StudentManegementServer.DAL
 
             public const string ProcUpdateStudent = "EXECUTE UpdateStudent @mahs , @malop , @hoten , @ngaysinh , @gioitinh , @noisinh , @tennggiamho , @sodt";
 
-            public const string ProcDeleteStudent = "EXECUTE DeleteStudent @mahs";
+            public const string ProcDeleteStudent = "EXECUTE DeleteHS @mahs";
         }
 
         public static class Mark
         {
-            public const string ProcGetAllMark = "EXECUTE GetAllMark @mahs , @malop";
+            public const string ProcGetAllMark = "EXECUTE GetAllMarks @mahs";
 
             public const string ProcInsertMark = "EXECUTE InsertMark @mahs , @mamh , @loaidiem , @malop , @hocky , @diem";
 
