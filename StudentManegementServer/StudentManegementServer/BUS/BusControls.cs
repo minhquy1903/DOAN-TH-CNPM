@@ -117,9 +117,9 @@ namespace StudentManegementServer.BUS
         #endregion
 
         #region Bus Mark
-        public List<Mark> GetAllMark(Mark _mark)
+        public List<Mark> GetAllMark(int mahs)
         {
-            DataTable dataTableMark = DALControl.Instance.GetAllMark(_mark);
+            DataTable dataTableMark = DALControl.Instance.GetAllMark(mahs);
             List<Mark> marks = new List<Mark>();
             foreach (DataRow row in dataTableMark.Rows)
             {

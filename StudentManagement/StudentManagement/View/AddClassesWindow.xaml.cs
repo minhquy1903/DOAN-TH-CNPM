@@ -74,8 +74,8 @@ namespace StudentManagement
                     nienKhoa = yearTb.Text
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
-                if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;

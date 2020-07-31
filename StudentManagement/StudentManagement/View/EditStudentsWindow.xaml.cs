@@ -92,8 +92,8 @@ namespace StudentManagement
                     MaLop = currentClassTb.Text
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.UpdateStudent(student);
-                if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.UpdateStudent(student);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;

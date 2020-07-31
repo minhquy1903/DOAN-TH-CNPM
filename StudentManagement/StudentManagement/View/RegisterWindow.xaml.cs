@@ -91,7 +91,7 @@ namespace StudentManagement
                 return false;
             }
         }
-        
+
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {

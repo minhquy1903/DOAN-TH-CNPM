@@ -30,12 +30,12 @@ namespace StudentManagement.Controllers
             return await APIHelper.Instance.Post<LoginResult>(APIRoute.Account.Login, user);
         }
 
-        public async Task<ResultYN> SignUp(string _username, string _password, string _email, string _name)
+        public async Task<bool> SignUp(string _username, string _password, string _email, string _name)
         {
             Account account = new Account(_username, _password);
             account.Email = _email;
             account.Name = _name;
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Account.SignUp, account);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Account.SignUp, account);
         }
         #endregion
         #region Control Class
@@ -45,17 +45,17 @@ namespace StudentManagement.Controllers
             return await APIHelper.Instance.Get<List<ClassInfo>>(APIRoute.Class.GetAllClass);
         }
 
-        public async Task<ResultYN> InsertNewClass(ClassInfo classInfo)
+        public async Task<bool> InsertNewClass(ClassInfo classInfo)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.InsertNewClass, classInfo);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Class.InsertNewClass, classInfo);
         }
-        public async Task<ResultYN> UpdateClass(ClassInfo classInfo)
+        public async Task<bool> UpdateClass(ClassInfo classInfo)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.UpdateClass, classInfo);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Class.UpdateClass, classInfo);
         }
-        public async Task<ResultYN> DeleteClass(int MaLop)
+        public async Task<bool> DeleteClass(int MaLop)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Class.DeleteClass, MaLop);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Class.DeleteClass, MaLop);
         }
         #endregion
         #region Control Student
@@ -63,17 +63,17 @@ namespace StudentManagement.Controllers
         {
             return await APIHelper.Instance.Post<List<Student>>(APIRoute.Student.GetAllStudent,MaLop);
         }
-        public async Task<ResultYN> InsertNewStudent(Student student)
+        public async Task<bool> InsertNewStudent(Student student)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.InsertNewStudent, student);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Student.InsertNewStudent, student);
         }
-        public async Task<ResultYN> UpdateStudent(Student student)
+        public async Task<bool> UpdateStudent(Student student)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.UpdateStudent, student);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Student.UpdateStudent, student);
         }
-        public async Task<ResultYN> DeleteStudent(int MaHS)
+        public async Task<bool> DeleteStudent(int MaHS)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Student.DeleteStudent, MaHS);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Student.DeleteStudent, MaHS);
         }
         #endregion
         #region Control Mark
@@ -81,13 +81,13 @@ namespace StudentManagement.Controllers
         {
             return await APIHelper.Instance.Post<StudentMark>(APIRoute.Mark.GetAllMark, studentMark);
         }
-        public async Task<ResultYN> InsertMark(StudentMark studentMark)
+        public async Task<bool> InsertMark(StudentMark studentMark)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Mark.InsertMark, studentMark);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Mark.InsertMark, studentMark);
         }
-        public async Task<ResultYN> DeleteMark(int maDiem)
+        public async Task<bool> DeleteMark(int maDiem)
         {
-            return await APIHelper.Instance.Post<ResultYN>(APIRoute.Mark.GetAllMark, maDiem);
+            return await APIHelper.Instance.Post<bool>(APIRoute.Mark.GetAllMark, maDiem);
         }
         #endregion
     }

@@ -13,6 +13,6 @@ namespace StudentManegementServer.Models
         public int maLop { get; set; }
         public string maMonHoc { get; set; }
         public string hocKy { get; set; }
-        public int giaTriDiem { get; set; }
+        public float giaTriDiem { get; set; }
     }
 }

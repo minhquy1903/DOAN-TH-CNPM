@@ -15,13 +15,28 @@ namespace StudentManegementServer.Controllers
     public class MarkController : ControllerBase
     {
         [HttpPost("GetAllMarks")]
-        public ActionResult GetAllMarks([FromBody] Mark mark)
+        public ActionResult GetAllMarks([FromBody] int mahs)
         {
-            List<Mark> marks = BusControls.Instance.GetAllMark(mark);
+            List<Mark> marks = BusControls.Instance.GetAllMark(mahs);
             if (marks != null)
                 return new JsonResult(new APIResponse<List<Mark>>(marks));
-            else
-                return new JsonResult(new APIResponse<string>(""));
+                return new JsonResult(new APIResponse<List<Mark>>(null));
+        }
+
+        [HttpPost("InsertMark")]
+        public ActionResult InsertMark([FromBody] Mark mark)
+        {
+            if (BusControls.Instance.InsertMark(mark))
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
+        }
+
+        [HttpPost("DeleteMark")]
+        public ActionResult DeleteMark([FromBody] int madiem)
+        {
+            if (BusControls.Instance.DeleteMark(madiem))
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
     }
 }

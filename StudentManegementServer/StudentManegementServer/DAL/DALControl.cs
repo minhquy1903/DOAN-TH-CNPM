@@ -192,7 +192,7 @@ namespace StudentManegementServer.DAL.Controls
         }
         #endregion
         #region DAL Mark
-        public DataTable GetAllMark(Mark mark)
+        public DataTable GetAllMark(int mahs)
         {
             
             try
@@ -200,8 +200,7 @@ namespace StudentManegementServer.DAL.Controls
                 DataTable dataTableMark = DataProvider.DataProvider.Instance.ExecuteQuery(SQLQuery.Mark.ProcGetAllMark,
                     new object[]
                     {
-                        mark.maHS,
-                        mark.maLop
+                        mahs
                     });
                 return dataTableMark;
             }

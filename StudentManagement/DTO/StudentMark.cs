@@ -12,6 +12,6 @@ namespace DTO
         int maLop { get; set; }
         string maMonHoc { get; set; }
         string hocKy { get; set; }
-        int giaTriDiem { get; set; }
+        float giaTriDiem { get; set; }
     }
 }

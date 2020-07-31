@@ -21,28 +21,28 @@ namespace StudentManegementServer.Controllers
             List<Student> students = BusControls.Instance.GetAllStudent(maLop);
             if (students != null)
                 return new JsonResult(new APIResponse<object>(students));
-            return new JsonResult(new APIResponse<object>(200));
+            return new JsonResult(new APIResponse<object>(false));
         }
         [HttpPost("InsertNewStudent")]
         public ActionResult InsertNewClass([FromBody] Student student)
         {
             if(BusControls.Instance.InsertNewStudent(student))
-                return new JsonResult(new APIResponse<object>("Insert success!"));
-            return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
         [HttpPost("UpdateStudent")]
         public ActionResult UpdateStudent([FromBody] Student student)
         {
             if (BusControls.Instance.UpdateStudent(student))
-                return new JsonResult(new APIResponse<object>("Update success!"));
-            return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
         [HttpPost("DeleteStudent")]
         public ActionResult DeleteStudent([FromBody] int maHS)
         {
             if (BusControls.Instance.DeleteStudent(maHS))
-                return new JsonResult(new APIResponse<object>("Update success!"));
-            return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<bool>(true));
+            return new JsonResult(new APIResponse<bool>(false));
         }
 
     }

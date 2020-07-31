@@ -92,8 +92,8 @@ namespace StudentManagement
                     MaLop = currentClassTb.Text
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.DeleteStudent(student.MaHS);
-                if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.DeleteStudent(student.MaHS);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;

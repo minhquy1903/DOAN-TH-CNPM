@@ -94,8 +94,8 @@ namespace StudentManagement
                     MaLop = savedMaLop.ToString()
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.InsertNewStudent(student);
-                if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.InsertNewStudent(student);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;

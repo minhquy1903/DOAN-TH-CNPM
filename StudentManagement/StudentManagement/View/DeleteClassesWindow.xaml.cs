@@ -74,8 +74,8 @@ namespace StudentManagement
                     nienKhoa = yearTb.Text
                 };
 
-                ResultYN resultYN = await Controllers.Controller.Instance.DeleteClass(classInfo.maLop);
-                if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.DeleteClass(classInfo.maLop);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;
