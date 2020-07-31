@@ -59,7 +59,8 @@
                                        IsTopDrawerOpen="{Binding ElementName=MarksViewToggleButton, Path=IsChecked}"
                                        IsBottomDrawerOpen="{Binding ElementName=HidenClassListViewToggleButton, Path=IsChecked}">
                 <materialDesign:DrawerHost.LeftDrawerContent>
-                    <DockPanel x:Name="ToolPanel" MinWidth="286">
+                    <DockPanel x:Name="ToolPanel" MinWidth="286"
+                               Background="{StaticResource darkBackgroundThemeColor}">
                         <ToggleButton 
                         Style="{StaticResource MaterialDesignHamburgerToggleButton}" 
                         DockPanel.Dock="Top"
@@ -386,7 +387,8 @@
                 </materialDesign:DrawerHost.RightDrawerContent>
                 <materialDesign:DrawerHost.TopDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="MarksViewPanel">
+                        <StackPanel x:Name="MarksViewPanel"
+                               Background="{StaticResource darkBackgroundThemeColor}">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -417,7 +419,7 @@
                                         Click="MarksListviewAddStudentButton_Click">
                                     <materialDesign:PackIcon Kind="PlusCircleOutline" />
                                 </Button>
-                                <Button x:Name="MarksListviewDeleteStudentButton"
+                                <!--<Button x:Name="MarksListviewDeleteStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Mark"
                                         Foreground="{StaticResource mainThemeColor}"
@@ -432,7 +434,7 @@
                                         Margin="0 10 0 0"
                                         Click="MarksListviewEditStudentButton_Click">
                                     <materialDesign:PackIcon Kind="SquareEditOutline" />
-                                </Button>
+                                </Button>-->
                             </StackPanel>
                             <ListView x:Name="marksLv"
                                       MinHeight="500"
@@ -464,7 +466,8 @@
                 </materialDesign:DrawerHost.TopDrawerContent>
                 <materialDesign:DrawerHost.BottomDrawerContent>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel x:Name="StudentViewPanel">
+                        <StackPanel x:Name="StudentViewPanel"
+                               Background="{StaticResource darkBackgroundThemeColor}">
                             <DockPanel>
                                 <ToggleButton  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
                                                DockPanel.Dock="Left"
@@ -495,7 +498,7 @@
                                         Click="StudentsListviewAddStudentButton_Click">
                                     <materialDesign:PackIcon Kind="AccountPlus" />
                                 </Button>
-                                <Button x:Name="StudentsListviewDeleteStudentButton"
+                                <!--<Button x:Name="StudentsListviewDeleteStudentButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Student"
                                         Foreground="{StaticResource mainThemeColor}"
@@ -510,7 +513,7 @@
                                         Margin="0 10 0 0"
                                         Click="StudentsListviewEditStudentButton_Click">
                                     <materialDesign:PackIcon Kind="SquareEditOutline" />
-                                </Button>
+                                </Button>-->
                                 <Button x:Name="StudentsListviewSearchMarksButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Show Marks"
@@ -638,7 +641,7 @@
                                         Click="ClassesViewAddClassButton_Click">
                                         <materialDesign:PackIcon Kind="AccountPlus" />
                                     </Button>
-                                    <Button x:Name="ClassesViewDeleteClassButton"
+                                    <!--<Button x:Name="ClassesViewDeleteClassButton"
                                         Style="{StaticResource MaterialDesignIconButton}"
                                         ToolTip="Delete Class"
                                         Foreground="{StaticResource mainThemeColor}"
@@ -653,7 +656,7 @@
                                         Margin="0 10 0 0"
                                         Click="ClassesViewEditClassButton_Click">
                                         <materialDesign:PackIcon Kind="SquareEditOutline" />
-                                    </Button>
+                                    </Button>-->
                                 </StackPanel>
                                 <Grid Width="300" 
                                   Height="auto">

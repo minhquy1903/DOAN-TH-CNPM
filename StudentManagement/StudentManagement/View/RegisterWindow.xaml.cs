@@ -48,9 +48,9 @@ namespace StudentManagement
                     return;
                 }
 
-                ResultYN result = await Controller.Instance.SignUp(usernameTb.Text, passwordBox.Password.ToString(), emailTb.Text, nameTb.Text);
+                bool result = await Controller.Instance.SignUp(usernameTb.Text, passwordBox.Password.ToString(), emailTb.Text, nameTb.Text);
 
-                if (result.Result)
+                if (result)
                 {
                     this.Close();
                 }

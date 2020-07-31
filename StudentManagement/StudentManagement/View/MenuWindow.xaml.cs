@@ -25,17 +25,19 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
-        //2 cai list nay xoa di
+        //List will get from dtb
         List<Student> studentInfos;
         List<ClassInfo> classInfos;
         List<DemoMarkInfo> markItems;
 
+        //CollectionView and Sorting Props 
         public bool isStudentsListViewSorted;
         public CollectionView collectionView;
 
         public bool isMarksListViewSorted;
         public CollectionView markCollectionView;
 
+        //Create window 1 time
         AddMarksWindow amw = new AddMarksWindow();
         AddStudentsWindow asw = new AddStudentsWindow();
         AddSubjectsWindow asjw = new AddSubjectsWindow();
@@ -53,25 +55,30 @@ namespace StudentManagement
         public MenuWindow()
         {
             InitializeComponent();
+
+            //Load Classview
             PanelClassview_Loaded();
 
+
+            //List Students things
             isStudentsListViewSorted = false;
-            //List Students
             studentInfos = new List<Student>();
-            studentsLv.ItemsSource = studentInfos;
+            //studentsLv.ItemsSource = studentInfos;
             studentsLv.SelectedValuePath = "MaHS";
             studentsLv.SelectionChanged += StudentsLv_SelectionChanged;
 
-            collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
-            collectionView.Filter = StudentListviewFilter;
+            //collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
+            //collectionView.Filter = StudentListviewFilter;
+
 
             //List Classes 
             classInfos = new List<ClassInfo>();
 
+
             //demo mark view
             isMarksListViewSorted = false;
             markItems = new List<DemoMarkInfo>();
-            markItems.Add(new DemoMarkInfo() 
+            markItems.Add(new DemoMarkInfo()
             {
                 idMark = "0",
                 demoSubjectName = Subject.Anh,
@@ -106,9 +113,9 @@ namespace StudentManagement
         }
 
         #region demo binding 
+        //Textbox get the Collected student
         private void StudentsLv_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //Neu da select thi gan cho textbox ten cua hoc sinh
             if (studentsLv.SelectedValue != null)
             {
                 for (int i = 0; i < studentInfos.Count; i++)
@@ -119,9 +126,9 @@ namespace StudentManagement
                 selectedStudentTbName.Text = "";
         }
 
+        //Listviews' Filter
         private bool StudentListviewFilter(object item)
         {
-            //thanh search
             if (String.IsNullOrEmpty(studentsLvSearchNameTb.Text))
                 return true;
             else
@@ -130,18 +137,17 @@ namespace StudentManagement
 
         private bool MarkListviewFilter(object item)
         {
-            //thanh search
             if (String.IsNullOrEmpty(marksLvSearchNameTb.Text))
                 return true;
             else
                 return ((item as DemoMarkInfo).demoSubjectName.ToString().IndexOf(marksLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
+        //Listviews' Sorter
         private void StudentsGridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
-            //sorting
             GridViewColumnHeader header = sender as GridViewColumnHeader;
-            if(isStudentsListViewSorted)
+            if (isStudentsListViewSorted)
             {
                 collectionView.SortDescriptions.Clear();
                 collectionView.SortDescriptions.Add(new SortDescription(header.Content.ToString(), ListSortDirection.Ascending));
@@ -156,7 +162,6 @@ namespace StudentManagement
 
         private void MarksGridViewColumnHeader_Click(object sender, RoutedEventArgs e)
         {
-            //sorting
             GridViewColumnHeader header = sender as GridViewColumnHeader;
             if (isMarksListViewSorted)
             {
@@ -171,9 +176,9 @@ namespace StudentManagement
             isMarksListViewSorted = !isMarksListViewSorted;
         }
 
+        //Refresh listviews while searching
         private void studentsLvSearchNameTb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //Refresh Listview
             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
         }
 
@@ -182,8 +187,8 @@ namespace StudentManagement
             CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
         }
 
-        public enum Subject { Toán, Văn, Anh, Lí, Hoá, Sinh, Sử, Địa, GiáoDụcCôngDân, ThểDục, GiáoDụcGiớiTính}
-        public enum Semester { HọcKỳ1, HọcKỳ2, HọcKỳHè}
+        public enum Subject { Toán, Văn, Anh, Lí, Hoá, Sinh, Sử, Địa, GiáoDụcCôngDân, ThểDục, GiáoDụcGiớiTính }
+        public enum Semester { HọcKỳ1, HọcKỳ2, HọcKỳHè }
         public enum MarkType { BàiTập, Kt15Phút, Kt45Phút, GiữaKỳ, CuốiKỳ }
 
         public class DemoMarkInfo
@@ -198,7 +203,6 @@ namespace StudentManagement
         }
         #endregion
 
-        //Mo Left Drawer Content se focus vao thanh Search
         private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
         {
             SearchBox.Focus();
@@ -208,6 +212,23 @@ namespace StudentManagement
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
         {
             ModifyTheme(theme => theme.SetBaseTheme(DarkModeToggleButton.IsChecked == true ? Theme.Dark : Theme.Light));
+
+            //This with hard-setting Background from Owner make Binding of SearchBar's background works smoother
+            if (DarkModeToggleButton.IsChecked == true)
+            {
+                Brush darkBG = (Brush)Application.Current.Resources["darkBackgroundThemeColor"];
+                StudentViewPanel.Background = darkBG;
+                ToolPanel.Background = darkBG;
+                MarksViewPanel.Background = darkBG;
+            }
+            else
+            {
+                Brush lightBG = (Brush)Application.Current.Resources["backgroundThemeColor"];
+                StudentViewPanel.Background = lightBG;
+                ToolPanel.Background = lightBG;
+                MarksViewPanel.Background = lightBG;
+            }
+
         }
 
         private static void ModifyTheme(Action<ITheme> modificationAction)
@@ -227,7 +248,7 @@ namespace StudentManagement
         {
             if (((TreeViewItem)e.NewValue).Tag != null)
             {
-                switch(((TreeViewItem)e.NewValue).Tag.ToString())
+                switch (((TreeViewItem)e.NewValue).Tag.ToString())
                 {
                     case "Add Marks":
                         amw.ShowDialog();
@@ -301,10 +322,16 @@ namespace StudentManagement
         #region Student Listview Control
         private async void studentsLv_Loaded()
         {
-            if(selectedClassName.Tag != null)
+            //Get Students from dtb
+            if (selectedClassName.Tag != null)
                 studentInfos = await Controller.Instance.GetAllStudent(Convert.ToInt32(selectedClassName.Tag));
             studentsLv.ItemsSource = studentInfos;
+            //Refresh 1 time
             CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+            //Setting CollectionView for Sorting and Filtering
+            collectionView = (CollectionView)CollectionViewSource.GetDefaultView(studentsLv.ItemsSource);
+            //Filtering
+            collectionView.Filter = StudentListviewFilter;
         }
 
         private void StudentsListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
@@ -356,30 +383,30 @@ namespace StudentManagement
 
         private void StudentsListviewEditStudentButton_Click(object sender, RoutedEventArgs e)
         {
-            //if (studentsLv.SelectedValue != null)
-            //{
-            //    //Fill info into ESW
-            //    for (int i = 0; i < studentInfos.Count; i++)
-            //        if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
-            //        {
-            //            esw.FillInfo(studentInfos.ElementAt(i).Hoten,
-            //                studentInfos.ElementAt(i).GioiTinh,
-            //                studentInfos.ElementAt(i).NgaySinh,
-            //                studentInfos.ElementAt(i).NoiSinh,
-            //                studentInfos.ElementAt(i).TenNgGianHo,
-            //                Convert.ToInt32(studentInfos.ElementAt(i).SDT),
-            //                selectedClassName.Text); 
-            //            break;
-            //        }
-            //    esw.ShowDialog();
+            if (studentsLv.SelectedValue != null)
+            {
+                //Fill info into ESW
+                for (int i = 0; i < studentInfos.Count; i++)
+                    if (studentInfos.ElementAt(i).MaHS.ToString() == studentsLv.SelectedValue.ToString())
+                    {
+                        esw.FillInfo(studentInfos.ElementAt(i).Hoten,
+                            studentInfos.ElementAt(i).GioiTinh,
+                            studentInfos.ElementAt(i).NgaySinh.ToString(),
+                            studentInfos.ElementAt(i).NoiSinh,
+                            studentInfos.ElementAt(i).TenNgGianHo,
+                            Convert.ToInt32(studentInfos.ElementAt(i).SDT),
+                            selectedClassName.Text);
+                        break;
+                    }
+                esw.ShowDialog();
 
-            //    if (esw.isCorrected)
-            //    {
-            //        studentsLv_Loaded();
-            //        CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
-            //        esw.isCorrected = false;
-            //    }
-            //}
+                if (esw.isCorrected)
+                {
+                    studentsLv_Loaded();
+                    CollectionViewSource.GetDefaultView(studentsLv.ItemsSource).Refresh();
+                    esw.isCorrected = false;
+                }
+            }
         }
         #endregion
 
@@ -428,7 +455,7 @@ namespace StudentManagement
             //AddClassesWindow acw = new AddClassesWindow();
             acw.ShowDialog();
 
-            if(acw.isCorrected)
+            if (acw.isCorrected)
             {
                 PanelClassview_Loaded();
                 acw.isCorrected = false;
@@ -442,7 +469,7 @@ namespace StudentManagement
                 mUC.iNotifierBoxOKCancel iNotifierBoxOKCancel = new mUC.iNotifierBoxOKCancel();
                 iNotifierBoxOKCancel.Text = "Do you want to delete " + selectedClassName.Text + " ?";
                 iNotifierBoxOKCancel.ShowDialog();
-                if(iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
+                if (iNotifierBoxOKCancel.result == mUC.iNotifierBoxOKCancel.Result.OK)
                 {
                     bool resultYN = await Controllers.Controller.Instance.DeleteClass(Convert.ToInt32(selectedClassName.Tag.ToString()));
                     if (resultYN)
@@ -500,8 +527,8 @@ namespace StudentManagement
 
         private void MarksListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
+            amw.FillSelectedItem(selectedStudentTbName.Text, selectedClassName.Text);
             amw.ShowDialog();
-            //Fill student name
 
             if (amw.isCorrected)
             {

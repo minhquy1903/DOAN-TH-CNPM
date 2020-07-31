@@ -94,6 +94,12 @@ namespace StudentManagement
 
         }
 
+        public void FillSelectedItem(string TenHS, string TenLop)
+        {
+            studentNameTb.Text = TenHS;
+            classNameTb.Text = TenLop;
+        }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
