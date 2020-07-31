@@ -43,22 +43,29 @@ namespace StudentManagement
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
-            string username = txbUser.Text;
-            string password = pwbPassword.Password.ToString();
-            LoginResult user = await Controller.Instance.Login(username, password);
- 
-            if(user.Result)
+            if (txbUser.Text != "" &&
+                pwbPassword.Password.ToString() != "")
             {
-                MenuWindow mwd = new MenuWindow();
-                mwd.Show();
-                this.Close();
+                LoginResult user = await Controller.Instance.Login(txbUser.Text, pwbPassword.Password.ToString());
+
+                if (user.Result)
+                {
+                    MenuWindow mwd = new MenuWindow();
+                    mwd.Show();
+                    this.Close();
+                }
+                else
+                {
+                    iNotifierBox.Text = "Sai tên đăng nhập hoặc mật khẩu";
+                    iNotifierBox.ShowDialog();
+                }
             }
             else
             {
-                iNotifierBox.Text = "Lỗi";
+                iNotifierBox.Text = "Vui lòng điền đầy đủ thông tin";
                 iNotifierBox.ShowDialog();
             }
-            
+
         }
     }
 }

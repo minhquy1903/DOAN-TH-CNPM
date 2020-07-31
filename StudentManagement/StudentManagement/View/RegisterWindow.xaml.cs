@@ -1,4 +1,5 @@
 ﻿using DTO;
+using StudentManagement.mUC;
 using StudentManagement.Controllers;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace StudentManagement
     /// </summary>
     public partial class RegisterWindow : Window
     {
+        iNotifierBox iNotifierBox = new iNotifierBox();
         public RegisterWindow()
         {
             InitializeComponent();
@@ -29,34 +31,40 @@ namespace StudentManagement
 
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            string username = usernameTb.Text;
-            string password = passwordBox.Password.ToString();
-            string email = emailTb.Text;
-            string name = nameTb.Text;
-
-            if (!IsValidEmail(email))
+            if (usernameTb.Text != "" &&
+                passwordBox.Password.ToString() != "" &&
+                emailTb.Text != "" &&
+                nameTb.Text != "")
             {
-                MessageBox.Show("Email không hợp lệ");
-                return;
-            }    
-             
-            if(!IsValidUsername(username))
-            {
-                MessageBox.Show("Username không hợp lệ");
-                return;
-            }
-            
+                if (!IsValidEmail(emailTb.Text))
+                {
+                    MessageBox.Show("Email không hợp lệ");
+                    return;
+                }
 
-            /*Regex regex1 = new Regex("^[a-zA-Z]+[a-zA-Z0-9]+[[a-zA-Z0-9-_.!#$%'*+/=?^]{1,20}@[a-zA-Z0-9]{1,20}.[a-zA-Z]{2,3}$")*/;
+                if (!IsValidUsername(usernameTb.Text))
+                {
+                    MessageBox.Show("Username không hợp lệ");
+                    return;
+                }
 
-            ResultYN result = await Controller.Instance.SignUp(username, password, email, name);
+                ResultYN result = await Controller.Instance.SignUp(usernameTb.Text, passwordBox.Password.ToString(), emailTb.Text, nameTb.Text);
 
-            if (result.Result)
-            {
-                this.Close();
+                if (result.Result)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    iNotifierBox.Text = "Đăng kí không thành công";
+                    iNotifierBox.ShowDialog();
+                }
             }
             else
-                MessageBox.Show("Đăng kí không thành công!", "Thông báo");
+            {
+                iNotifierBox.Text = "Vui lòng điền đầy đủ thông tin";
+                iNotifierBox.ShowDialog();
+            }
         }
         bool IsValidEmail(string email)
         {
