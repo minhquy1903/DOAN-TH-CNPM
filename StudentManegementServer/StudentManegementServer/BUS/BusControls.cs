@@ -30,9 +30,17 @@ namespace StudentManegementServer.BUS
         {
             DataRow dataAccount = DALControl.Instance.Login(_account);
             if (dataAccount == null)
-                return null;
+            {
+                UserProfile user = new UserProfile()
+                {
+                    Result = false
+                };
+                return user;
+            }    
+                
             UserProfile userProfile = new UserProfile()
             {
+                Result = true,
                 Email = dataAccount["Email"].ToString(),
                 FullName = dataAccount["FullName"].ToString()
             };
