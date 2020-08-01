@@ -6,12 +6,12 @@ namespace DTO
 {
     public class StudentMark
     {
-        int maDiem { get; set; }
-        string loaiDiem { get; set; }
-        int maHS { get; set; }
-        int maLop { get; set; }
-        string maMonHoc { get; set; }
-        string hocKy { get; set; }
-        float giaTriDiem { get; set; }
+        public int maDiem { get; set; }
+        public string loaiDiem { get; set; }
+        public int maHS { get; set; }
+        public int maLop { get; set; }
+        public string maMonHoc { get; set; }
+        public string hocKy { get; set; }
+        public float giaTriDiem { get; set; }
     }
 }

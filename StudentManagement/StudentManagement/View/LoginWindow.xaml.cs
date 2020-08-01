@@ -25,6 +25,8 @@ namespace StudentManagement
     public partial class LoginWindow : Window
     {
         iNotifierBox iNotifierBox = new iNotifierBox();
+        MenuWindow mwd = new MenuWindow();
+        RegisterWindow rwd = new RegisterWindow();
         public LoginWindow()
         {
             InitializeComponent();
@@ -32,7 +34,6 @@ namespace StudentManagement
 
         private void btnRegister_Click(object sender, RoutedEventArgs e)
         {
-            RegisterWindow rwd = new RegisterWindow();
             rwd.ShowDialog();
         }
 
@@ -50,9 +51,8 @@ namespace StudentManagement
 
                 if (user.Result)
                 {
-                    MenuWindow mwd = new MenuWindow();
                     //Chia ra là Giáo Viên, Học Sinh
-                    mwd.GetTypeAccount("Giáo Viên");
+                    mwd.CheckTypeAccount("Giáo Viên");
                     mwd.Show();
                     this.Close();
                 }

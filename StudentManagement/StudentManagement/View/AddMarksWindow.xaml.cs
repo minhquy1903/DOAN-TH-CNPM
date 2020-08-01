@@ -24,6 +24,9 @@ namespace StudentManagement
         public bool isCorrected = false;
         iNotifierBox iNotifierBox = new iNotifierBox();
 
+        public int savedMaHS;
+        public int savedMaLop;
+
         public AddMarksWindow()
         {
             InitializeComponent();
@@ -59,20 +62,18 @@ namespace StudentManagement
                     return;
                 }
 
-                string studentName = studentNameTb.Text;
-                string subjectName = subjectNameTb.Text;
-                string className = classNameTb.Text;
-                string semester = semesterTb.Text;
-                string type = typeTb.Text;
-                double value = Convert.ToDouble(valueTb.Text);
-
                 StudentMark studentMark = new StudentMark()
                 {
-
+                    loaiDiem = typeTb.Text,
+                    maHS = savedMaHS,
+                    maLop = savedMaLop,
+                    maMonHoc = subjectNameTb.Text,
+                    hocKy = semesterTb.Text,
+                    giaTriDiem = (float)Convert.ToDouble(valueTb.Text)
                 };
 
-                //ResultYN resultYN = await Controllers.Controller.Instance.InsertNewClass(classInfo);
-                //if (resultYN.Result)
+                bool resultYN = await Controllers.Controller.Instance.InsertMark(studentMark);
+                if (resultYN)
                 {
                     this.Hide();
                     isCorrected = true;

@@ -25,13 +25,10 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
-        //Type of Account
-        string typeAccount;
-
         //List will get from dtb
         List<Student> studentInfos;
         List<ClassInfo> classInfos;
-        List<DemoMarkInfo> markItems;
+        List<StudentMark> markInfos;
 
         //CollectionView and Sorting Props 
         public bool isStudentsListViewSorted;
@@ -59,13 +56,6 @@ namespace StudentManagement
         {
             InitializeComponent();
 
-            if(typeAccount != "Giáo Viên")
-            {
-                ClassesViewAddClassButton.IsEnabled = false;
-                StudentsListviewAddStudentButton.IsEnabled = false;
-                MarksListviewAddStudentButton.IsEnabled = false;
-            }
-
             //Load Classview
             PanelClassview_Loaded();
 
@@ -87,36 +77,9 @@ namespace StudentManagement
 
             //demo mark view
             isMarksListViewSorted = false;
-            markItems = new List<DemoMarkInfo>();
-            markItems.Add(new DemoMarkInfo()
-            {
-                idMark = "0",
-                demoSubjectName = Subject.Anh,
-                demoClassName = "10A1",
-                demoSemester = Semester.HọcKỳ1,
-                demoType = MarkType.Kt15Phút,
-                demoValue = 9.5f
-            });
-            markItems.Add(new DemoMarkInfo()
-            {
-                idMark = "1",
-                demoSubjectName = Subject.Toán,
-                demoClassName = "10A1",
-                demoSemester = Semester.HọcKỳ1,
-                demoType = MarkType.Kt45Phút,
-                demoValue = 8f
-            });
-            markItems.Add(new DemoMarkInfo()
-            {
-                idMark = "2",
-                demoSubjectName = Subject.Văn,
-                demoClassName = "10A1",
-                demoSemester = Semester.HọcKỳ1,
-                demoType = MarkType.GiữaKỳ,
-                demoValue = 9f
-            });
-            marksLv.ItemsSource = markItems;
-            marksLv.SelectedValuePath = "idMark";
+            markInfos = new List<StudentMark>();
+            //marksLv.ItemsSource = markInfos;
+            marksLv.SelectedValuePath = "maDiem";
 
             markCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(marksLv.ItemsSource);
             markCollectionView.Filter = MarkListviewFilter;
@@ -150,7 +113,7 @@ namespace StudentManagement
             if (String.IsNullOrEmpty(marksLvSearchNameTb.Text))
                 return true;
             else
-                return ((item as DemoMarkInfo).demoSubjectName.ToString().IndexOf(marksLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+                return ((item as StudentMark).maMonHoc.IndexOf(marksLvSearchNameTb.Text, StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
         //Listviews' Sorter
@@ -196,24 +159,24 @@ namespace StudentManagement
         {
             CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
         }
-
-        public enum Subject { Toán, Văn, Anh, Lí, Hoá, Sinh, Sử, Địa, GiáoDụcCôngDân, ThểDục, GiáoDụcGiớiTính }
-        public enum Semester { HọcKỳ1, HọcKỳ2, HọcKỳHè }
-        public enum MarkType { BàiTập, Kt15Phút, Kt45Phút, GiữaKỳ, CuốiKỳ }
-
-        public class DemoMarkInfo
-        {
-            public string idMark { get; set; }
-            public string demoStudentName { get; set; }
-            public Subject demoSubjectName { get; set; }
-            public string demoClassName { get; set; }
-            public Semester demoSemester { get; set; }
-            public MarkType demoType { get; set; }
-            public double demoValue { get; set; }
-        }
         #endregion
 
-        public void GetTypeAccount(string type) { typeAccount = type; }
+        public void CheckTypeAccount(string type) 
+        {
+            if (type != "Giáo Viên")
+            {
+                ClassesViewAddClassButton.IsEnabled = false;
+                StudentsListviewAddStudentButton.IsEnabled = false;
+                MarksListviewAddStudentButton.IsEnabled = false;
+            }
+            else
+            {
+                ClassesViewAddClassButton.IsEnabled = true;
+                StudentsListviewAddStudentButton.IsEnabled = true;
+                MarksListviewAddStudentButton.IsEnabled = true;
+            }
+
+        }
 
         #region ThemeButton
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
@@ -529,6 +492,7 @@ namespace StudentManagement
         #endregion
 
         #region Mark Listview Control
+        //Button SearchMark at Student Listview
         private void StudentsListviewSearchMarksButton_Click(object sender, RoutedEventArgs e)
         {
             if (studentsLv.SelectedValue != null)
@@ -538,50 +502,35 @@ namespace StudentManagement
             }
         }
 
+        private async void marksLv_Loaded()
+        {
+            //Get marks from dtb
+            if(studentsLv.SelectedValue != null)
+            {
+                //markInfos = await Controller.Instance.GetAllMark();
+            }
+            marksLv.ItemsSource = markInfos;
+            //Refresh 1 time
+            CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
+            //Setting CollectionView for Sorting and Filtering
+            markCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(marksLv.ItemsSource);
+            //Filtering
+            markCollectionView.Filter = MarkListviewFilter;
+        }
+
         private void MarksListviewAddStudentButton_Click(object sender, RoutedEventArgs e)
         {
             amw.FillSelectedItem(selectedStudentTbName.Text, selectedClassName.Text);
+            amw.savedMaHS = Convert.ToInt32(studentsLv.SelectedValue);
+            amw.savedMaLop = Convert.ToInt32(selectedClassName.Tag);
             amw.ShowDialog();
 
             if (amw.isCorrected)
             {
-                Subject sub = Subject.Toán;
-                if (amw.subjectNameTb.Text == "Toán") sub = Subject.Toán;
-                if (amw.subjectNameTb.Text == "Văn") sub = Subject.Văn;
-                if (amw.subjectNameTb.Text == "Anh") sub = Subject.Anh;
-                if (amw.subjectNameTb.Text == "Lí") sub = Subject.Lí;
-                if (amw.subjectNameTb.Text == "Hoá") sub = Subject.Hoá;
-                if (amw.subjectNameTb.Text == "Sinh") sub = Subject.Sinh;
-                if (amw.subjectNameTb.Text == "Sử") sub = Subject.Sử;
-                if (amw.subjectNameTb.Text == "Địa") sub = Subject.Địa;
-                if (amw.subjectNameTb.Text == "GiáoDụcCôngDân") sub = Subject.GiáoDụcCôngDân;
-                if (amw.subjectNameTb.Text == "ThểDục") sub = Subject.ThểDục;
-                if (amw.subjectNameTb.Text == "GiáoDụcGiớiTính") sub = Subject.GiáoDụcGiớiTính;
-
-                Semester sem = Semester.HọcKỳ1;
-                if (amw.semesterTb.Text == "HọcKỳ1") sem = Semester.HọcKỳ1;
-                if (amw.semesterTb.Text == "HọcKỳ2") sem = Semester.HọcKỳ2;
-                if (amw.semesterTb.Text == "HọcKỳHè") sem = Semester.HọcKỳHè;
-
-                MarkType typ = MarkType.BàiTập;
-                if (amw.typeTb.Text == "BàiTập") typ = MarkType.BàiTập;
-                if (amw.typeTb.Text == "Kt15Phút") typ = MarkType.Kt15Phút;
-                if (amw.typeTb.Text == "Kt45Phút") typ = MarkType.Kt45Phút;
-                if (amw.typeTb.Text == "GiữaKỳ") typ = MarkType.GiữaKỳ;
-                if (amw.typeTb.Text == "CuốiKỳ") typ = MarkType.CuốiKỳ;
-                markItems.Add(new DemoMarkInfo()
-                {
-                    idMark = markItems.Count.ToString(),
-                    demoStudentName = amw.studentNameTb.Text,
-                    demoSubjectName = sub,
-                    demoClassName = amw.classNameTb.Text,
-                    demoSemester = sem,
-                    demoType = typ,
-                    demoValue = Convert.ToDouble(amw.valueTb.Text),
-                });
+                marksLv_Loaded();
+                CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
+                amw.isCorrected = false;
             }
-
-            CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
         }
 
         private void MarksListviewDeleteStudentButton_Click(object sender, RoutedEventArgs e)
@@ -592,13 +541,6 @@ namespace StudentManagement
                 //Viet cau query delete o day neu select Ok
                 if (result == MessageBoxResult.OK)
                 {
-                    for (int i = 0; i < markItems.Count; i++)
-                        if (markItems.ElementAt(i).idMark == marksLv.SelectedValue.ToString())
-                        {
-                            markItems.RemoveAt(i);
-                            CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
-                            break;
-                        }
                 }
             }
         }
@@ -607,53 +549,9 @@ namespace StudentManagement
         {
             if (marksLv.SelectedValue != null)
             {
-                int flag = 0;
                 //Mo form va dien thong tin
-                for (int i = 0; i < markItems.Count; i++)
-                    if (markItems.ElementAt(i).idMark == marksLv.SelectedValue.ToString())
-                    {
-                        flag = i;
-                        emw.FillInfo(markItems.ElementAt(i).demoStudentName,
-                            markItems.ElementAt(i).demoSubjectName.ToString(),
-                            markItems.ElementAt(i).demoClassName,
-                            markItems.ElementAt(i).demoSemester.ToString(),
-                            markItems.ElementAt(i).demoType.ToString(),
-                            markItems.ElementAt(i).demoValue); //currentClass thi phai ket noi dtb class o doan chon lop
-                        break;
-                    }
+
                 emw.ShowDialog();
-
-                Subject sub = Subject.Toán;
-                if (emw.subjectNameTb.Text == "Toán") sub = Subject.Toán;
-                if (emw.subjectNameTb.Text == "Văn") sub = Subject.Văn;
-                if (emw.subjectNameTb.Text == "Anh") sub = Subject.Anh;
-                if (emw.subjectNameTb.Text == "Lí") sub = Subject.Lí;
-                if (emw.subjectNameTb.Text == "Hoá") sub = Subject.Hoá;
-                if (emw.subjectNameTb.Text == "Sinh") sub = Subject.Sinh;
-                if (emw.subjectNameTb.Text == "Sử") sub = Subject.Sử;
-                if (emw.subjectNameTb.Text == "Địa") sub = Subject.Địa;
-                if (emw.subjectNameTb.Text == "GiáoDụcCôngDân") sub = Subject.GiáoDụcCôngDân;
-                if (emw.subjectNameTb.Text == "ThểDục") sub = Subject.ThểDục;
-                if (emw.subjectNameTb.Text == "GiáoDụcGiớiTính") sub = Subject.GiáoDụcGiớiTính;
-
-                Semester sem = Semester.HọcKỳ1;
-                if (emw.semesterTb.Text == "HọcKỳ1") sem = Semester.HọcKỳ1;
-                if (emw.semesterTb.Text == "HọcKỳ2") sem = Semester.HọcKỳ2;
-                if (emw.semesterTb.Text == "HọcKỳHè") sem = Semester.HọcKỳHè;
-
-                MarkType typ = MarkType.BàiTập;
-                if (emw.typeTb.Text == "BàiTập") typ = MarkType.BàiTập;
-                if (emw.typeTb.Text == "Kt15Phút") typ = MarkType.Kt15Phút;
-                if (emw.typeTb.Text == "Kt45Phút") typ = MarkType.Kt45Phút;
-                if (emw.typeTb.Text == "GiữaKỳ") typ = MarkType.GiữaKỳ;
-                if (emw.typeTb.Text == "CuốiKỳ") typ = MarkType.CuốiKỳ;
-
-                markItems.ElementAt(flag).demoStudentName = emw.studentNameTb.Text;
-                markItems.ElementAt(flag).demoSubjectName = sub;
-                markItems.ElementAt(flag).demoClassName = emw.classNameTb.Text;
-                markItems.ElementAt(flag).demoSemester = sem;
-                markItems.ElementAt(flag).demoType = typ;
-                markItems.ElementAt(flag).demoValue = Convert.ToDouble(emw.valueTb.Text);
 
                 CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
             }

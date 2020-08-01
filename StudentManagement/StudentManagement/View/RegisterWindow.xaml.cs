@@ -38,13 +38,15 @@ namespace StudentManagement
             {
                 if (!IsValidEmail(emailTb.Text))
                 {
-                    MessageBox.Show("Email không hợp lệ");
+                    iNotifierBox.Text = "Email không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
                 if (!IsValidUsername(usernameTb.Text))
                 {
-                    MessageBox.Show("Username không hợp lệ");
+                    iNotifierBox.Text = "Username không hợp lệ";
+                    iNotifierBox.ShowDialog();
                     return;
                 }
 
@@ -52,7 +54,9 @@ namespace StudentManagement
 
                 if (result)
                 {
-                    this.Close();
+                    this.Hide();
+                    iNotifierBox.Text = "Đăng ký thành công !";
+                    iNotifierBox.ShowDialog();
                 }
                 else
                 {
