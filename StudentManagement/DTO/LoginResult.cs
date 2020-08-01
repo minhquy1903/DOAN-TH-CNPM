@@ -7,22 +7,13 @@ namespace DTO
 {
     public class LoginResult
     {
-        [JsonProperty("result")]
         public bool Result { get; set; }
 
-        [JsonProperty("error")]
-        public int Error { get; set; }
-
-        [JsonProperty("data")]
-        public Data Data { get; set; }
-    }
-
-    public partial class Data
-    {
         [JsonProperty("email")]
         public string Email { get; set; }
 
         [JsonProperty("fullName")]
         public string FullName { get; set; }
+        public string TypeUser { get; set; }
     }
 }

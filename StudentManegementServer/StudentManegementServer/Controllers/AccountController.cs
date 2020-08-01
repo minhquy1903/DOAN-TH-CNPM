@@ -20,12 +20,12 @@ namespace StudentManegementServer.Controllers
         {
             UserProfile userProfile = BusControls.Instance.Login(account);
 
-            if(userProfile != null)
+            if(userProfile.Result)
             {
-                return new JsonResult(new APIResponse<object>(userProfile));
+                return new JsonResult(new APIResponse<UserProfile>(userProfile));
             }
             else
-                return new JsonResult(new APIResponse<object>(200));
+                return new JsonResult(new APIResponse<UserProfile>(userProfile));
         }
 
         [HttpPost("SignUp")]
@@ -33,9 +33,9 @@ namespace StudentManegementServer.Controllers
         {
             if (BusControls.Instance.SignUp(account))
             {
-                return new JsonResult(new APIResponse<object>("Sign Up Success"));
+                return new JsonResult(new APIResponse<bool>(true));
             }
-            return new JsonResult(new APIResponse<object>(200));
+            return new JsonResult(new APIResponse<bool>(false));
         }
     }
 }
