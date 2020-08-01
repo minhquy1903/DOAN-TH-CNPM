@@ -51,6 +51,8 @@ namespace StudentManagement
                 if (user.Result)
                 {
                     MenuWindow mwd = new MenuWindow();
+                    //Chia ra là Giáo Viên, Học Sinh
+                    mwd.GetTypeAccount("Giáo Viên");
                     mwd.Show();
                     this.Close();
                 }

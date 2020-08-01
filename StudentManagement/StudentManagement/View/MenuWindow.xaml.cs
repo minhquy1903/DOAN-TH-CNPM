@@ -25,6 +25,9 @@ namespace StudentManagement
     /// </summary>
     public partial class MenuWindow : Window
     {
+        //Type of Account
+        string typeAccount;
+
         //List will get from dtb
         List<Student> studentInfos;
         List<ClassInfo> classInfos;
@@ -55,6 +58,13 @@ namespace StudentManagement
         public MenuWindow()
         {
             InitializeComponent();
+
+            if(typeAccount != "Giáo Viên")
+            {
+                ClassesViewAddClassButton.IsEnabled = false;
+                StudentsListviewAddStudentButton.IsEnabled = false;
+                MarksListviewAddStudentButton.IsEnabled = false;
+            }
 
             //Load Classview
             PanelClassview_Loaded();
@@ -203,10 +213,7 @@ namespace StudentManagement
         }
         #endregion
 
-        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            SearchBox.Focus();
-        }
+        public void GetTypeAccount(string type) { typeAccount = type; }
 
         #region ThemeButton
         private void MenuDarkModeButton_Click(object sender, RoutedEventArgs e)
@@ -243,6 +250,12 @@ namespace StudentManagement
         #endregion
 
         #region Left Treeview
+
+        private void MenuToggleButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            SearchBox.Focus();
+        }
+
         //TreeView 
         private void TreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
