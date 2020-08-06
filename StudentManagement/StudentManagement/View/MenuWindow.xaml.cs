@@ -506,9 +506,7 @@ namespace StudentManagement
         {
             //Get marks from dtb
             if(studentsLv.SelectedValue != null)
-            {
-                //markInfos = await Controller.Instance.GetAllMark();
-            }
+                markInfos = await Controller.Instance.GetAllMark(Convert.ToInt32(studentsLv.SelectedValue));
             marksLv.ItemsSource = markInfos;
             //Refresh 1 time
             CollectionViewSource.GetDefaultView(marksLv.ItemsSource).Refresh();
@@ -623,7 +621,7 @@ UùÙủỦũŨúÚụỤưƯừỪửỬữỮứỨựỰvVwWxXyYỳỲỷỶ�
         {
             try
             {
-                Regex rx = new Regex(@"^[0 - 9.]{ 1, 3 }$");
+                Regex rx = new Regex(@"^[0-9.]{1,3}$");
                 return rx.IsMatch(str);
             }
             catch (FormatException)

@@ -77,9 +77,9 @@ namespace StudentManagement.Controllers
         }
         #endregion
         #region Control Mark
-        public async Task<StudentMark> GetAllMark(StudentMark studentMark)
+        public async Task<List<StudentMark>> GetAllMark(int MaHocSinh)
         {
-            return await APIHelper.Instance.Post<StudentMark>(APIRoute.Mark.GetAllMark, studentMark);
+            return await APIHelper.Instance.Post<List<StudentMark>>(APIRoute.Mark.GetAllMark, MaHocSinh);
         }
         public async Task<bool> InsertMark(StudentMark studentMark)
         {

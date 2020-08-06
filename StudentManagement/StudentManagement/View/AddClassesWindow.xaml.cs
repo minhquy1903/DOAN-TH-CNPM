@@ -87,6 +87,11 @@ namespace StudentManagement
                     iNotifierBox.Text = "Thêm thành công !";
                     iNotifierBox.ShowDialog();
                 }
+                else
+                {
+                    iNotifierBox.Text = "Lỗi";
+                    iNotifierBox.ShowDialog();
+                }
             }
             else
             {
