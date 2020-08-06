@@ -81,8 +81,8 @@ namespace StudentManagement
             //marksLv.ItemsSource = markInfos;
             marksLv.SelectedValuePath = "maDiem";
 
-            markCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(marksLv.ItemsSource);
-            markCollectionView.Filter = MarkListviewFilter;
+            //markCollectionView = (CollectionView)CollectionViewSource.GetDefaultView(marksLv.ItemsSource);
+            //markCollectionView.Filter = MarkListviewFilter;
         }
 
         #region demo binding 
