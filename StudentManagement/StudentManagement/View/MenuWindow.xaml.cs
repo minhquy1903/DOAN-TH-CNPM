@@ -499,9 +499,10 @@ namespace StudentManagement
             {
                 HidenClassListViewToggleButton.IsChecked = false;
                 MarksViewToggleButton.IsChecked = true;
+                marksLv_Loaded();
             }
         }
-
+        // hu r
         private async void marksLv_Loaded()
         {
             //Get marks from dtb
