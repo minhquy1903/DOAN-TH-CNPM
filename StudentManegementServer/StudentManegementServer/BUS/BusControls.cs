@@ -138,7 +138,7 @@ namespace StudentManegementServer.BUS
                 mark.maMonHoc = row["MAMONHOC"].ToString();
                 mark.hocKy = row["HOCKY"].ToString();
                 mark.maLop = Convert.ToInt32(row["MALOP"]);
-                mark.giaTriDiem = Convert.ToInt32(row["GIATRIDIEM"]);
+                mark.giaTriDiem = (float)Convert.ToDouble(row["GIATRIDIEM"]);
                 marks.Add(mark);
             }
             return marks;
