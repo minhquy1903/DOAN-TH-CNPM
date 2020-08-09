@@ -40,7 +40,7 @@ namespace StudentManagement.API
         }
         public static class Mark
         {
-            public const string GetAllMark = Base + "/Mark/GetAllMark";
+            public const string GetAllMark = Base + "/Mark/GetAllMarks";
 
             public const string InsertMark = Base + "/Mark/InsertMark";
 

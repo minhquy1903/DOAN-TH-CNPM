@@ -442,21 +442,18 @@
                                       HorizontalAlignment="Center">
                                 <ListView.View>
                                     <GridView>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSubjectName}">
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding maMonHoc}">
                                             <!--Content phai giong voi ten binding de con sort duoc-->
-                                            <GridViewColumnHeader Content="demoSubjectName" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
+                                            <GridViewColumnHeader Content="maMonHoc" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoClassName}">
-                                            <GridViewColumnHeader Content="demoClassName" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding HocKy}">
+                                            <GridViewColumnHeader Content="HocKy" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoSemester}">
-                                            <GridViewColumnHeader Content="demoSemester" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding LoaiDiem}">
+                                            <GridViewColumnHeader Content="LoaiDiem" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoType}">
-                                            <GridViewColumnHeader Content="demoType" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
-                                        </GridViewColumn>
-                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding demoValue}">
-                                            <GridViewColumnHeader Content="demoValue" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
+                                        <GridViewColumn Width="auto" DisplayMemberBinding="{Binding GiaTriDiem}">
+                                            <GridViewColumnHeader Content="GiaTriDiem" Width="auto" Click="MarksGridViewColumnHeader_Click"/>
                                         </GridViewColumn>
                                     </GridView>
                                 </ListView.View>

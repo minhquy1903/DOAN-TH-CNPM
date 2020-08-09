@@ -64,12 +64,12 @@ namespace StudentManagement
 
                 StudentMark studentMark = new StudentMark()
                 {
-                    loaiDiem = typeTb.Text,
+                    LoaiDiem = typeTb.Text,
                     maHS = savedMaHS,
                     maLop = savedMaLop,
                     maMonHoc = subjectNameTb.Text,
-                    hocKy = semesterTb.Text,
-                    giaTriDiem = (float)Convert.ToDouble(valueTb.Text)
+                    HocKy = semesterTb.Text,
+                    GiaTriDiem = (float)Convert.ToDouble(valueTb.Text)
                 };
 
                 bool resultYN = await Controllers.Controller.Instance.InsertMark(studentMark);
